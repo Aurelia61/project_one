@@ -15,19 +15,19 @@ map_elements = {
         },
     "^" : {
         "name" : "montain",
-        "image" : "▲",
+        "image" : "^",
         "can_walk" : False
         },
     ">" : {
         "name" : "montain",
-        "image" : "▲",
+        "image" : "\u001b[38;5;58m▲\u001b[0m",
         "can_walk" : False
         },
-    "<" : {
-        "name" : "montain",
-        "image" : "▲",
-        "can_walk" : False
-        },
+    # "<" : {
+    #     "name" : "montain",
+    #     "image" : "▲",
+    #     "can_walk" : False
+        # },
     "µ" : {
         "name" : "river",
         "image" : "µ",
@@ -53,24 +53,24 @@ map_elements = {
         "image" : "\u001b[38;5;57m~\u001b[0m",
         "can_walk" : False
         },
-    "&" : {
+    "♣" : {
         "name" : "jungle",
-        "image" : "&",
+        "image" : "♣",
         "can_walk" : False
         },
     "J" : {
         "name" : "jungle",
-        "image" : "\u001b[38;5;76m&\u001b[0m",
+        "image" : "\u001b[38;5;76m♣\u001b[0m",
         "can_walk" : False
         },
-    "§" : {
+    "`" : {
         "name" : "steppe",
-        "image" : "§",
+        "image" : "`",
         "can_walk" : False
         },
     "v" : {
         "name" : "steppe",
-        "image" : "\u001b[38;5;76m§\u001b[0m",
+        "image" : "\u001b[38;5;76m`\u001b[0m",
         "can_walk" : False
         },
     "°" : {
@@ -85,12 +85,12 @@ map_elements = {
         },
     "¤" : {
         "name" : "mysterious gate",
-        "image" : "\u001b[38;5;164m¤\u001b[0m",
+        "image" : "\u001b[48;5;164m¤\u001b[0m",
         "can_walk" : True
         },
     "*" : {
         "name" : "challenge",
-        "image" : "\u001b[38;5;208m*\u001b[0m",
+        "image" : "\u001b[48;5;208m*\u001b[0m",
         "can_walk" : True
         },
     }
