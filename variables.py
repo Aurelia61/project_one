@@ -15,7 +15,17 @@ map_elements = {
         },
     "^" : {
         "name" : "montain",
-        "image" : "^",
+        "image" : "▲",
+        "can_walk" : False
+        },
+    ">" : {
+        "name" : "montain",
+        "image" : "▲",
+        "can_walk" : False
+        },
+    "<" : {
+        "name" : "montain",
+        "image" : "▲",
         "can_walk" : False
         },
     "µ" : {
@@ -23,9 +33,24 @@ map_elements = {
         "image" : "µ",
         "can_walk" : False
         },
+    "u" : {
+        "name" : "river",
+        "image" : "\u001b[38;5;57mµ\u001b[0m",
+        "can_walk" : False
+        },
+    "i" : {
+        "name" : "river",
+        "image" : "\u001b[38;5;57mµ\u001b[0m",
+        "can_walk" : False
+        },
     "~" : {
         "name" : "sea",
         "image" : "~",
+        "can_walk" : False
+        },
+    "s" : {
+        "name" : "sea",
+        "image" : "\u001b[38;5;57m~\u001b[0m",
         "can_walk" : False
         },
     "&" : {
@@ -33,14 +58,29 @@ map_elements = {
         "image" : "&",
         "can_walk" : False
         },
+    "J" : {
+        "name" : "jungle",
+        "image" : "\u001b[38;5;76m&\u001b[0m",
+        "can_walk" : False
+        },
     "§" : {
         "name" : "steppe",
         "image" : "§",
         "can_walk" : False
         },
+    "v" : {
+        "name" : "steppe",
+        "image" : "\u001b[38;5;76m§\u001b[0m",
+        "can_walk" : False
+        },
     "°" : {
         "name" : "sand",
         "image" : "°",
+        "can_walk" : False
+        },
+    "." : {
+        "name" : "sand",
+        "image" : "\u001b[38;5;223m°\u001b[0m",
         "can_walk" : False
         },
     "¤" : {
