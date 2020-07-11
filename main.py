@@ -10,6 +10,8 @@ def start() :
     """
     Game start here
     """
+    
+    game.load_map_from_file("map")
     game.draw_map()
 
 

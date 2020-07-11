@@ -6,6 +6,36 @@
 import variables
 
 
+def load_map_from_file(file_name):
+    """
+        Load a map from specified file name
+    """
+
+    try:
+        with open(file_name, "r", encoding="utf-8") as my_file:
+            Y = 0
+            for line in my_file:
+                columns = []
+                X = 0
+                for map_symbol in line:
+                    # ignore line ends
+                    if map_symbol == "\n":
+                        continue
+                    # add character to map
+                    columns.append(map_symbol)
+                    # place character at map entry
+                    if map_symbol == "X":
+                        variables.avatar_position["X"] = X
+                        variables.avatar_position["Y"] = Y
+                    X += 1
+                # add line to map
+                variables.map.append(columns)
+                Y += 1
+
+    except FileNotFoundError:
+        variables.game_in_progress = False     ######################### !!!!!!!!
+        print("\nCette carte n'existe pas.\n")
+
 
 def draw_map() :
     """
