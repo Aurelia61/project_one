@@ -29,7 +29,7 @@ def load_map_from_file(file_name):
                         variables.avatar_position["Y"] = Y
                     X += 1
                 # add line to map
-                variables.map.append(columns)
+                variables.map1.append(columns)
                 Y += 1
 
     except FileNotFoundError:
@@ -42,15 +42,15 @@ def draw_map() :
     Draw map on console
     """
 
-    for Y in range(len(variables.map)) :
-        for X in range(len(variables.map[Y])) :
+    for Y in range(len(variables.map1)) :
+        for X in range(len(variables.map1[Y])) :
             if (Y == variables.avatar_position["Y"] 
-                and X == variables.avatar_position[X]) :
+                and X == variables.avatar_position["X"]) :
                 # if above is true, avatar is in this place, so draw it
                 print(variables.avatar_symbol, end="")
             else :
                 # if not, draw the item of the map
-                print(variables.map[variables.map[Y][X]]["image"], end="")
+                print(variables.map_elements[variables.map1[Y][X]]["image"], end="")
         print()
 
 

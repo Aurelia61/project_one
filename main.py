@@ -11,7 +11,7 @@ def start() :
     Game start here
     """
     
-    game.load_map_from_file("map")
+    game.load_map_from_file("map1")
     game.draw_map()
 
 
