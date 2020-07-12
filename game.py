@@ -54,5 +54,11 @@ def draw_map() :
         print()
 
 
+def echec(player_name) :
+    """
+    echec of the player
+    """
+    
+    print(f"\nA bientôt {player_name} !\n")
 
 

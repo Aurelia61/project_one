@@ -14,7 +14,7 @@ def start() :
     
     initialization.show_title_and_story()
     initialization.show_map()
-
+    initialization.show_rules()
 
 
 # main entry point

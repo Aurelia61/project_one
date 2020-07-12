@@ -1,8 +1,36 @@
 # coding: utf-8
 
+#player
+player_name =""
+
+# game
+game_in_progress = True
+action_choosen = ""
+
 # avatar
 avatar_position = {"X" : 19, "Y" : 56}
-avatar_symbol = "\u001b[38;5;196m☻\u001b[0m"    ################### mettre la couleur ???
+
+letter_avatar_symbol = ""
+
+avatar_symbol = {                                                ################### rajouter le choix de la couleur ???
+    "N" : {
+        "name" : "Neutre",
+        "symbol" : "\u001b[38;5;196m☻\u001b[0m",
+        "message" : "Voici le symbole de ton avatar : ☻ !"
+    },
+    "F" : {
+        "name" : "Fille",
+        "symbol" : "\u001b[38;5;196m♀\u001b[0m",
+        "message" : "Quelle bonne idée d'avoir choisi ce symbole ♀ !\n Tu as débloqué le 'Ladies Mode' !\n"
+    },
+    "G" : {
+        "name" : "Garçon",
+        "symbol" : "\u001b[38;5;196m♂\u001b[0m",
+        "message" : "Voici le symbole de ton avatar : ♂ !"
+    }
+}
+
+avatar_symbol_current =""
 
 # map
 map1 = []
@@ -94,6 +122,7 @@ map_elements = {
         },
     }
 
+
 # actions
 
 actions = {
@@ -106,7 +135,7 @@ actions = {
     "Q" : {
         "name" : "Quitter",
         # "character" : "Q",
-        "message" : "\nC'est dommage...\nA bientôt !\n",
+        "message" : "\nC'est dommage...\n",
         "game_in_progress" : False 
     },
     "E" : {
@@ -116,5 +145,12 @@ actions = {
         "game_in_progress" : True 
     },
 }
+
+
+# symbol challenge
+
+# symbols : {
+#     { }
+# }
 
 
