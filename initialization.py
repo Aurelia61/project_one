@@ -5,11 +5,12 @@
 # additional modules
 import game
 import utilities
+import variables
 
 
-def show_title_and_story(clear_console = True ) :
+def show_title_and_story(clear_console = True) :
     """
-    Show the title and the story at the beginning.
+    shows the title and the story at the beginning.
     """
 
     if clear_console:
@@ -58,14 +59,59 @@ def show_title_and_story(clear_console = True ) :
     print()
 
 
-#### demander au joueur s'il veut continuer !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+def show_map(clear_console = True) :
+    """
+    shows the map.
+    """
 
-    print("J'oubliais le principal...")
-    print("La carte de l'île : ")
+    print("Il est encore temps d'abandonner la partie en quittant le jeu.")
+
+    action_choosen = input("Appuies sur [Q] pour quitter ou sur [C] pour continuer :").upper()
+
+    if action_choosen != "C" or action_choosen != "Q" :
+        if clear_console:
+            utilities.clear_console()
+
+        while action_choosen != "C" and action_choosen != "Q" :
+            action_choosen = "E"
+            print(variables.actions["E"]["message"])
+            action_choosen = input("Appuies sur [Q] pour quitter ou sur [C] pour continuer :").upper()
+    
+    if action_choosen == "C":
+        if clear_console:
+            utilities.clear_console()
+
+        print(variables.actions["C"]["message"])
+        print("C'est parti pour l'aventure !")
+        print()
+        print("J'oubliais le principal...")
+        print("La carte de l'île : ")
+        print()
+
+        if clear_console:
+            utilities.clear_console()
+
+        game.load_map_from_file("map1")
+        game.draw_map()
+        print()
+        print("Sauras-tu te déplacer en évitant les dangers de la jungle, des sables mouvants et des eaux profondes ?")
+        print("A toi de jouer !")
+        print()
+
+    elif action_choosen == "Q":
+        print(variables.actions["Q"]["message"])
+
+def show_rules(clear_console = True) :
+    """
+    shows the rules.
+    """
+
+    if clear_console:
+        utilities.clear_console()
+    
+    print("Découvres maintenant comment jouer !")
     print()
-    game.load_map_from_file("map1")
-    game.draw_map()
-    print()
-    print("Sauras-tu te déplacer en évitant les dangers de la jungle, des sables mouvants et des eaux profondes ?")
-    print("A toi de jouer !")
-    print()
+    
+
+
+

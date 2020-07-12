@@ -3,10 +3,9 @@
 # avatar
 avatar_position = {"X" : 19, "Y" : 56}
 avatar_symbol = "\u001b[38;5;196m☻\u001b[0m"    ################### mettre la couleur ???
+
 # map
-
 map1 = []
-
 map_elements = {
     " " : {
         "name" : "terre",
@@ -94,3 +93,28 @@ map_elements = {
         "can_walk" : True
         },
     }
+
+# actions
+
+actions = {
+    "C" : {
+        "name" : "Continuer",
+        # "character" : "C",
+        "message" : "\nBonne décision ! \n",
+        "game_in_progress" : True 
+    },
+    "Q" : {
+        "name" : "Quitter",
+        # "character" : "Q",
+        "message" : "\nC'est dommage...\nA bientôt !\n",
+        "game_in_progress" : False 
+    },
+    "E" : {
+        "name" : "Erreur de lettre",
+        # "character" : "E",
+        "message" : "\nOups !\nIl faut choisir entre [C]ontinuer ou [Q]uitter :\n",
+        "game_in_progress" : True 
+    },
+}
+
+
