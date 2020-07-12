@@ -4,6 +4,7 @@
 
 # additional modules
 import game
+import initialization
 
 
 def start() :
@@ -11,8 +12,7 @@ def start() :
     Game start here
     """
     
-    game.load_map_from_file("map1")
-    game.draw_map()
+    initialization.show_title_and_story()
 
 
 
