@@ -5,32 +5,41 @@ player_name =""
 
 # game
 game_in_progress = True
-action_choosen = ""
+
 
 # avatar
-avatar_position = {"X" : 19, "Y" : 56}
+avatar_position = [19, 56]      # X , Y
 
 letter_avatar_symbol = ""
 
 avatar_symbol = {                                                ################### rajouter le choix de la couleur ???
-    "N" : {
-        "name" : "Neutre",
-        "symbol" : "\u001b[38;5;196m☻\u001b[0m",
-        "message" : "Voici le symbole de ton avatar : ☻ !"
-    },
     "F" : {
         "name" : "Fille",
-        "symbol" : "\u001b[38;5;196m♀\u001b[0m",
-        "message" : "Quelle bonne idée d'avoir choisi ce symbole ♀ !\n Tu as débloqué le 'Ladies Mode' !\n"
+        "symbol" : "♀",
+        "message" : "Quelle bonne idée d'avoir choisi ce symbole \u001b[38;5;201m♀\u001b[0m !\n Tu as débloqué le 'Ladies Mode' !",
+        "color_start" : "\u001b[38;5;201m",
+        "color_end" : "\u001b[0m"
     },
     "G" : {
         "name" : "Garçon",
-        "symbol" : "\u001b[38;5;196m♂\u001b[0m",
-        "message" : "Voici le symbole de ton avatar : ♂ !"
+        "symbol" : "♂",
+        "message" : "Voici le symbole de ton avatar : \u001b[38;5;33m♂\u001b[0m !",
+        "color_start" : "\u001b[38;5;33m",
+        "color_end" : "\u001b[0m"
+    },
+    "N" : {
+        "name" : "Neutre",
+        "symbol" : "☻",
+        "message" : "Voici le symbole de ton avatar : \u001b[38;5;10m☻\u001b[0m !",
+        "color_start" : "\u001b[38;5;10m",
+        "color_end" : "\u001b[0m"
     }
 }
 
-avatar_symbol_current =""
+avatar_symbol_current = ""
+
+possibles_avatar_symbol =  ", ".join(avatar_symbol.keys())
+
 
 # map
 map1 = []
@@ -38,92 +47,72 @@ map_elements = {
     " " : {
         "name" : "terre",
         "image" : " ",
-        "can_walk" : True
+        "can_walk" : True,
+        "color_start" : "\u001b[38;5;15m",
+        "color_end" : "\u001b[0m"
         },
     "^" : {
         "name" : "montain",
-        "image" : "^",
-        "can_walk" : False
-        },
-    ">" : {
-        "name" : "montain",
-        "image" : "\u001b[38;5;58m▲\u001b[0m",
-        "can_walk" : False
-        },
-    # "<" : {
-    #     "name" : "montain",
-    #     "image" : "▲",
-    #     "can_walk" : False
-        # },
-    "µ" : {
-        "name" : "river",
-        "image" : "≡",
-        "can_walk" : False
+        "image" : "▲",
+        "can_walk" : False,
+        "color_start" : "\u001b[38;5;136m",
+        "color_end" : "\u001b[0m"
         },
     "u" : {
         "name" : "river",
-        "image" : "\u001b[38;5;6m≡\u001b[0m",
-        "can_walk" : False
-        },
-    "i" : {
-        "name" : "river",
-        "image" : "\u001b[38;5;57mµ\u001b[0m",
-        "can_walk" : False
-        },
-    "~" : {
-        "name" : "sea",
-        "image" : "~",
-        "can_walk" : False
+        "image" : "≈",
+        "can_walk" : False,
+        "color_start" : "\u001b[38;5;21m",
+        "color_end" : "\u001b[0m"
         },
     "s" : {
         "name" : "sea",
-        "image" : "\u001b[38;5;39m≈\u001b[0m",
-        "can_walk" : False
+        "image" : "▓",
+        "can_walk" : False,
+        "color_start" : "\u001b[38;5;117m",
+        "color_end" : "\u001b[0m"
         },
-    "t" : {
+    "T" : {
         "name" : "jungle",
         "image" : "♣",
-        "can_walk" : False
-        },
-    "J" : {
-        "name" : "jungle",
-        "image" : "\u001b[38;5;76m♣\u001b[0m",
-        "can_walk" : False
-        },
-    ":" : {
-        "name" : "steppe",
-        "image" : "∞",
-        "can_walk" : False
+        "can_walk" : False,
+        "color_start" : "\u001b[38;5;65m",
+        "color_end" : "\u001b[0m"
         },
     "v" : {
         "name" : "steppe",
-        "image" : "\u001b[38;5;76m∞\u001b[0m",
-        "can_walk" : False
+        "image" : "∞",
+        "can_walk" : False,
+        "color_start" : "\u001b[38;5;34m",
+        "color_end" : "\u001b[0m"
         },
-    "°" : {
+    ":" : {
         "name" : "sand",
-        "image" : ":",
-        "can_walk" : False
+        "image" : "▒",
+        "can_walk" : False,
+        "color_start" : "\u001b[38;5;226m",
+        "color_end" : "\u001b[0m"
         },
-    "." : {
-        "name" : "sand",
-        "image" : "\u001b[38;5;223m:\u001b[0m",
-        "can_walk" : False
-        },
-    "¤" : {
+    "G" : {
         "name" : "mysterious gate",
-        "image" : "\u001b[48;5;164m¤\u001b[0m",
-        "can_walk" : True
+        "image" : "∩",
+        "can_walk" : True,
+        "color_start" : "\u001b[48;5;223m",
+        "color_end" : "\u001b[0m"
         },
     "*" : {
         "name" : "challenge",
-        "image" : "\u001b[48;5;208m*\u001b[0m",
-        "can_walk" : True
+        "image" : "*",
+        "can_walk" : True,
+        "color_start" : "\u001b[38;5;208m",
+        "color_end" : "\u001b[0m"
         },
     }
 
 
 # actions
+
+chosen_action = ""
 
 actions = {
     "C" : {
@@ -138,13 +127,16 @@ actions = {
         "message" : "\nC'est dommage...\n",
         "game_in_progress" : False 
     },
-    "E" : {
-        "name" : "Erreur de lettre",
-        # "character" : "E",
-        "message" : "\nOups !\nIl faut choisir entre [C]ontinuer ou [Q]uitter :\n",
-        "game_in_progress" : True 
-    },
+    # "E" : {
+    #     "name" : "Erreur de lettre",
+    #     # "character" : "E",
+    #     "message" : "\nOups !\nJe ne comprends pas ce que tu veux faire.\n",
+    #     "game_in_progress" : True 
+    # },
 }
+
+possibles_actions =  ", ".join(actions.keys())
+
 
 
 # symbol challenge
