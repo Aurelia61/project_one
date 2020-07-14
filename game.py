@@ -43,6 +43,9 @@ def execute_avatar_action() :
             print(variables.actions["C"]["message"])
             variables.game_in_progress = variables.actions["C"]["game_in_progress"]
             return
+        elif variables.chosen_action == "H":
+            print(variables.actions["H"]["message"])
+            variables.game_in_progress = variables.actions["H"]["game_in_progress"]
         else :
             print("ACTION !?!?!")
             return
