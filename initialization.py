@@ -74,9 +74,9 @@ def get_name_and_symbol(clear_console = True):
         print(f"Bienvenue {variables.player_name} !")
         print()
         print("Quel symbole souhaites-tu pour ton avatar ?")         ##### !!! que le choix entre 1 ou 2... et si le joueur veut rajouter son propre symbole ???
-        print(f'     - (F)ille : {variables.avatar_symbol["F"]["color_start"]}{variables.avatar_symbol["F"]["symbol"]}{variables.avatar_symbol["F"]["color_end"]} ')
-        print(f'     - (G)arçon : {variables.avatar_symbol["G"]["color_start"]}{variables.avatar_symbol["G"]["symbol"]}{variables.avatar_symbol["G"]["color_end"]} ')
-        print(f'     - (N)eutre : {variables.avatar_symbol["N"]["color_start"]}{variables.avatar_symbol["N"]["symbol"]}{variables.avatar_symbol["N"]["color_end"]} ')
+        print(f'     - (L)ady: {variables.avatar_symbol["L"]["color_start"]}{variables.avatar_symbol["L"]["symbol"]}{variables.avatar_symbol["L"]["color_end"]} ')
+        print(f'     - (K)night : {variables.avatar_symbol["K"]["color_start"]}{variables.avatar_symbol["K"]["symbol"]}{variables.avatar_symbol["K"]["color_end"]} ')
+        print(f'     - (S)omeone : {variables.avatar_symbol["S"]["color_start"]}{variables.avatar_symbol["S"]["symbol"]}{variables.avatar_symbol["S"]["color_end"]} ')
         variables.letter_avatar_symbol = input(f"Choisis maintenant entre {variables.possibles_avatar_symbol} : ").upper()                
         print()
         
@@ -84,16 +84,16 @@ def get_name_and_symbol(clear_console = True):
             utilities.clear_console()
 
         print()
-        if variables.letter_avatar_symbol == "F":    
-            variables.avatar_symbol_current = variables.avatar_symbol["F"]["symbol"]                                              #### trouver la solution ###############
-            print(variables.avatar_symbol["F"]["message"])
-        elif variables.letter_avatar_symbol == "G":
-            variables.avatar_symbol_current = variables.avatar_symbol["G"]["symbol"]
-            print(variables.avatar_symbol["G"]["message"])
-        elif variables.letter_avatar_symbol != "F" and variables.letter_avatar_symbol != "G":
-            variables.letter_avatar_symbol = "N"
-            variables.avatar_symbol_current = variables.avatar_symbol["N"]["symbol"]
-            print(variables.avatar_symbol["N"]["message"])
+        if variables.letter_avatar_symbol == "L":    
+            variables.avatar_symbol_current = variables.avatar_symbol["L"]["symbol"]                                              #### trouver la solution ###############
+            print(variables.avatar_symbol["L"]["message"])
+        elif variables.letter_avatar_symbol == "K":
+            variables.avatar_symbol_current = variables.avatar_symbol["K"]["symbol"]
+            print(variables.avatar_symbol["K"]["message"])
+        elif variables.letter_avatar_symbol != "L" and variables.letter_avatar_symbol != "K":
+            variables.letter_avatar_symbol = "S"
+            variables.avatar_symbol_current = variables.avatar_symbol["S"]["symbol"]
+            print(variables.avatar_symbol["S"]["message"])
         return
     return variables.avatar_symbol_current
 
@@ -109,25 +109,26 @@ def show_map(clear_console = True) :
         print("...")
         print("Dans la malette, tu as aussi une carte de l'île : ")
         print()
-        # print(f"--> Vois-tu où est ton avatar {variables.avatar_symbol_current} ?")     !!! à afficher seulement si on peut voir l'avatar !!
-        # print()
+        print(f'--> Vois-tu où est ton avatar {variables.avatar_symbol[variables.letter_avatar_symbol]["color_start"]}{variables.avatar_symbol[variables.letter_avatar_symbol]["symbol"]}{variables.avatar_symbol[variables.letter_avatar_symbol]["color_end"]} ?')     
+        print(f'Prends note également où se trouvent les 3 défis et la porte mystérieuse {variables.list_place_symbol}')
+        print()
 
         utilities.load_map_from_file("map1")
-
-        print()
 
         for Y in range(len(variables.map1)) :
             for X in range(len(variables.map1[Y])) :
                 if variables.map1[Y][X] in variables.avatar_symbol.keys() :
                     # if above is true, avatar is in this place, so draw it
-                    print(variables.avatar_symbol[variables.letter_avatar_symbol]["symbol"], end="")  
+                    print(f'{variables.avatar_symbol[variables.letter_avatar_symbol]["color_start"]}{variables.avatar_symbol[variables.letter_avatar_symbol]["symbol"]}{variables.avatar_symbol[variables.letter_avatar_symbol]["color_end"]}', end="")  
+                elif variables.map1[Y][X] in variables.place.keys() :
+                    print(f'{variables.place[variables.map1[Y][X]]["color_start"]}{variables.place[variables.map1[Y][X]]["image"]}{variables.place[variables.map1[Y][X]]["color_end"]}', end="")
                 else :
                     # if not, draw the item of the map
                     print(f'{variables.map_elements[variables.map1[Y][X]]["color_start"]}{variables.map_elements[variables.map1[Y][X]]["image"]}{variables.map_elements[variables.map1[Y][X]]["color_end"]}', end="" )
             print()
 
         print()
-        print("Sauras-tu te déplacer en évitant les dangers de la jungle, des sables mouvants et des eaux profondes ?")    ##### Mettre les symbols
+        print(f'Sauras-tu te déplacer en évitant les dangers de la jungle {variables.map_elements["T"]["color_start"]}{variables.map_elements["T"]["image"]}{variables.map_elements["T"]["color_end"]}, des sables mouvants {variables.map_elements["v"]["color_start"]}{variables.map_elements["v"]["image"]}{variables.map_elements["v"]["color_end"]} et de la rivière {variables.map_elements["u"]["color_start"]}{variables.map_elements["u"]["image"]}{variables.map_elements["u"]["color_end"]}  ?')    ##### Mettre les symbols
         print()
         print("Découvres maintenant comment jouer !")
 

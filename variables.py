@@ -8,27 +8,27 @@ game_in_progress = True
 
 
 # avatar
-avatar_position = [56, 21]      # X , Y  à mettre aléatoirement !!!!?????
+avatar_position = [57, 20]      # X , Y  à mettre aléatoirement !!!!  et sous format dico ?????
 
 letter_avatar_symbol = ""
 
 avatar_symbol = {                                                ################### rajouter le choix de la couleur ???
-    "F" : {
-        "name" : "Fille",
+    "L" : {
+        "name" : "Lady",
         "symbol" : "♀",
         "message" : "Quelle bonne idée d'avoir choisi ce symbole \u001b[38;5;201m♀\u001b[0m !\n Tu as débloqué le 'Ladies Mode' !",
         "color_start" : "\u001b[38;5;201m",
         "color_end" : "\u001b[0m"
     },
-    "G" : {
-        "name" : "Garçon",
+    "K" : {
+        "name" : "Knight",
         "symbol" : "♂",
         "message" : "Voici le symbole de ton avatar : \u001b[38;5;33m♂\u001b[0m !",
         "color_start" : "\u001b[38;5;33m",
         "color_end" : "\u001b[0m"
     },
-    "N" : {
-        "name" : "Neutre",
+    "S" : {
+        "name" : "Someone",
         "symbol" : "☻",
         "message" : "Voici le symbole de ton avatar : \u001b[38;5;10m☻\u001b[0m !",
         "color_start" : "\u001b[38;5;10m",
@@ -39,6 +39,87 @@ avatar_symbol = {                                                ###############
 avatar_symbol_current = ""
 
 possibles_avatar_symbol =  ", ".join(avatar_symbol.keys())
+
+
+# 4 places : 3 challenges and 1 gate
+
+place = {
+    "1" : {
+        "name" : "Mysterious number",
+        "col_x" : 73,
+        "ln_y" : 8,
+        "print" : "1",
+        "image" : "1",
+        "can_walk" : True,
+        "color_start" : "\u001b[38;5;208m",
+        "color_end" : "\u001b[0m"
+        },
+    "2" : {
+        "name" : "Caesar Code",
+        "col_x" : 45,
+        "ln_y" : 23,
+        "print" : "2",
+        "image" : "2",
+        "can_walk" : True,
+        "color_start" : "\u001b[38;5;208m",
+        "color_end" : "\u001b[0m"
+            },
+    "3" : {
+        "name" : "Multi FizzBuzz",
+        "col_x" : 21,
+        "ln_y" : 21,
+        "print" : "3",
+        "image" : "3",
+        "can_walk" : True,
+        "color_start" : "\u001b[38;5;208m",
+        "color_end" : "\u001b[0m"
+            },
+    "4" : {
+        "name" : "Mysterious Gate",
+        "col_x" : 31,
+        "ln_y" : 5,
+        "print" : "4",
+        "image" : "∩",
+        "can_walk" : True,
+        "color_start" : "\u001b[48;5;223m",
+        "color_end" : "\u001b[0m"
+            }
+}
+
+key_place_1 = ""
+key_place_2 = ""
+key_place_3 = ""
+key_gate = ""
+
+list_place_symbol =  ", ".join(place.keys())
+
+
+# actions
+
+chosen_action = ""
+
+actions = {
+    "C" : {
+        "name" : "Continuer",
+        # "character" : "C",
+        "message" : "\nBonne décision ! \n",
+        "game_in_progress" : True 
+    },
+    "Q" : {
+        "name" : "Quitter",
+        # "character" : "Q",
+        "message" : "\nC'est dommage...\n",
+        "game_in_progress" : False 
+    },
+    # "E" : {
+    #     "name" : "Erreur de lettre",
+    #     # "character" : "E",
+    #     "message" : "\nOups !\nJe ne comprends pas ce que tu veux faire.\n",
+    #     "game_in_progress" : True 
+    # },
+}
+
+possibles_actions =  ", ".join(actions.keys())
 
 
 # map
@@ -92,65 +173,7 @@ map_elements = {
         "can_walk" : False,
         "color_start" : "\u001b[38;5;226m",
         "color_end" : "\u001b[0m"
-        },
-    "G" : {
-        "name" : "mysterious gate",
-        "image" : "∩",
-        "can_walk" : True,
-        "color_start" : "\u001b[48;5;223m",
-        "color_end" : "\u001b[0m"
-        },
-    "*" : {
-        "name" : "challenge",
-        "image" : "*",
-        "can_walk" : True,
-        "color_start" : "\u001b[38;5;208m",
-        "color_end" : "\u001b[0m"
         }
-        # ,
-    # "A" : {
-    #     "name" : "avatar",
-    #     "image" : "A",
-    #     "can_walk" : True,
-    #     "color_start" : "\u001b[38;5;10m",
-    #     "color_end" : "\u001b[0m"
-        # }
-    }
-
-
-# actions
-
-chosen_action = ""
-
-actions = {
-    "C" : {
-        "name" : "Continuer",
-        # "character" : "C",
-        "message" : "\nBonne décision ! \n",
-        "game_in_progress" : True 
-    },
-    "Q" : {
-        "name" : "Quitter",
-        # "character" : "Q",
-        "message" : "\nC'est dommage...\n",
-        "game_in_progress" : False 
-    },
-    # "E" : {
-    #     "name" : "Erreur de lettre",
-    #     # "character" : "E",
-    #     "message" : "\nOups !\nJe ne comprends pas ce que tu veux faire.\n",
-    #     "game_in_progress" : True 
-    # },
 }
-
-possibles_actions =  ", ".join(actions.keys())
-
-
-
-# symbol challenge
-
-# symbols : {
-#     { }
-# }
 
 
