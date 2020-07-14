@@ -17,6 +17,7 @@ def start() :
         initialization.get_name_and_symbol()
         initialization.show_map()
         initialization.show_rules()
+        game.show_dashboard()
 
 
         # pour éviter que le programme retourne au début

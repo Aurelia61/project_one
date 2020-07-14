@@ -91,8 +91,8 @@ key_place_2 = ""
 key_place_3 = ""
 key_gate = ""
 
-list_place_symbol =  ", ".join(place.keys())
-
+list_place_symbol = []
+text_place_symbol = ""
 
 # actions
 
@@ -176,4 +176,6 @@ map_elements = {
         }
 }
 
+if __name__ == "__main__" :
+    get_list_place_symbol()
 

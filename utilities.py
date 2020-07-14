@@ -74,7 +74,7 @@ def load_map_from_file(file_name):
 
 def choose_placement_challenge() :
     """
-    chooses the placement of the 3 challenges    
+    chooses the placement of the 4 mysterious places   
     """
                                                 # randomly ???????
     variables.key_place_1 = "1"
@@ -82,11 +82,51 @@ def choose_placement_challenge() :
     variables.key_place_3 = "3"
     variables.key_gate = "4"
 
-    
+
+def get_text_place_symbol () : 
+    """
+        gets a string with the symbol of the 4 mysterious places
+    """
+
+    for k in (variables.place).keys() :
+        (variables.list_place_symbol).append((variables.place[k]).get("color_start"))
+        (variables.list_place_symbol).append((variables.place[k]).get("image"))
+        (variables.list_place_symbol).append((variables.place[k]).get("color_end"))
+        (variables.list_place_symbol).append(", ")
+        variables.text_place_symbol = "".join(variables.list_place_symbol)
+    return
+
+
+def show_instructions() :
+    """
+        shows the instructions that the player can play
+    """
+
+    print("Que veux-tu faire ? ")
+    print("  - déplacer l'avatar vers le \u001b[1m(H)\u001b[0maut de n cases (par exemple H2)")
+    print("  - déplacer l'avatar vers le \u001b[1m(B)\u001b[0mas de n cases (par exemple B6)")
+    print("  - déplacer l'avatar vers la \u001b[1m(D)\u001b[0mroite de n cases (par exemple D5)")
+    print("  - déplacer l'avatar vers la \u001b[1m(G)\u001b[0mauche de n cases (par exemple G1)")
+    print("  - \u001b[1m(P)\u001b[0mrendre un objet et le mettre dans le sac à dos")
+    print("  - \u001b[1m(U)\u001b[0mtiliser un object")
+    print("  - \u001b[1m(A)\u001b[0mbandonner un object au sol")
+    print("  - s'\u001b[1m(H)\u001b[0mydrater pour augmenter ses points d'hydratation")
+    print("  - \u001b[1m(M)\u001b[0manger pour augmenter ses points de satiété")
+    print("  - se\u001b[1m (R)\u001b[0meposer pour récupérer des points de vie")
+    print("  - \u001b[1m(Q)\u001b[0muitter le jeu (et échouer)")
+
+
+def show_counter ():
+    """
+        shows all the counters
+    """
+    pass
+
 
 
 
 if __name__ == "__main__" :
-    load_map_from_file("map1")
+    show_instructions()
+    # load_map_from_file("map1")
     # pass
 

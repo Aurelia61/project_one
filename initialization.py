@@ -11,7 +11,7 @@ import variables
 
 def show_title_and_story(clear_console = True) :
     """
-    shows the title and the story at the beginning.
+        shows the title and the story at the beginning.
     """
 
     if clear_console:
@@ -19,7 +19,7 @@ def show_title_and_story(clear_console = True) :
 
     print("       Bienvenue à")
     print(" Python Mysterious Island !")
-    print(" ∞ ∞ ∞ ∞ ∞ ∞ ∞ ∞ ∞ ∞ ∞ ∞ ∞ \n")
+    print(" - - - - - - - - - - - - - \n")
     print("Arriveras-tu à survivre pour découvrir le grand mystère caché au centre de l'ïle ?")
     print()
     print("Une seule manière de le savoir : L'ACTION !")
@@ -59,11 +59,12 @@ def show_title_and_story(clear_console = True) :
     print()
     print("Il est encore temps de quitter le jeu si tu as trop peur...")
         
-    game.get_avatar_action()
+    game.continue_or_exit()
 
 
 def get_name_and_symbol(clear_console = True):
-    """ gets the name of the player 
+    """ 
+        gets the name of the player 
         asks which symbol she/he wants for her/his avatar
     """
 
@@ -103,14 +104,15 @@ def show_map(clear_console = True) :
     shows the map.
     """
     while variables.game_in_progress :
+        
+        utilities.get_text_place_symbol()
 
         print()
         print("Oh ! Mais, j'oublie le principal...")
-        print("...")
         print("Dans la malette, tu as aussi une carte de l'île : ")
         print()
-        print(f'--> Vois-tu où est ton avatar {variables.avatar_symbol[variables.letter_avatar_symbol]["color_start"]}{variables.avatar_symbol[variables.letter_avatar_symbol]["symbol"]}{variables.avatar_symbol[variables.letter_avatar_symbol]["color_end"]} ?')     
-        print(f'Prends note également où se trouvent les 3 défis et la porte mystérieuse {variables.list_place_symbol}')
+        print(f'Vois-tu où est ton avatar ? \n --> {variables.avatar_symbol[variables.letter_avatar_symbol]["color_start"]}{variables.avatar_symbol[variables.letter_avatar_symbol]["symbol"]}{variables.avatar_symbol[variables.letter_avatar_symbol]["color_end"]}')     
+        print(f'Prends note également où se trouvent les 3 défis et la porte mystérieuse : \n --> {variables.text_place_symbol}')
         print()
 
         utilities.load_map_from_file("map1")
@@ -132,7 +134,7 @@ def show_map(clear_console = True) :
         print()
         print("Découvres maintenant comment jouer !")
 
-        game.get_avatar_action()
+        game.continue_or_exit()
 
         return
 
@@ -148,7 +150,7 @@ def show_rules(clear_console = True) :
     
         print("   Les règles du jeu de")
         print(" Python Mysterious Island !")
-        print(" ∞ ∞ ∞ ∞ ∞ ∞ ∞ ∞ ∞ ∞ ∞ ∞ ∞ \n")
+        print(" - - - - - - - - - - - - - ")
         print()
         print("Objectifs ::")
         print("1- Récupérer les 3 clés situées dans les 3 lieux mystérieux.")
@@ -161,7 +163,7 @@ def show_rules(clear_console = True) :
         print("    - si ton avatar perd tous ses points de vie, la partie est perdue")
         print("    - les instructions doivent être séparées par un espace")
         print()
-        print("Instructions comprises par l'avatar' :")
+        print("Instructions comprises par l'avatar :")
         print("    - le déplacer en choisissant sa direction :")
         print("          - vers le (H)aut de n cases (par exemple H2)")
         print("          - vers le (B)as de n cases (par exemple B6)")
@@ -175,10 +177,7 @@ def show_rules(clear_console = True) :
         print("    - se (R)eposer pour récupérer des points de vie")
         print("    - (Q)uitter le jeu (et échouer)")
         print()
-        print()
-
-        game.get_avatar_action()
-
+        game.continue_or_exit()
         return
     
 
