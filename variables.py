@@ -8,7 +8,7 @@ game_in_progress = True
 
 
 # avatar
-avatar_position = [19, 56]      # X , Y
+avatar_position = [56, 21]      # X , Y  à mettre aléatoirement !!!!?????
 
 letter_avatar_symbol = ""
 
@@ -106,7 +106,15 @@ map_elements = {
         "can_walk" : True,
         "color_start" : "\u001b[38;5;208m",
         "color_end" : "\u001b[0m"
-        },
+        }
+        # ,
+    # "A" : {
+    #     "name" : "avatar",
+    #     "image" : "A",
+    #     "can_walk" : True,
+    #     "color_start" : "\u001b[38;5;10m",
+    #     "color_end" : "\u001b[0m"
+        # }
     }
 
 

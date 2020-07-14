@@ -91,6 +91,7 @@ def get_name_and_symbol(clear_console = True):
             variables.avatar_symbol_current = variables.avatar_symbol["G"]["symbol"]
             print(variables.avatar_symbol["G"]["message"])
         elif variables.letter_avatar_symbol != "F" and variables.letter_avatar_symbol != "G":
+            variables.letter_avatar_symbol = "N"
             variables.avatar_symbol_current = variables.avatar_symbol["N"]["symbol"]
             print(variables.avatar_symbol["N"]["message"])
         return
@@ -111,16 +112,15 @@ def show_map(clear_console = True) :
         # print(f"--> Vois-tu où est ton avatar {variables.avatar_symbol_current} ?")     !!! à afficher seulement si on peut voir l'avatar !!
         # print()
 
-        game.load_map_from_file("map1")
+        utilities.load_map_from_file("map1")
 
         print()
 
         for Y in range(len(variables.map1)) :
             for X in range(len(variables.map1[Y])) :
-                if (Y == variables.avatar_position[1] 
-                    and X == variables.avatar_position[0]) :
+                if variables.map1[Y][X] in variables.avatar_symbol.keys() :
                     # if above is true, avatar is in this place, so draw it
-                    print(variables.avatar_symbol_current, end="")
+                    print(variables.avatar_symbol[variables.letter_avatar_symbol]["symbol"], end="")  
                 else :
                     # if not, draw the item of the map
                     print(f'{variables.map_elements[variables.map1[Y][X]]["color_start"]}{variables.map_elements[variables.map1[Y][X]]["image"]}{variables.map_elements[variables.map1[Y][X]]["color_end"]}', end="" )
