@@ -11,7 +11,11 @@ def mysterious_number (number_test_left = 20, round_left = 3, clear_console = Tr
     
     # number_test_left = 20
     # round_left = 3
-
+    
+    print("       Défi 1 :")
+    print(" Le nombre mystérieux")
+    print("   - - - - - - - - -  ")
+    print()
     print("Trouve les 3 nombres mystérieux du Sphinx pour gagner la clé de bronze.")
 
     while number_test_left != 0 :

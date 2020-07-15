@@ -1,5 +1,10 @@
 # coding: utf-8
 
+#import modules
+import random
+import string   # for choosing randomly a letter
+
+
 #player
 player_name =""
 
@@ -200,8 +205,19 @@ possibles_actions =  ", ".join(actions.keys())
 player_number = ""
 sphinx_number = ""
 
+    # challenge 2 :: caesar code
 original_message = "BEAUTIFUL IS BETTER THAN UGLY. EXPLICIT IS BETTER THAN IMPLICIT. SIMPLE IS BETTER THAN COMPLEX."
-coded_message = ""
+coded_message = []
+alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
+nb_round_caesar = 0
+
+coded_name_try = ""
+coded_player_name = ""
+
+letter_code_random = random.choice(string.ascii_uppercase)
+letter_code_player = ""
+number_code = 0
 
 
 # map

@@ -1,31 +1,32 @@
+import variables
+# import random
+# import string
+# def getPassword(length):
+#     """Générer une chaîne aléatoire de longueur fixe"""
+#     str = string.ascii_lowercase
+#     return ''.join(random.choice(str) for i in range(length))
+    
+# print ("La chaine aleatoire est :", getPassword(8) )
 
+letter_code = "E"
+variables.original_message = "BEAUTIFUL BGEE. "
 
+for index, element in enumerate(variables.alphabet):
+    variables.number_code = (variables.alphabet).index(letter_code) + 1
 
-
-letter_code = ""
-number_code = ""
-
-alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-original_message = "BEAUTIFUL IS BETTER THAN UGLY. EXPLICIT IS BETTER THAN IMPLICIT. SIMPLE IS BETTER THAN COMPLEX."
-coded_message = ""
-
-letter_code = (input("Tape une lettre pour essayer de faire apparaître le message en clair : ")).upper()
-for index, element in enumerate(alphabet):
-    number_code = alphabet.index(letter_code) + 1
-        
-original_message = "BEAUTIFUL IS BETTER THAN UGLY. EXPLICIT IS BETTER THAN IMPLICIT. SIMPLE IS BETTER THAN COMPLEX."
-coded_message = []
-original_message = original_message.split()
-for word in original_message:
+variables.original_message = (variables.original_message).split()
+print(variables.original_message)
+for word in variables.original_message:
     liste_word = []
     for letter in word:
         if letter == ".":
             liste_word.append(".")
         else :
-            i = alphabet.index(letter)
-            if i + number_code > 25:
-                i -= 26
-            liste_word.append(alphabet[i+number_code])
-    coded_message.append("".join(liste_word))
-print(" ".join(coded_message))
+            current_index = (variables.alphabet).index(letter)
+            new_index = current_index + variables.number_code
+            if new_index > 25:
+                new_index -= 26
+            liste_word.append(variables.alphabet[new_index])
+    (variables.coded_message).append("".join(liste_word))
+print(" ".join(variables.coded_message))
 
