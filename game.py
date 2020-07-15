@@ -91,9 +91,6 @@ def execute_avatar_action() :
             print(variables.actions["T"]["message"])
             variables.game_in_progress = variables.actions["T"]["game_in_progress"]
             return
-        # elif variables.chosen_action == "H":
-        #     print(variables.actions["H"]["message"])
-        #     variables.game_in_progress = variables.actions["H"]["game_in_progress"]
 
     print("Game_in_progress = False !!!!!!")
     return          # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
