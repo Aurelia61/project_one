@@ -172,7 +172,7 @@ def show_rules(clear_console = True) :
         print("    - (P)rendre un objet et le mettre dans le sac à dos")
         print("    - (U)tiliser un object")
         print("    - (A)bandonner un object au sol")
-        print("    - s'(H)ydrater pour augmenter ses points d'hydratation")
+        print("    - s'h(Y)drater pour augmenter ses points d'hydratation")
         print("    - (M)anger pour augmenter ses points de satiété")
         print("    - se (R)eposer pour récupérer des points de vie")
         print("    - (S)auvegarder la partie")

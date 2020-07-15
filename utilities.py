@@ -110,7 +110,7 @@ def show_instructions() :
     print("  - \u001b[1m(P)\u001b[0mrendre un objet et le mettre dans le sac à dos")
     print("  - \u001b[1m(U)\u001b[0mtiliser un object")
     print("  - \u001b[1m(A)\u001b[0mbandonner un object au sol")
-    print("  - s'\u001b[1m(H)\u001b[0mydrater pour augmenter ses points d'hydratation")
+    print("  - s'h\u001b[1m(Y)\u001b[0mdrater pour augmenter ses points d'hydratation")
     print("  - \u001b[1m(M)\u001b[0manger pour augmenter ses points de satiété")
     print("  - se\u001b[1m (R)\u001b[0meposer pour récupérer des points de vie")
     print("  - \u001b[1m(S)\u001b[0mauvegarder la partie")

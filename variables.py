@@ -117,10 +117,70 @@ actions = {
         "message" : "\nPartie téléchargée.\n",
         "game_in_progress" : True
     },
-        "S" : {
+    "S" : {
         "name" : "Sauvegarder",
         # "character" : "S",
         "message" : "\nPartie sauvegardée.\n",
+        "game_in_progress" : True
+    },
+    "H" : {
+        "name" : "Haut",
+        # "character" : "H",
+        "message" : "\nL'avatar s'est déplacé vers le haut.",
+        "game_in_progress" : True
+    },
+    "B" : {
+        "name" : "Bas",
+        # "character" : "S",
+        "message" : "\nL'avatar s'est déplacé vers le bas.\n",
+        "game_in_progress" : True
+    },
+    "D" : {
+        "name" : "Droite",
+        # "character" : "D",
+        "message" : "\nL'avatar s'est déplacé vers la droite.\n",
+        "game_in_progress" : True
+    },
+    "G" : {
+        "name" : "Gauche",
+        # "character" : "G",
+        "message" : "\nL'avatar s'est déplacé vers la gauche.\n",
+        "game_in_progress" : True
+    },
+    "P" : {
+        "name" : "Prendre",
+        # "character" : "P",
+        "message" : "\nL'avatar a pris l'objet.\n",
+        "game_in_progress" : True
+    },
+    "U" : {
+        "name" : "Utiliser",
+        # "character" : "U",
+        "message" : "\nL'avatar a utilisé l'objet.\n",
+        "game_in_progress" : True
+    },
+    "A" : {
+        "name" : "Abandonner",
+        # "character" : "A",
+        "message" : "\nL'avatar a abandonné l'objet parterre.\n",
+        "game_in_progress" : True
+    },
+    "Y" : {
+        "name" : "s'hYdrater",
+        # "character" : "Y",
+        "message" : "\nL'avatar s'est hydraté.\n",
+        "game_in_progress" : True
+    },
+    "M" : {
+        "name" : "Manger",
+        # "character" : "M",
+        "message" : "\nL'avatar a mangé.\n",
+        "game_in_progress" : True
+    },
+    "R" : {
+        "name" : "se Reposer",
+        # "character" : "R",
+        "message" : "\nL'avatar s'est reposé.\n",
         "game_in_progress" : True
     }
     # "E" : {
