@@ -26,7 +26,7 @@ def continue_or_exit():
 
         # execute action
         execute_avatar_action()
-        return
+        return                     # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
 
 
 def execute_avatar_action() :
@@ -48,7 +48,7 @@ def execute_avatar_action() :
             variables.game_in_progress = variables.actions["H"]["game_in_progress"]
         else :
             print("ACTION !?!?!")
-            return
+            return          # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
 
 
 
@@ -95,7 +95,7 @@ def show_dashboard(clear_console = True) :
 
         # execute action
         execute_avatar_action()
-        return
+        return        # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
 
 
 

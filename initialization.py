@@ -136,7 +136,7 @@ def show_map(clear_console = True) :
 
         game.continue_or_exit()
 
-        return
+        return              # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
 
 
 
@@ -177,8 +177,10 @@ def show_rules(clear_console = True) :
         print("    - se (R)eposer pour récupérer des points de vie")
         print("    - (Q)uitter le jeu (et échouer)")
         print()
+        
         game.continue_or_exit()
-        return
+        
+        return                 # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
     
 
 
