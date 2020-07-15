@@ -198,8 +198,10 @@ possibles_actions =  ", ".join(actions.keys())
 
     # challenge 1 :: mysterious number
 player_number = ""
-phinx_number = ""
+sphinx_number = ""
 
+original_message = "BEAUTIFUL IS BETTER THAN UGLY. EXPLICIT IS BETTER THAN IMPLICIT. SIMPLE IS BETTER THAN COMPLEX."
+coded_message = ""
 
 
 # map
