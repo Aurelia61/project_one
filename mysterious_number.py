@@ -11,7 +11,7 @@ while number_test_left != 0 :
     if round_left != 0 and number_test_left != 0 or player_number != sphinx_number :
         sphinx_number = random.randint(1,100)
         player_number = int(input("\n--> Tapes un nombre entre 1 et 100 :  ")) 
-        print(sphinx_number)
+        # print(sphinx_number)
         while player_number != sphinx_number and number_test_left != 0 and round_left != 0:
 
             if player_number < sphinx_number :
