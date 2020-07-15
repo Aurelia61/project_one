@@ -77,7 +77,7 @@ def get_name_and_symbol(clear_console = True):
         print("Quel symbole souhaites-tu pour ton avatar ?")         ##### !!! que le choix entre 1 ou 2... et si le joueur veut rajouter son propre symbole ???
         print(f'     - (L)ady: {variables.avatar_symbol["L"]["color_start"]}{variables.avatar_symbol["L"]["symbol"]}{variables.avatar_symbol["L"]["color_end"]} ')
         print(f'     - (K)night : {variables.avatar_symbol["K"]["color_start"]}{variables.avatar_symbol["K"]["symbol"]}{variables.avatar_symbol["K"]["color_end"]} ')
-        print(f'     - (S)omeone : {variables.avatar_symbol["S"]["color_start"]}{variables.avatar_symbol["S"]["symbol"]}{variables.avatar_symbol["S"]["color_end"]} ')
+        print(f'     - (N)o One : {variables.avatar_symbol["N"]["color_start"]}{variables.avatar_symbol["N"]["symbol"]}{variables.avatar_symbol["N"]["color_end"]} ')
         variables.letter_avatar_symbol = input(f"Choisis maintenant entre {variables.possibles_avatar_symbol} : ").upper()                
         print()
         
@@ -92,9 +92,9 @@ def get_name_and_symbol(clear_console = True):
             variables.avatar_symbol_current = variables.avatar_symbol["K"]["symbol"]
             print(variables.avatar_symbol["K"]["message"])
         elif variables.letter_avatar_symbol != "L" and variables.letter_avatar_symbol != "K":
-            variables.letter_avatar_symbol = "S"
-            variables.avatar_symbol_current = variables.avatar_symbol["S"]["symbol"]
-            print(variables.avatar_symbol["S"]["message"])
+            variables.letter_avatar_symbol = "N"
+            variables.avatar_symbol_current = variables.avatar_symbol["N"]["symbol"]
+            print(variables.avatar_symbol["N"]["message"])
         return
     return variables.avatar_symbol_current
 
@@ -130,7 +130,7 @@ def show_map(clear_console = True) :
             print()
 
         print()
-        print(f'Sauras-tu te déplacer en évitant les dangers de la jungle {variables.map_elements["T"]["color_start"]}{variables.map_elements["T"]["image"]}{variables.map_elements["T"]["color_end"]}, des sables mouvants {variables.map_elements["v"]["color_start"]}{variables.map_elements["v"]["image"]}{variables.map_elements["v"]["color_end"]} et de la rivière {variables.map_elements["u"]["color_start"]}{variables.map_elements["u"]["image"]}{variables.map_elements["u"]["color_end"]}  ?')    ##### Mettre les symbols
+        print(f'Sauras-tu te déplacer en évitant les dangers de la jungle {variables.map_elements["J"]["color_start"]}{variables.map_elements["J"]["image"]}{variables.map_elements["J"]["color_end"]}, des sables mouvants {variables.map_elements["v"]["color_start"]}{variables.map_elements["v"]["image"]}{variables.map_elements["v"]["color_end"]} et de la rivière {variables.map_elements["u"]["color_start"]}{variables.map_elements["u"]["image"]}{variables.map_elements["u"]["color_end"]}  ?')    ##### Mettre les symbols
         print()
         print("Découvres maintenant comment jouer !")
 
@@ -165,16 +165,18 @@ def show_rules(clear_console = True) :
         print()
         print("Instructions comprises par l'avatar :")
         print("    - le déplacer en choisissant sa direction :")
-        print("          - vers le (H)aut de n cases (par exemple H2)")
-        print("          - vers le (B)as de n cases (par exemple B6)")
-        print("          - vers la (D)roite de n cases (par exemple D5)")
-        print("          - vers la (G)auche de n cases (par exemple G1)")
+        print("          - vers le (H)aut")                                        #  de n cases (par exemple H2)
+        print("          - vers le (B)as")                                         #  de n cases (par exemple B6)
+        print("          - vers la (D)roite")                                      #  de n cases (par exemple D5)
+        print("          - vers la (G)auche")                                      #  de n cases (par exemple G1)
         print("    - (P)rendre un objet et le mettre dans le sac à dos")
         print("    - (U)tiliser un object")
         print("    - (A)bandonner un object au sol")
         print("    - s'(H)ydrater pour augmenter ses points d'hydratation")
         print("    - (M)anger pour augmenter ses points de satiété")
         print("    - se (R)eposer pour récupérer des points de vie")
+        print("    - (S)auvegarder la partie")
+        print("    - (T)élécharger la partie")
         print("    - (Q)uitter le jeu (et échouer)")
         print()
         

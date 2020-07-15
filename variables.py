@@ -27,8 +27,8 @@ avatar_symbol = {                                                ###############
         "color_start" : "\u001b[38;5;33m",
         "color_end" : "\u001b[0m"
     },
-    "S" : {
-        "name" : "Someone",
+    "N" : {
+        "name" : "No One",
         "symbol" : "☻",
         "message" : "Voici le symbole de ton avatar : \u001b[38;5;10m☻\u001b[0m !",
         "color_start" : "\u001b[38;5;10m",
@@ -111,6 +111,18 @@ actions = {
         "message" : "\nC'est dommage...\n",
         "game_in_progress" : False 
     },
+    "T" : {
+        "name" : "Télécharger",
+        # "character" : "T",
+        "message" : "\nPartie téléchargée.\n",
+        "game_in_progress" : True
+    },
+        "S" : {
+        "name" : "Sauvegarder",
+        # "character" : "S",
+        "message" : "\nPartie sauvegardée.\n",
+        "game_in_progress" : True
+    }
     # "E" : {
     #     "name" : "Erreur de lettre",
     #     # "character" : "E",
@@ -153,7 +165,7 @@ map_elements = {
         "color_start" : "\u001b[38;5;117m",
         "color_end" : "\u001b[0m"
         },
-    "T" : {
+    "J" : {
         "name" : "jungle",
         "image" : "♣",
         "can_walk" : False,
