@@ -134,6 +134,14 @@ actions = {
 possibles_actions =  ", ".join(actions.keys())
 
 
+# challenge
+
+    # challenge 1 :: mysterious number
+player_number = ""
+phinx_number = ""
+
+
+
 # map
 map1 = []
 map_elements = {
