@@ -7,7 +7,12 @@ coded_player_name = ""
 alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
 
-def caesar_code (caesar_code_number = random.randint(1, 26), round_left = 5) :
+
+def caesar_code (caesar_code_number = random.randint(1, 26), round_left = 5, clear_console = True) :
+
+    if clear_console:
+        utilities.clear_console()
+
 
     variables.coded_message = list(variables.original_message)
 
