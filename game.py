@@ -35,21 +35,68 @@ def execute_avatar_action() :
     """
 
     while variables.game_in_progress :
-        if variables.chosen_action == "Q":
+        if variables.chosen_action == "H":
+            print(variables.actions["H"]["message"])
+            variables.game_in_progress = variables.actions["H"]["game_in_progress"]
+            return
+        elif variables.chosen_action == "B":
+            print(variables.actions["B"]["message"])
+            variables.game_in_progress = variables.actions["B"]["game_in_progress"]
+            return
+        elif variables.chosen_action == "D":
+            print(variables.actions["D"]["message"])
+            variables.game_in_progress = variables.actions["D"]["game_in_progress"]
+            return
+        elif variables.chosen_action == "G":
+            print(variables.actions["G"]["message"])
+            variables.game_in_progress = variables.actions["G"]["game_in_progress"]
+            return
+        elif variables.chosen_action == "P":
+            print(variables.actions["P"]["message"])
+            variables.game_in_progress = variables.actions["P"]["game_in_progress"]
+            return
+        elif variables.chosen_action == "U":
+            print(variables.actions["U"]["message"])
+            variables.game_in_progress = variables.actions["U"]["game_in_progress"]  
+            return      
+        elif variables.chosen_action == "A":
+            print(variables.actions["A"]["message"])
+            variables.game_in_progress = variables.actions["A"]["game_in_progress"]
+            return
+        elif variables.chosen_action == "Y":
+            print(variables.actions["Y"]["message"])
+            variables.game_in_progress = variables.actions["Y"]["game_in_progress"]
+            return
+        elif variables.chosen_action == "M":
+            print(variables.actions["M"]["message"])
+            variables.game_in_progress = variables.actions["M"]["game_in_progress"]  
+            return      
+        elif variables.chosen_action == "R":
+            print(variables.actions["R"]["message"])
+            variables.game_in_progress = variables.actions["R"]["game_in_progress"]
+            return
+        elif variables.chosen_action == "Q":
             print(variables.actions["Q"]["message"])
             variables.game_in_progress = variables.actions["Q"]["game_in_progress"]
             return
         elif variables.chosen_action == "C":
             print(variables.actions["C"]["message"])
-            variables.game_in_progress = variables.actions["C"]["game_in_progress"]
+            variables.game_in_progress = variables.actions["C"]["game_in_progress"]  
+            return      
+        elif variables.chosen_action == "S":
+            print(variables.actions["S"]["message"])
+            variables.game_in_progress = variables.actions["S"]["game_in_progress"]
             return
-        elif variables.chosen_action == "H":
-            print(variables.actions["H"]["message"])
-            variables.game_in_progress = variables.actions["H"]["game_in_progress"]
-        
-        else :
-            print("ACTION !?!?!")
-            return          # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
+        elif variables.chosen_action == "T":
+            print(variables.actions["T"]["message"])
+            variables.game_in_progress = variables.actions["T"]["game_in_progress"]
+            return
+        # elif variables.chosen_action == "H":
+        #     print(variables.actions["H"]["message"])
+        #     variables.game_in_progress = variables.actions["H"]["game_in_progress"]
+
+    print("Game_in_progress = False !!!!!!")
+    return          # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
 
 
 
