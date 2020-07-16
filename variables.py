@@ -199,9 +199,11 @@ actions = {
 possibles_actions =  ", ".join(actions.keys())
 
 
-# challenge
+# challenges
 
     # challenge 1 :: mysterious number
+
+
 player_number = ""
 sphinx_number = ""
 
@@ -216,8 +218,68 @@ coded_name_try = ""
 coded_player_name = ""
 
 letter_code_random = (random.choice(string.ascii_uppercase))
-# letter_code_player = ""
 number_code = 0
+
+    # challenge 3 :: multi FizzBuzz
+
+players_fizzbuzz = {
+    "monkey_1" : {
+        "name_monkey" : "Chef Alain",
+        "num_monkey" : 1,
+        "chance" : random.randint(50,80)
+    },
+    "monkey_2" : {
+        "name_monkey" : "Alex",
+        "num_monkey" : 2,
+        "chance" : random.randint(10,70)
+            },
+    "monkey_3" : {
+        "name_monkey" : "Alexandre",
+        "num_monkey" : 3,
+        "chance" : random.randint(10,70)
+    },
+    "monkey_4" : {
+        "name_monkey" : "Aurélia",
+        "num_monkey" : 4,
+        "chance" : random.randint(10,70)
+    },
+    "monkey_5" : {
+        "name_monkey" : "Guillaume",
+        "num_monkey" : 5,
+        "chance" : random.randint(10,70)
+    },
+    "monkey_6" : {
+        "name_monkey" : "Hadrien",
+        "num_monkey" : 6,
+        "chance" : random.randint(10,70)
+    },
+    "monkey_7" : {
+        "name_monkey" : "Javier",
+        "num_monkey" : 7,
+        "chance" : random.randint(10,70)
+    },
+    "monkey_8" : {
+        "name_monkey" : "Laura",
+        "num_monkey" : 8,
+        "chance" : random.randint(10,70)
+    },
+    "monkey_9" : {
+        "name_monkey" : "Mélanie",
+        "num_monkey" : 9,
+        "chance" : random.randint(10,70)
+    },
+    "monkey_10" : {
+        "name_monkey" : "Wilfried",
+        "num_monkey" : 10,
+        "chance" : random.randint(10,70)
+    },
+    "avatar" : {
+        "name_monkey" : player_name,
+        "num_monkey" : 11,
+        "chance" : random.randint(80,90)
+    }
+}
+
 
 
 # map
