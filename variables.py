@@ -215,8 +215,8 @@ nb_round_caesar = 0
 coded_name_try = ""
 coded_player_name = ""
 
-letter_code_random = random.choice(string.ascii_uppercase)
-letter_code_player = ""
+letter_code_random = (random.choice(string.ascii_uppercase))
+# letter_code_player = ""
 number_code = 0
 
 
@@ -275,5 +275,5 @@ map_elements = {
 }
 
 if __name__ == "__main__" :
-    get_list_place_symbol()
-
+    # get_list_place_symbol()
+    pass
