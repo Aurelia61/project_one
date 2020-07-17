@@ -2,6 +2,7 @@ import random
 import variables
 import utilities
 import game
+import time
 
 # à enregister dans variables si variable globale !!!
 
@@ -63,6 +64,7 @@ def multi_fizzbuzz (clear_console = True) :
                 index = 0
                 nb_players_left -= 1
                 print(f'Il y a encore {len(list_players)} joueurs.')
+                time.sleep(5)
             elif answer_player != good_answer and player == "avatar" :
                 print("Tu as perdu !")
                 return
@@ -77,6 +79,7 @@ def multi_fizzbuzz (clear_console = True) :
             answer_player = get_answer_player(player, good_answer, index)
             if answer_player != good_answer and player != "avatar":
                 print(f'{variables.players_fizzbuzz[player]["name_monkey"]} a perdu !')
+                time.sleep(5)
                 # print(f'joueur à supp : {player}')
                 # print(f'de cette liste : {list_players}')
                 list_players.remove(player)
