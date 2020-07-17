@@ -1,8 +1,14 @@
+# coding: utf-8
+
+# import modules
 import random
+import time
+
+# additional modules
 import variables
 import utilities
 import game
-import time
+
 
 # à enregister dans variables si variable globale !!!
 
@@ -56,6 +62,7 @@ def multi_fizzbuzz (clear_console = True) :
             # print(f'la bonne réponse à dire : {good_answer}')
             answer_player = get_answer_player(player, good_answer, index)
             if answer_player != good_answer and player != "avatar" :
+                if 
                 print(f'{variables.players_fizzbuzz[player]["name_monkey"]} a perdu !')
                 # print(f'joueur à supp : {player}')
                 # print(f'de cette liste : {list_players}')
@@ -64,7 +71,7 @@ def multi_fizzbuzz (clear_console = True) :
                 index = 0
                 nb_players_left -= 1
                 print(f'Il y a encore {len(list_players)} joueurs.')
-                time.sleep(5)
+                time.sleep(4)
             elif answer_player != good_answer and player == "avatar" :
                 print("Tu as perdu !")
                 return
@@ -79,7 +86,7 @@ def multi_fizzbuzz (clear_console = True) :
             answer_player = get_answer_player(player, good_answer, index)
             if answer_player != good_answer and player != "avatar":
                 print(f'{variables.players_fizzbuzz[player]["name_monkey"]} a perdu !')
-                time.sleep(5)
+                time.sleep(4)
                 # print(f'joueur à supp : {player}')
                 # print(f'de cette liste : {list_players}')
                 list_players.remove(player)
@@ -128,12 +135,14 @@ def get_answer_player (current_player, good_answer_def, index_def) :
     if good_answer_def in good_or_bad :
         player_answer = good_answer_def
         print(f'{variables.players_fizzbuzz[current_player]["name_monkey"]} dit "{player_answer}" !')
+        time.sleep(2)
     else:
         answers_without_good = get_possible_answers(index_def, good_answer_def)
         # print(f'il faut que answers_without_good soit une liste ou un tuple : {type(answers_without_good)}')
         # print(f'{answers_without_good}')
         player_answer = random.choice(answers_without_good)         #   "".join()
         print(f'{variables.players_fizzbuzz[current_player]["name_monkey"]} dit "{player_answer}" !')
+        time.sleep(2)
     return player_answer
 
 

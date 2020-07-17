@@ -1,4 +1,9 @@
+# coding: utf-8
+
+# import modules
 import random
+
+# additional modules
 import variables
 import utilities
 
