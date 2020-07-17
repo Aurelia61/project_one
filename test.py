@@ -1,6 +1,7 @@
 import variables
 
-list_players = variables.players_fizzbuzz.keys()
-print (list_players)
-for player in variables.players_fizzbuzz :
-    print(player)
+
+ttes_rep, bon_rep, list_bad = get_possible_answers(6)
+print (f'all answsers : {ttes_rep}')
+print (f'listes des bad : {list_bad}')
+print (f'bonne rép : {bon_rep}')

@@ -4,13 +4,17 @@ import utilities
 import game
 
 # à enregister dans variables si variable globale !!!
-answers_without_good = ["Fizz", "Buzz", "FizzBuzz", "5"]
-good_answer = "Fizz"
 
-answers = []
-all_answers = answers_without_good[:]
-answers_without_good.remove(good_answer)
-answers = all_answers
+
+def get_possible_answers (index_def, good_answer_def) :
+    answers_without_good = ["Fizz", "Buzz", "FizzBuzz",]      # à mettre dans variables                      
+
+    answers = []
+    all_answers = answers_without_good[:]
+    answers_without_good.remove(good_answer_def)
+    answers = all_answers
+    answers_without_good.append(index_def)
+    return (all_answers, answers_without_good)
 
 
 
@@ -33,14 +37,15 @@ def multi_fizzbuzz (clear_console = True) :
     list_players = variables.players_fizzbuzz.keys()
     nb_players = len(list_players)
     nb_players_left = nb_players
-    index = 1
+
 
     while nb_players_left > 1:
 
         for player in variables.players_fizzbuzz :
-            answer_index = get_good_answer(index)
-            answer_player = get_answer_player(player, answer_index)
-            if answer_player != answer_index :
+            index = 1
+            good_answer = get_good_answer(index)
+            answer_player = get_answer_player(player, good_answer, index)
+            if answer_player != good_answer :
                 print("Le joueur a perdu !")
                 del list_players[player]
             else:
@@ -73,7 +78,7 @@ def get_good_answer(given_number):
     return good_answer
     
 
-def get_answer_player (current_player, good_answer_def) :
+def get_answer_player (current_player, good_answer_def, index_def) :
     """
         gets answer of the player
     """
@@ -88,6 +93,7 @@ def get_answer_player (current_player, good_answer_def) :
         player_answer = good_answer_def
         print(f'{variables.players_fizzbuzz[current_player]["name_monkey"]} dit "{player_answer}" !')
     else:
+        answers_without_good = get_possible_answers(index_def, good_answer_def)
         player_answer = "".join(random.choices(answers_without_good))
         print(f'{variables.players_fizzbuzz[current_player]["name_monkey"]} dit "{player_answer}" !')
     return player_answer
