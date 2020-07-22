@@ -51,8 +51,8 @@ possibles_avatar_symbol =  ", ".join(avatar_symbol.keys())
 place = {
     "1" : {
         "name" : "Mysterious number",
-        "col_x" : 73,
-        "ln_y" : 8,
+        "col_x" : 57,
+        "ln_y" : 18,
         "print" : "1",
         "image" : "1",
         "can_walk" : True,

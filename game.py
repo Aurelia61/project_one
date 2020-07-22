@@ -211,6 +211,8 @@ def show_new_map (clear_console = True):
                     print(f'{variables.avatar_symbol_current}', end="" )
                 elif variables.map1[Y][X] in variables.place.keys() :
                     print(f'{variables.place[variables.map1[Y][X]]["color_start"]}{variables.place[variables.map1[Y][X]]["image"]}{variables.place[variables.map1[Y][X]]["color_end"]}', end="")
+                    if variables.map1[Y][X] == "1" and variables.map1[Y][X] in variables.possibles_avatar_symbol :
+                        mysterious_number()
                 else :
                     # if not, draw the item of the map
                     print(f'{variables.map_elements[variables.map1[Y][X]]["color_start"]}{variables.map_elements[variables.map1[Y][X]]["image"]}{variables.map_elements[variables.map1[Y][X]]["color_end"]}', end="" )
