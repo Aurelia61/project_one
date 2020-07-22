@@ -82,17 +82,37 @@ def execute_avatar_action(action) :
             show_dashboard()
 
         elif action == "B":
+            new_avatar_y += 1
             print(variables.actions["B"]["message"])
             variables.game_in_progress = variables.actions["B"]["game_in_progress"]
-            return
+            # executes action
+            variables.avatar_position["x"] = new_avatar_x
+            variables.avatar_position["y"] = new_avatar_y
+            show_dashboard()
+            
         elif action == "D":
+            new_avatar_x += 1
             print(variables.actions["D"]["message"])
             variables.game_in_progress = variables.actions["D"]["game_in_progress"]
-            return
+            # executes action
+            variables.avatar_position["x"] = new_avatar_x
+            variables.avatar_position["y"] = new_avatar_y
+            show_dashboard()
+
         elif action == "G":
+            new_avatar_x -= 1
             print(variables.actions["G"]["message"])
             variables.game_in_progress = variables.actions["G"]["game_in_progress"]
+            # executes action
+            variables.avatar_position["x"] = new_avatar_x
+            variables.avatar_position["y"] = new_avatar_y
+            show_dashboard()
+
+        elif action == "R":
+            print(variables.actions["R"]["message"])
+            variables.game_in_progress = variables.actions["R"]["game_in_progress"]
             return
+            
         elif action == "P":
             print(variables.actions["P"]["message"])
             variables.game_in_progress = variables.actions["P"]["game_in_progress"]
@@ -113,10 +133,7 @@ def execute_avatar_action(action) :
             print(variables.actions["M"]["message"])
             variables.game_in_progress = variables.actions["M"]["game_in_progress"]  
             return      
-        elif action == "R":
-            print(variables.actions["R"]["message"])
-            variables.game_in_progress = variables.actions["R"]["game_in_progress"]
-            return
+
         elif action == "Q":
             print(variables.actions["Q"]["message"])
             variables.game_in_progress = variables.actions["Q"]["game_in_progress"]
@@ -124,7 +141,6 @@ def execute_avatar_action(action) :
         elif action == "C":
             print(variables.actions["C"]["message"])
             variables.game_in_progress = variables.actions["C"]["game_in_progress"]  
-                
         elif action == "S":
             print(variables.actions["S"]["message"])
             variables.game_in_progress = variables.actions["S"]["game_in_progress"]
@@ -135,9 +151,7 @@ def execute_avatar_action(action) :
             return
 
             
-    # executes action
-    variables.avatar_position["x"] = new_avatar_x
-    variables.avatar_position["y"] = new_avatar_y
+
     show_dashboard()
 
     print("Game_in_progress = False !!!!!!")
@@ -151,8 +165,8 @@ def show_dashboard(clear_console = True) :
     """
     while variables.game_in_progress :
 
-        # if clear_console:
-        #     utilities.clear_console()
+        if clear_console:
+            utilities.clear_console()
 
         show_new_map ()
 
@@ -184,24 +198,24 @@ def show_new_map (clear_console = True):
         draws the map with the current placements of everything
     """
 
-    # if clear_console:
-    #     utilities.clear_console()
+    if clear_console:
+        utilities.clear_console()
 
-    utilities.load_map_from_file("map1")
+    while variables.game_in_progress :
+        utilities.load_map_from_file("map1")
 
-    for Y in range(len(variables.map1)) :
-        for X in range(len(variables.map1[Y])) :
-            if variables.map1[Y][X] in variables.possibles_avatar_symbol and variables.map1[Y][X] != " ":
-                # if above is true, avatar is in this place, so draw it
-                print(f'{variables.avatar_symbol_current}', end="" )
-            elif variables.map1[Y][X] in variables.place.keys() :
-                print(f'{variables.place[variables.map1[Y][X]]["color_start"]}{variables.place[variables.map1[Y][X]]["image"]}{variables.place[variables.map1[Y][X]]["color_end"]}', end="")
-            else :
-                # if not, draw the item of the map
-                print(f'{variables.map_elements[variables.map1[Y][X]]["color_start"]}{variables.map_elements[variables.map1[Y][X]]["image"]}{variables.map_elements[variables.map1[Y][X]]["color_end"]}', end="" )
-                # print(f'{variables.avatar_symbol[variables.letter_avatar_symbol]["color_start"]}{variables.avatar_symbol[variables.letter_avatar_symbol]["symbol"]}{variables.avatar_symbol[variables.letter_avatar_symbol]["color_end"]}', end="")
-        print()
-    return
+        for Y in range(len(variables.map1)) :
+            for X in range(len(variables.map1[Y])) :
+                if variables.map1[Y][X] in variables.possibles_avatar_symbol and variables.map1[Y][X] != " ":
+                    # if above is true, avatar is in this place, so draw it
+                    print(f'{variables.avatar_symbol_current}', end="" )
+                elif variables.map1[Y][X] in variables.place.keys() :
+                    print(f'{variables.place[variables.map1[Y][X]]["color_start"]}{variables.place[variables.map1[Y][X]]["image"]}{variables.place[variables.map1[Y][X]]["color_end"]}', end="")
+                else :
+                    # if not, draw the item of the map
+                    print(f'{variables.map_elements[variables.map1[Y][X]]["color_start"]}{variables.map_elements[variables.map1[Y][X]]["image"]}{variables.map_elements[variables.map1[Y][X]]["color_end"]}', end="" )
+            print()
+        return
 
 
 def echec(player_name) :

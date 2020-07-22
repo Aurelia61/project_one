@@ -86,14 +86,14 @@ def get_name_and_symbol(clear_console = True):
 
         print()
         if variables.letter_avatar_symbol == "L":    
-            variables.avatar_symbol_current = variables.avatar_symbol["L"]["symbol"]                                              #### trouver la solution ###############
+            variables.avatar_symbol_current = variables.avatar_symbol["L"]["color_start"]+variables.avatar_symbol["L"]["symbol"]+variables.avatar_symbol["L"]["color_end"]                                             #### trouver la solution ###############
             print(variables.avatar_symbol["L"]["message"])
         elif variables.letter_avatar_symbol == "K":
-            variables.avatar_symbol_current = variables.avatar_symbol["K"]["symbol"]
+            variables.avatar_symbol_current = variables.avatar_symbol["K"]["color_start"]+variables.avatar_symbol["K"]["symbol"]+variables.avatar_symbol["K"]["color_end"]
             print(variables.avatar_symbol["K"]["message"])
         elif variables.letter_avatar_symbol != "L" and variables.letter_avatar_symbol != "K":
             variables.letter_avatar_symbol = "N"
-            variables.avatar_symbol_current = variables.avatar_symbol["N"]["symbol"]
+            variables.avatar_symbol_current = variables.avatar_symbol["N"]["color_start"]+variables.avatar_symbol["N"]["symbol"]+variables.avatar_symbol["N"]["color_end"]
             print(variables.avatar_symbol["N"]["message"])
         return
     return variables.avatar_symbol_current
