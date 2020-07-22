@@ -99,7 +99,7 @@ def get_name_and_symbol(clear_console = True):
     return variables.avatar_symbol_current
 
 
-def show_map(clear_console = True) :
+def show_map_initial(clear_console = True) :
     """
     shows the map.
     """
