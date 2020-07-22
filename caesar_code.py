@@ -16,7 +16,7 @@ def caesar_code (clear_console = True) :
 
     if clear_console:
         utilities.clear_console()
-
+    
     
     print("   Défi 2 :")
     print(" Le code César")
@@ -48,28 +48,35 @@ def caesar_code (clear_console = True) :
             print("Le message sur l'arche se modifie...")
             print("...")
             print(f"En appuyant sur la lettre {letter_code_player}, tu as fait apparaître le message suivant :")
-            get_coded_texte(letter_code_player)
-            decrypt_texte(letter_code_player, get_coded_texte(letter_code_player))
+            
+            
             if letter_code_player == variables.letter_code_random :
+                print(decrypt_texte(letter_code_player, get_coded_texte(letter_code_player)))
                 print()
-                print(f"Bravo ! Tu sais maintenant que la clé du code César est la lettre {variables.letter_code_random}.\n Il faut décaler chaque lettre de {variables.number_code} lettres dans l'alphabet.")
+                count_letter = variables.number_code + 1
+                print(f"Bravo ! Tu sais maintenant que la clé du code César est la lettre {variables.letter_code_random}.\n Il faut décaler chaque lettre de {count_letter} lettres dans l'alphabet.")
                 print()
                 test_name = (input("Veux-tu tenter maintenant d'écrire ton prénom en suivant le code césar ? (O)ui ou (N)on : ")).upper()
                 if test_name == "O" :
                     test_coded_name()
                 else :
                     return
-
+            elif letter_code_player != variables.letter_code_random :
+                get_coded_texte(letter_code_player)
+                print()
         elif test_other_letter == "N" :
             test_name = (input("Veux-tu tenter maintenant d'écrire ton prénom en suivant le code césar ? (O)ui ou (N)on : ")).upper()
             if test_name == "O" :
                 test_coded_name()
                 
             else :
+                
                 return
     
     print(decrypt_texte(letter_code_player, get_coded_texte(letter_code_player)))
-    print(f"Bravo ! Tu sais maintenant que la clé du code César est la lettre {variables.letter_code_random}.\n Il faut reculer chaque lettre de {variables.number_code} lettres dans l'alphabet.")
+    print()
+    count_letter = variables.number_code + 1
+    print(f"Bravo ! Tu sais maintenant que la clé du code César est la lettre {variables.letter_code_random}.\n Il faut reculer chaque lettre de {count_letter} lettres dans l'alphabet.")
     print()
     test_name = (input("Veux-tu tenter maintenant d'écrire ton prénom en suivant le code césar ? (O)ui ou (N)on : ")).upper()
     if test_name == "O" :
@@ -88,7 +95,7 @@ def test_coded_name():
     coded_name_try = (input('--> Tape ton nom de joueur codé : ')).upper()
     decrypted_name = decrypt_texte(variables.letter_code_random, coded_name_try)
     variables.nb_round_caesar += 1
-    if decrypted_name != variables.player_name and variables.nb_round_caesar != 5  :
+    if decrypted_name != (variables.player_name).upper() and variables.nb_round_caesar != 5  :
         while variables.nb_round_caesar < 5  :
             print(decrypted_name)
             print("Ce n'est pas le bon cryptage...\n Essais à nouveau.\n")
@@ -98,10 +105,10 @@ def test_coded_name():
         variables.nb_round_caesar = 5
         print("Tu as utilisé tes 5 essais.\nRetente ta chance plus tard.")
         return
-    elif decrypted_name == variables.player_name and variables.nb_round_caesar <= 5 :
+    elif decrypted_name == (variables.player_name).upper() and variables.nb_round_caesar <= 5 :
         print(decrypted_name)
         print("Bravo ! Tu as réussi à crypter ton nom !\n")
-        print("\u001b[2mTu peux prendre la clé d'argent !\u001b[0m\n")
+        print("\u001b[1mTu peux prendre la clé d'argent !\u001b[0m\n")
         
         print()
     return
