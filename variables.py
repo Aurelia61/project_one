@@ -13,7 +13,7 @@ game_in_progress = True
 
 
 # avatar
-avatar_position = [57, 20]      # X , Y  à mettre aléatoirement !!!!  et sous format dico ?????
+avatar_position = { "x" : 57, "y" : 20}      # X , Y  à mettre aléatoirement !!!!
 
 letter_avatar_symbol = ""
 
@@ -187,13 +187,13 @@ actions = {
         # "character" : "R",
         "message" : "\nL'avatar s'est reposé.\n",
         "game_in_progress" : True
-    }
-    # "E" : {
-    #     "name" : "Erreur de lettre",
-    #     # "character" : "E",
-    #     "message" : "\nOups !\nJe ne comprends pas ce que tu veux faire.\n",
-    #     "game_in_progress" : True 
-    # },
+    },
+    "" : {
+        "name" : " ",
+        # "character" : "",
+        "message" : "\nLa partie continue.\n",
+        "game_in_progress" : True 
+    },
 }
 
 possibles_actions =  ", ".join(actions.keys())

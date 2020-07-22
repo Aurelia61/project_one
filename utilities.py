@@ -38,8 +38,8 @@ def load_map_from_file(file_name):
                     if map_symbol == "\n":
                         continue
                     # place avatar on the map
-                    if (Y == variables.avatar_position[1] 
-                        and X == variables.avatar_position[0]) :
+                    if (Y == variables.avatar_position["y"] 
+                        and X == variables.avatar_position["x"]) :
                         # if above is true, avatar is in this place, so draw it
                         columns.append(variables.letter_avatar_symbol)
                     elif (Y == variables.place["1"]["ln_y"]
