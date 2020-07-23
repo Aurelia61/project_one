@@ -45,6 +45,10 @@ avatar_symbol_current = ""
 
 possibles_avatar_symbol =  ", ".join(avatar_symbol.keys())
 
+avatar_previous_position = None
+symbol_under_avatar = ""
+
+avatar_speed = 0.3
 
 # 4 places : 3 challenges and 1 gate
 
@@ -99,6 +103,7 @@ key_gate = ""
 list_place_symbol = []
 text_place_symbol = ""
 
+
 # actions
 
 chosen_action = ""
@@ -108,91 +113,106 @@ actions = {
         "name" : "Continuer",
         # "character" : "C",
         "message" : "\nBonne décision ! \n",
-        "game_in_progress" : True 
+        "game_in_progress" : True,
+        "impossible" : "\nImpossible de continuer la partie."
     },
     "Q" : {
         "name" : "Quitter",
         # "character" : "Q",
         "message" : "\nC'est dommage...\n",
-        "game_in_progress" : False 
+        "game_in_progress" : False,
+        "impossible" : "\nImpossible de quitter la partie."
     },
     "T" : {
         "name" : "Télécharger",
         # "character" : "T",
         "message" : "\nPartie téléchargée.\n",
-        "game_in_progress" : True
+        "game_in_progress" : True,
+        "impossible" : "\nImpossible de télécharger la partie."
     },
     "S" : {
         "name" : "Sauvegarder",
         # "character" : "S",
         "message" : "\nPartie sauvegardée.\n",
-        "game_in_progress" : True
+        "game_in_progress" : True,
+        "impossible" : "\nImpossible de sauvegarder la partie."
     },
     "H" : {
         "name" : "Haut",
         # "character" : "H",
         "message" : "\nL'avatar s'est déplacé vers le haut.",
-        "game_in_progress" : True
+        "game_in_progress" : True,
+        "impossible" : "\nImpossible d'aller plus haut."
     },
     "B" : {
         "name" : "Bas",
         # "character" : "S",
         "message" : "\nL'avatar s'est déplacé vers le bas.\n",
-        "game_in_progress" : True
+        "game_in_progress" : True,
+        "impossible" : "\nImpossible d'aller plus bas."
     },
     "D" : {
         "name" : "Droite",
         # "character" : "D",
         "message" : "\nL'avatar s'est déplacé vers la droite.\n",
-        "game_in_progress" : True
+        "game_in_progress" : True,
+        "impossible" : "\nImpossible d'aller plus à droite."
     },
     "G" : {
         "name" : "Gauche",
         # "character" : "G",
         "message" : "\nL'avatar s'est déplacé vers la gauche.\n",
-        "game_in_progress" : True
+        "game_in_progress" : True,
+        "impossible" : "\nImpossible d'aller plus à gauche."
     },
     "P" : {
         "name" : "Prendre",
         # "character" : "P",
         "message" : "\nL'avatar a pris l'objet.\n",
-        "game_in_progress" : True
+        "game_in_progress" : True,
+        "impossible" : "\nIl n'y a rien à prendre ici."
     },
     "U" : {
         "name" : "Utiliser",
         # "character" : "U",
         "message" : "\nL'avatar a utilisé l'objet.\n",
-        "game_in_progress" : True
+        "game_in_progress" : True,
+        "impossible" : "\nImpossible."
     },
     "A" : {
         "name" : "Abandonner",
         # "character" : "A",
         "message" : "\nL'avatar a abandonné l'objet parterre.\n",
-        "game_in_progress" : True
+        "game_in_progress" : True,
+        "impossible" : "\nImpossible."
     },
     "Y" : {
         "name" : "s'hYdrater",
         # "character" : "Y",
         "message" : "\nL'avatar s'est hydraté.\n",
-        "game_in_progress" : True
+        "game_in_progress" : True,
+        "impossible" : "\nImpossible de s'hydrater."
     },
     "M" : {
         "name" : "Manger",
         # "character" : "M",
         "message" : "\nL'avatar a mangé.\n",
-        "game_in_progress" : True
+        "game_in_progress" : True,
+        "impossible" : "\nImpossible de manger."
     },
     "R" : {
         "name" : "se Reposer",
         # "character" : "R",
         "message" : "\nL'avatar s'est reposé.\n",
-        "game_in_progress" : True
+        "game_in_progress" : True,
+        "impossible" : "\nImpossible de se reposer."
     },
     "" : {
         "name" : " ",
         # "character" : "",
         "message" : "\nLa partie continue.\n",
-        "game_in_progress" : True 
+        "game_in_progress" : True,
+        "impossible" : "\nImpossible."
     },
 }
 

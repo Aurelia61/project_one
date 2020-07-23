@@ -1,6 +1,7 @@
 # coding: utf-8
 
 # import modules
+import time
 
 # additional modules
 import variables
@@ -46,60 +47,132 @@ def continue_or_exit(clear_console = True):
         return                     # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
 
 
+
 def get_avatar_action ():
     """
         gets what the avatar has to do
     """
 
-    chosen_action = ""
+    actions_instruction = ""
+
     # until the action given by the player is not valid
     # still asks
-    while chosen_action not in variables.possibles_actions :
-        chosen_action = input("Que dois faire ton avatar ? ").upper()
+    while actions_instruction not in variables.actions :
+        actions_instruction = input("Que dois faire ton avatar ? ").strip().upper()
 
-    # if valid action
-    # executes the action
-    execute_avatar_action(chosen_action)
+    # if no number after the letter action, the occurence of this action is 1 (by default)
+    number_action  = 1
+
+    # replaces the string given by the players in a list of actions (separated by space)
+    avatar_actions_list = avatar_actions.split(" ")
+
+    # for each action in list
+    for action in avatar_actions_list :
+        action_is_valid = False
+        # checks if action exists in variables.actions
+        for action_todo in variables.actions :
+            # gets letter action only (not the number) with a list slice
+            letter_action = action[:1]
+            if letter_action == action_todo[0]:
+                # action exists in variables.actions
+                action_is_valid = True
+                if action_todo[1] == True :
+                    # check if there is a number for the action
+                    if len(action) > 1 :
+                        # if there is one, extrat it
+                        number_action  = int(action[1:])
+                        # if not, keeps 1 by default
+                # stop browsing actions
+                break
+        # if valid action
+        # # executes action
+        game.execute_avatar_action(letter_action, number_action )
+
+        # resets number of action at 1 (by default)
+        number_action  = 1
+
+        # if the action doesn't exist
+        if not action_is_valid :
+            print(f"{action} n'est pas une instruction connue.")
+            print(f'Selectionne une action parmi les suivantes : {variables.possibles_actions}')
 
 
-
-def execute_avatar_action(action) :
+def place_avatar_on_map() :
     """
-    executes chosen action
+        places the avatar on the map and saves the symbol that was here before
+    """
+
+    if not variables.avatar_previous_position == None :
+        # put the symbol that was at the previous avatar position
+        variables.map1[variables.avatar_previous_position] =variables.symbol_under_avatar
+
+    # save symbol map
+    variables.symbol_under_avatar = variables.map1[variables.letter_avatar_symbol]
+    # place avatar symbol
+    variables.map1[variables.letter_avatar_symbol] = variables.avatar_symbol_current
+    # save prevuois avatar position
+    variables.avatar_previous_position = variables.letter_avatar_symbol
+
+
+
+def execute_avatar_action(current_action, action_occurences) :
+    """
+    executes action
     """
     new_avatar_x = variables.avatar_position["x"]
     new_avatar_y = variables.avatar_position["y"]
 
-    # prepares action
+    # prepare current_action
     while variables.game_in_progress :
-        if action == "H":
-            new_avatar_y -= 1
-            print(variables.actions["H"]["message"])
-            variables.game_in_progress = variables.actions["H"]["game_in_progress"]
-            # executes action
-            variables.avatar_position["x"] = new_avatar_x
-            variables.avatar_position["y"] = new_avatar_y
-            show_dashboard()
 
-        elif action == "B":
+        # avatar moves up
+        if current_action == "H":
+            for movement in range(action_occurences) :
+                if new_avatar_y < 30 :  
+                    # move avatar
+                    new_avatar_y -= 1
+                    # update counters
+
+                    # places avatar on the map
+                    place_avatar_on_map()
+                    # show message
+                    print(variables.actions["H"]["message"])
+                    # game continues
+                    variables.game_in_progress = variables.actions["H"]["game_in_progress"]
+                else :
+                    # if action go to high, print message
+                    print(variables.actions["H"]["impossible"])
+                # change avatar position x and y
+                variables.avatar_position["x"] = new_avatar_x
+                variables.avatar_position["y"] = new_avatar_y
+                # shows the dashboard
+                show_new_map()
+                # slow down the movement of the avatar on the map
+                time.sleep(variables.avatar_speed)
+        
+    
+        # avatar moves down
+        elif current_action == "B":
             new_avatar_y += 1
             print(variables.actions["B"]["message"])
             variables.game_in_progress = variables.actions["B"]["game_in_progress"]
-            # executes action
+            # executes current_action
             variables.avatar_position["x"] = new_avatar_x
             variables.avatar_position["y"] = new_avatar_y
             show_dashboard()
             
-        elif action == "D":
+        # avatar moves to the right
+        elif current_action == "D":
             new_avatar_x += 1
             print(variables.actions["D"]["message"])
             variables.game_in_progress = variables.actions["D"]["game_in_progress"]
-            # executes action
+            # executes current_action
             variables.avatar_position["x"] = new_avatar_x
             variables.avatar_position["y"] = new_avatar_y
             show_dashboard()
 
-        elif action == "G":
+        # avatar moves to the left
+        elif current_action == "G":
             new_avatar_x -= 1
             print(variables.actions["G"]["message"])
             variables.game_in_progress = variables.actions["G"]["game_in_progress"]
@@ -108,44 +181,45 @@ def execute_avatar_action(action) :
             variables.avatar_position["y"] = new_avatar_y
             show_dashboard()
 
-        elif action == "R":
+
+        elif current_action == "R":
             print(variables.actions["R"]["message"])
             variables.game_in_progress = variables.actions["R"]["game_in_progress"]
             return
             
-        elif action == "P":
+        elif current_action == "P":
             print(variables.actions["P"]["message"])
             variables.game_in_progress = variables.actions["P"]["game_in_progress"]
             return
-        elif action == "U":
+        elif current_action == "U":
             print(variables.actions["U"]["message"])
             variables.game_in_progress = variables.actions["U"]["game_in_progress"]  
             return      
-        elif action == "A":
+        elif current_action == "A":
             print(variables.actions["A"]["message"])
             variables.game_in_progress = variables.actions["A"]["game_in_progress"]
             return
-        elif action == "Y":
+        elif current_action == "Y":
             print(variables.actions["Y"]["message"])
             variables.game_in_progress = variables.actions["Y"]["game_in_progress"]
             return
-        elif action == "M":
+        elif current_action == "M":
             print(variables.actions["M"]["message"])
             variables.game_in_progress = variables.actions["M"]["game_in_progress"]  
             return      
 
-        elif action == "Q":
+        elif current_action == "Q":
             print(variables.actions["Q"]["message"])
             variables.game_in_progress = variables.actions["Q"]["game_in_progress"]
             return
-        elif action == "C":
+        elif current_action == "C":
             print(variables.actions["C"]["message"])
             variables.game_in_progress = variables.actions["C"]["game_in_progress"]  
-        elif action == "S":
+        elif current_action == "S":
             print(variables.actions["S"]["message"])
             variables.game_in_progress = variables.actions["S"]["game_in_progress"]
             return
-        elif action == "T":
+        elif current_action == "T":
             print(variables.actions["T"]["message"])
             variables.game_in_progress = variables.actions["T"]["game_in_progress"]
             return
@@ -153,6 +227,11 @@ def execute_avatar_action(action) :
             
 
     show_dashboard()
+
+    
+    # if game is already ended, go out of the loop
+        # return
+
 
     print("Game_in_progress = False !!!!!!")
     return          # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
