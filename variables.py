@@ -46,7 +46,7 @@ avatar_symbol_current = ""
 
 possibles_avatar_symbol =  ", ".join(avatar_symbol.keys())
 
-avatar_previous_position = None
+avatar_previous_position = {"x" : None, "y" : None }
 symbol_under_avatar = ""
 
 avatar_speed = 0.3

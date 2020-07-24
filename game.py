@@ -43,7 +43,7 @@ def continue_or_exit(clear_console = True):
 
         # if valid action
         # executes the action
-        execute_avatar_action(chosen_action)
+        # execute_avatar_action(chosen_action)
         return                     # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
 
 
@@ -57,26 +57,26 @@ def get_avatar_action ():
 
     # until the action given by the player is not valid
     # still asks
-    while actions_instruction not in variables.actions :
-        actions_instruction = input("Que dois faire ton avatar ? ").strip().upper()
+    while actions_instruction == "" :
+        actions_instruction = input("\nQue dois faire ton avatar ? ").strip().upper()
 
     # if no number after the letter action, the occurence of this action is 1 (by default)
     number_action  = 1
 
     # replaces the string given by the players in a list of actions (separated by space)
-    avatar_actions_list = avatar_actions.split(" ")
+    actions_instruction_list = actions_instruction.split(" ")
 
     # for each action in list
-    for action in avatar_actions_list :
+    for action in actions_instruction_list :
         action_is_valid = False
         # checks if action exists in variables.actions
-        for action_todo in variables.actions :
+        for action_todo in variables.actions.keys() :
             # gets letter action only (not the number) with a list slice
             letter_action = action[:1]
-            if letter_action == action_todo[0]:
+            if letter_action == action_todo:
                 # action exists in variables.actions
                 action_is_valid = True
-                if action_todo[1] == True :
+                if action[1] == True :
                     # check if there is a number for the action
                     if len(action) > 1 :
                         # if there is one, extrat it
@@ -86,7 +86,7 @@ def get_avatar_action ():
                 break
         # if valid action
         # # executes action
-        game.execute_avatar_action(letter_action, number_action )
+        execute_avatar_action(letter_action, number_action )
 
         # resets number of action at 1 (by default)
         number_action  = 1
@@ -94,24 +94,24 @@ def get_avatar_action ():
         # if the action doesn't exist
         if not action_is_valid :
             print(f"{action} n'est pas une instruction connue.")
-            print(f'Selectionne une action parmi les suivantes : {variables.possibles_actions}')
+            print()
 
 
-def place_avatar_on_map() :
-    """
-        places the avatar on the map and saves the symbol that was here before
-    """
+# def place_avatar_on_map() :
+#     """
+#         places the avatar on the map and saves the symbol that was here before
+#     """
 
-    if not variables.avatar_previous_position == None :
-        # put the symbol that was at the previous avatar position
-        variables.map1[variables.avatar_previous_position] =variables.symbol_under_avatar
+#     if not variables.avatar_previous_position == None :
+#         # put the symbol that was at the previous avatar position
+#         variables.map1[variables.avatar_previous_position] =variables.symbol_under_avatar
 
-    # save symbol map
-    variables.symbol_under_avatar = variables.map1[variables.letter_avatar_symbol]
-    # place avatar symbol
-    variables.map1[variables.letter_avatar_symbol] = variables.avatar_symbol_current
-    # save prevuois avatar position
-    variables.avatar_previous_position = variables.letter_avatar_symbol
+#     # save symbol map
+#     variables.symbol_under_avatar = variables.map1[variables.avatar_position]
+#     # place avatar symbol
+#     variables.map1[variables.avatar_position] = variables.avatar_symbol_current
+#     # save prevuois avatar position
+#     variables.avatar_previous_position = variables.avatar_position
 
 
 
@@ -134,7 +134,7 @@ def execute_avatar_action(current_action, action_occurences) :
                     # update counters
 
                     # places avatar on the map
-                    place_avatar_on_map()
+                    # place_avatar_on_map()
                     # show message
                     print(variables.actions["H"]["message"])
                     # game continues
@@ -145,12 +145,9 @@ def execute_avatar_action(current_action, action_occurences) :
                 # change avatar position x and y
                 variables.avatar_position["x"] = new_avatar_x
                 variables.avatar_position["y"] = new_avatar_y
-                # shows the dashboard
-                show_new_map()
                 # slow down the movement of the avatar on the map
                 time.sleep(variables.avatar_speed)
-        
-    
+
         # avatar moves down
         elif current_action == "B":
             new_avatar_y += 1
@@ -159,7 +156,7 @@ def execute_avatar_action(current_action, action_occurences) :
             # executes current_action
             variables.avatar_position["x"] = new_avatar_x
             variables.avatar_position["y"] = new_avatar_y
-            show_dashboard()
+            
             
         # avatar moves to the right
         elif current_action == "D":
@@ -169,7 +166,7 @@ def execute_avatar_action(current_action, action_occurences) :
             # executes current_action
             variables.avatar_position["x"] = new_avatar_x
             variables.avatar_position["y"] = new_avatar_y
-            show_dashboard()
+            
 
         # avatar moves to the left
         elif current_action == "G":
@@ -179,7 +176,7 @@ def execute_avatar_action(current_action, action_occurences) :
             # executes action
             variables.avatar_position["x"] = new_avatar_x
             variables.avatar_position["y"] = new_avatar_y
-            show_dashboard()
+            
 
 
         elif current_action == "R":
@@ -223,11 +220,6 @@ def execute_avatar_action(current_action, action_occurences) :
             print(variables.actions["T"]["message"])
             variables.game_in_progress = variables.actions["T"]["game_in_progress"]
             return
-
-            
-
-    show_dashboard()
-
     
     # if game is already ended, go out of the loop
         # return
@@ -249,20 +241,14 @@ def show_dashboard(clear_console = True) :
 
         show_new_map ()
 
-        # shows intructions of the avatar's action
-        utilities.show_instructions()
-
         # shows the counters : eat, drink, live, items in the bag, ...
         # utilities.show_counter()
 
-        # asks player which action she/he wants to play
-        chosen_action = ""
-        print()
-        chosen_action = input("Tape ici tes instructions : ").upper() 
+        # shows intructions of the avatar's action
+        utilities.show_instructions()
 
-        # wait for a valid action
-        # while chosen_action not in variables.possibles_actions :
-        #     chosen_action = input(f"\nTu dois choisir entre les lettres suivantes : {variables.possibles_actions} : ").upper()
+        # asks player which action she/he wants to play
+        get_avatar_action()
 
         if utilities.clear_console:
             utilities.clear_console()
