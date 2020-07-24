@@ -299,7 +299,7 @@ def show_new_map (clear_console = True):
         return
 
 
-def echec(player_name) :
+def echec(player_name_def) :
     """
     echec of the player
     """

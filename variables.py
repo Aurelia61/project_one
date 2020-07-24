@@ -6,7 +6,8 @@ import string   # for choosing randomly a letter
 
 
 #player
-player_name = "Nom du joueur"
+player_name = "nom du joueur"
+
 
 # game
 game_in_progress = True
@@ -294,7 +295,7 @@ players_fizzbuzz = {
         "chance" : random.randint(10,70)
     },
     "avatar" : {
-        "name_monkey" : player_name,
+        "name_monkey" : "",
         "num_monkey" : 11,
         "chance" : random.randint(80,90)
     }

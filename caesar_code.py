@@ -95,7 +95,7 @@ def test_coded_name():
     coded_name_try = (input('--> Tape ton nom de joueur codé : ')).upper()
     decrypted_name = decrypt_texte(variables.letter_code_random, coded_name_try)
     variables.nb_round_caesar += 1
-    if decrypted_name != (variables.player_name).upper() and variables.nb_round_caesar != 5  :
+    if decrypted_name != variables.player_name_upper and variables.nb_round_caesar != 5  :
         while variables.nb_round_caesar < 5  :
             print(decrypted_name)
             print("Ce n'est pas le bon cryptage...\n Essais à nouveau.\n")
@@ -105,7 +105,7 @@ def test_coded_name():
         variables.nb_round_caesar = 5
         print("Tu as utilisé tes 5 essais.\nRetente ta chance plus tard.")
         return
-    elif decrypted_name == (variables.player_name).upper() and variables.nb_round_caesar <= 5 :
+    elif decrypted_name == variables.player_name_upper and variables.nb_round_caesar <= 5 :
         print(decrypted_name)
         print("Bravo ! Tu as réussi à crypter ton nom !\n")
         print("\u001b[1mTu peux prendre la clé d'argent !\u001b[0m\n")

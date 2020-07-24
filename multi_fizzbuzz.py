@@ -13,6 +13,7 @@ import game
 # à enregister dans variables si variable globale !!!
 
 
+
 def get_possible_answers (index_def, good_answer_def) :
     """
         get all the possible answers
@@ -39,8 +40,7 @@ def multi_fizzbuzz (clear_console = True) :
 
     if clear_console:
         utilities.clear_console()
-
-    
+        
     print("      Défi 3 :")
     print(" Le multi FizzBuzz")
     print(" - - - - - - - - - ")
@@ -63,7 +63,7 @@ def multi_fizzbuzz (clear_console = True) :
             # print(f'la bonne réponse à dire : {good_answer}')
             answer_player = get_answer_player(player, good_answer, index)
             if answer_player != good_answer and player != "avatar" :
-                print(f'{variables.players_fizzbuzz[player]["name_monkey"]} a perdu !')
+                print(f'{(variables.players_fizzbuzz[player]["name_monkey"]).capitalize()} a perdu !')
                 # print(f'joueur à supp : {player}')
                 # print(f'de cette liste : {list_players}')
                 list_players.remove(player)
@@ -92,7 +92,7 @@ def multi_fizzbuzz (clear_console = True) :
             # print(f'la bonne réponse à dire : {good_answer}')
             answer_player = get_answer_player(player, good_answer, index)
             if answer_player != good_answer and player != "avatar":
-                print(f'{variables.players_fizzbuzz[player]["name_monkey"]} a perdu !')
+                print(f'{(variables.players_fizzbuzz[player]["name_monkey"]).capitalize()} a perdu !')
                 time.sleep(4)
                 # print(f'joueur à supp : {player}')
                 # print(f'de cette liste : {list_players}')
@@ -111,7 +111,7 @@ def multi_fizzbuzz (clear_console = True) :
     if nb_players_left == 1 :
         for player in list_players :
             winner = player 
-            print(f'\n{variables.players_fizzbuzz[winner]["name_monkey"]}, tu as gagné !')
+            print(f'\n{(variables.players_fizzbuzz[winner]["name_monkey"]).capitalize()}, tu as gagné !')
             print("-->\u001b[1mTu peux prendre la clé d'or !\u001b[0m\n")
             return
             
@@ -137,6 +137,7 @@ def get_answer_player (current_player, good_answer_def, index_def) :
     """
         gets answer of the player
     """
+
     value_percentage = variables.players_fizzbuzz[current_player]["chance"]
 
     answer_for_percentages = [good_answer_def, "faux"]
@@ -146,14 +147,14 @@ def get_answer_player (current_player, good_answer_def, index_def) :
 
     if good_answer_def in good_or_bad :
         player_answer = good_answer_def
-        print(f'{variables.players_fizzbuzz[current_player]["name_monkey"]} dit "{player_answer}" !')
+        print(f'{(variables.players_fizzbuzz[current_player]["name_monkey"]).capitalize()} dit "{player_answer}" !')
         time.sleep(2)
     else:
         answers_without_good = get_possible_answers(index_def, good_answer_def)
         # print(f'il faut que answers_without_good soit une liste ou un tuple : {type(answers_without_good)}')
         # print(f'{answers_without_good}')
         player_answer = random.choice(answers_without_good)         #   "".join()
-        print(f'{variables.players_fizzbuzz[current_player]["name_monkey"]} dit "{player_answer}" !')
+        print(f'{(variables.players_fizzbuzz[current_player]["name_monkey"]).capitalize()} dit "{player_answer}" !')
         time.sleep(2)
     return player_answer
 
@@ -163,4 +164,5 @@ def get_answer_player (current_player, good_answer_def, index_def) :
 if __name__ == "__main__" :
     # get_good_answer(3)
     # print(good_answer)
+    variables.players_fizzbuzz["avatar"]["name_monkey"] = "auré"
     multi_fizzbuzz()

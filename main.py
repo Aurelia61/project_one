@@ -23,7 +23,7 @@ def start() :
         # pour éviter que le programme retourne au début
         variables.game_in_progress = False
     
-    print(f"\nA bientôt {variables.player_name} !\n")
+    print(f"\nA bientôt {variables.player_name_capitalize} !\n")
 
     return            # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
 

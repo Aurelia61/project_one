@@ -70,9 +70,10 @@ def get_name_and_symbol(clear_console = True):
 
     while variables.game_in_progress :
         print("Mais avant de commencer, tu dois répondre aux 2 questions suivantes :")
-        variables.player_name = input("Quel est ton nom ? ").capitalize()
+        player_name = input("Quel est ton nom ? ")
+        variables.players_fizzbuzz["avatar"]["name_monkey"] = player_name
         print()
-        print(f"Bienvenue {variables.player_name} !")
+        print(f'Bienvenue {(variables.players_fizzbuzz["avatar"]["name_monkey"]).capitalize()} !')
         print()
         print("Quel symbole souhaites-tu pour ton avatar ?")         ##### !!! que le choix entre 1 ou 2... et si le joueur veut rajouter son propre symbole ???
         print(f'     - (L)ady: {variables.avatar_symbol["L"]["color_start"]}{variables.avatar_symbol["L"]["symbol"]}{variables.avatar_symbol["L"]["color_end"]} ')
