@@ -258,17 +258,17 @@ def show_dashboard(clear_console = True) :
         # asks player which action she/he wants to play
         chosen_action = ""
         print()
-        chosen_action = input("Tapes ici tes instructions : ").upper() 
+        chosen_action = input("Tape ici tes instructions : ").upper() 
 
         # wait for a valid action
-        while chosen_action not in variables.possibles_actions :
-            chosen_action = input(f"\nTu dois choisir entre les lettres suivantes : {variables.possibles_actions} : ").upper()
+        # while chosen_action not in variables.possibles_actions :
+        #     chosen_action = input(f"\nTu dois choisir entre les lettres suivantes : {variables.possibles_actions} : ").upper()
 
         if utilities.clear_console:
             utilities.clear_console()
 
         # execute action
-        execute_avatar_action(chosen_action)
+        # execute_avatar_action(chosen_action)
         return        # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
 
 

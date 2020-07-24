@@ -72,6 +72,7 @@ def get_name_and_symbol(clear_console = True):
         print("Mais avant de commencer, tu dois répondre aux 2 questions suivantes :")
         player_name = input("Quel est ton nom ? ")
         variables.players_fizzbuzz["avatar"]["name_monkey"] = player_name
+        variables.player_name = player_name
         print()
         print(f'Bienvenue {(variables.players_fizzbuzz["avatar"]["name_monkey"]).capitalize()} !')
         print()

@@ -6,7 +6,7 @@ import string   # for choosing randomly a letter
 
 
 #player
-player_name = "nom du joueur"
+player_name = ""
 
 
 # game
