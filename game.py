@@ -22,7 +22,7 @@ def continue_or_exit(clear_console = True):
         # until the action given by the player is not valid
         # still asks
         while chosen_action != "Q" and chosen_action != "C" and chosen_action != "":
-            chosen_action = input(f"\nTu dois choisir entre les lettres suivantes : {variables.possibles_actions} : ").upper()
+            chosen_action = input(f'\nTu dois choisir entre les lettres suivantes : "C" ou "Q" : ').upper()
         if chosen_action == "Q":
             print(variables.actions["Q"]["message"])
             variables.game_in_progress = variables.actions["Q"]["game_in_progress"]
