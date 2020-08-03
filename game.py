@@ -47,6 +47,31 @@ def continue_or_exit(clear_console = True):
         return                     # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
 
 
+def show_dashboard(clear_console = True) :
+    """
+    draws dashbord with map, instructions and live counter
+    """
+    while variables.game_in_progress :
+
+        if clear_console:
+            utilities.clear_console()
+
+        show_new_map ()
+
+        # shows the counters : eat, drink, live, items in the bag, ...
+        # utilities.show_counter()
+
+        # shows intructions of the avatar's action
+        utilities.show_instructions()
+
+        # asks player which action she/he wants to play
+        (letter_action, number_action) = get_avatar_action()
+
+        # if valid action, execute action
+        execute_avatar_action(letter_action, number_action)
+
+        # return        # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
+
 
 def get_avatar_action ():
     """
@@ -60,9 +85,6 @@ def get_avatar_action ():
     while actions_instruction == "" :
         actions_instruction = input("\nQue dois faire ton avatar ? ").strip().upper()
 
-    # if no number after the letter action, the occurence of this action is 1 (by default)
-    number_action  = 1
-
     # replaces the string given by the players in a list of actions (separated by space)
     actions_instruction_list = actions_instruction.split(" ")
 
@@ -72,7 +94,7 @@ def get_avatar_action ():
         # checks if action exists in variables.actions
         for action_todo in variables.actions.keys() :
             # gets letter action only (not the number) with a list slice
-            letter_action = action[:1]
+            letter_action = (action[:1]).upper()
             if letter_action == action_todo:
                 # action exists in variables.actions
                 action_is_valid = True
@@ -81,21 +103,22 @@ def get_avatar_action ():
                     if len(action) > 1 :
                         # if there is one, extrat it
                         number_action = int(action[1:])
+                        # if valid action, return values
+                        return letter_action, number_action
                         # if not, keeps 1 by default
+                    else :
+                        number_action = 1
+                        # if valid action, return values
+                        return letter_action, number_action
                 # stop browsing actions
                 break
-        # if valid action, executes action
-        execute_avatar_action(letter_action, number_action )
 
-        # resets number of action at 1 (by default)
-        number_action  = 1
 
         # if the action doesn't exist
-        if not action_is_valid :
-            print(f"{action} n'est pas une instruction connue.")
-            print()
-    return
-
+        # if not action_is_valid :
+        #     print(f"{action} n'est pas une instruction connue.")
+        #     print()
+                
 
 # def place_avatar_on_map() :
 #     """
@@ -127,14 +150,12 @@ def execute_avatar_action(current_action, action_occurences) :
 
         # avatar moves up
         if current_action == "H":
-            for movement in range(action_occurences) :
-                if new_avatar_y < 30 :  
+            for movement in range(0, action_occurences) :
+                if new_avatar_y > 0 :  
                     # move avatar
                     new_avatar_y -= 1
                     # update counters
 
-                    # places avatar on the map
-                    # place_avatar_on_map()
                     # show message
                     print(variables.actions["H"]["message"])
                     # game continues
@@ -147,16 +168,29 @@ def execute_avatar_action(current_action, action_occurences) :
                 variables.avatar_position["y"] = new_avatar_y
                 # slow down the movement of the avatar on the map
                 time.sleep(variables.avatar_speed)
+            return
 
         # avatar moves down
         elif current_action == "B":
-            new_avatar_y += 1
-            print(variables.actions["B"]["message"])
-            variables.game_in_progress = variables.actions["B"]["game_in_progress"]
-            # executes current_action
-            variables.avatar_position["x"] = new_avatar_x
-            variables.avatar_position["y"] = new_avatar_y
-            
+            for movement in range(action_occurences) :
+                if new_avatar_y < 30 :  
+                    # move avatar
+                    new_avatar_y += 1
+                    # update counters
+
+                    # show message
+                    print(variables.actions["B"]["message"])
+                    # game continues
+                    variables.game_in_progress = variables.actions["B"]["game_in_progress"]
+                else :
+                    # if action go to high, print message
+                    print(variables.actions["B"]["impossible"])
+                # change avatar position x and y
+                variables.avatar_position["x"] = new_avatar_x
+                variables.avatar_position["y"] = new_avatar_y
+                # slow down the movement of the avatar on the map
+                time.sleep(variables.avatar_speed)
+            return
             
         # avatar moves to the right
         elif current_action == "D":
@@ -227,35 +261,6 @@ def execute_avatar_action(current_action, action_occurences) :
 
     print("Game_in_progress = False !!!!!!")
     return          # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
-
-
-
-def show_dashboard(clear_console = True) :
-    """
-    draws dashbord with map, instructions and live counter
-    """
-    while variables.game_in_progress :
-
-        if clear_console:
-            utilities.clear_console()
-
-        show_new_map ()
-
-        # shows the counters : eat, drink, live, items in the bag, ...
-        # utilities.show_counter()
-
-        # shows intructions of the avatar's action
-        utilities.show_instructions()
-
-        # asks player which action she/he wants to play
-        get_avatar_action()
-
-        if utilities.clear_console:
-            utilities.clear_console()
-
-        # execute action
-        # execute_avatar_action(chosen_action)
-        return        # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
 
 
 def show_new_map (clear_console = True):

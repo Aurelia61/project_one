@@ -163,7 +163,6 @@ def show_rules(clear_console = True) :
         print("    - si ton avatar perd tous ses points de soif, la partie est perdue")
         print("    - si ton avatar perd tous ses points de faim, la partie est perdue")
         print("    - si ton avatar perd tous ses points de vie, la partie est perdue")
-        print("    - les instructions doivent être séparées par un \u001b[4mespace\u001b[0m")
         print()
         print("Instructions comprises par l'avatar :")
         print("    - le déplacer en choisissant sa direction :")
@@ -180,6 +179,7 @@ def show_rules(clear_console = True) :
         print("    - (S)auvegarder la partie")
         print("    - (T)élécharger la partie")
         print("    - (Q)uitter le jeu (et échouer)")
+        print("Une seule action (lettre) à la fois.")
         print()
         
         game.continue_or_exit()
