@@ -76,16 +76,15 @@ def get_avatar_action ():
             if letter_action == action_todo:
                 # action exists in variables.actions
                 action_is_valid = True
-                if action[1] == True :
+                if variables.actions[letter_action]["movement"] == True :
                     # check if there is a number for the action
                     if len(action) > 1 :
                         # if there is one, extrat it
-                        number_action  = int(action[1:])
+                        number_action = int(action[1:])
                         # if not, keeps 1 by default
                 # stop browsing actions
                 break
-        # if valid action
-        # # executes action
+        # if valid action, executes action
         execute_avatar_action(letter_action, number_action )
 
         # resets number of action at 1 (by default)
@@ -95,6 +94,7 @@ def get_avatar_action ():
         if not action_is_valid :
             print(f"{action} n'est pas une instruction connue.")
             print()
+    return
 
 
 # def place_avatar_on_map() :

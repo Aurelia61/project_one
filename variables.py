@@ -115,6 +115,7 @@ actions = {
         # "character" : "C",
         "message" : "\nBonne décision ! \n",
         "game_in_progress" : True,
+        "movement" : False,
         "impossible" : "\nImpossible de continuer la partie."
     },
     "Q" : {
@@ -122,6 +123,7 @@ actions = {
         # "character" : "Q",
         "message" : "\nC'est dommage...\n",
         "game_in_progress" : False,
+        "movement" : False,
         "impossible" : "\nImpossible de quitter la partie."
     },
     "T" : {
@@ -129,6 +131,7 @@ actions = {
         # "character" : "T",
         "message" : "\nPartie téléchargée.\n",
         "game_in_progress" : True,
+        "movement" : False,
         "impossible" : "\nImpossible de télécharger la partie."
     },
     "S" : {
@@ -136,6 +139,7 @@ actions = {
         # "character" : "S",
         "message" : "\nPartie sauvegardée.\n",
         "game_in_progress" : True,
+        "movement" : False,
         "impossible" : "\nImpossible de sauvegarder la partie."
     },
     "H" : {
@@ -143,6 +147,7 @@ actions = {
         # "character" : "H",
         "message" : "\nL'avatar s'est déplacé vers le haut.",
         "game_in_progress" : True,
+        "movement" : True,
         "impossible" : "\nImpossible d'aller plus haut."
     },
     "B" : {
@@ -150,6 +155,7 @@ actions = {
         # "character" : "S",
         "message" : "\nL'avatar s'est déplacé vers le bas.\n",
         "game_in_progress" : True,
+        "movement" : True,
         "impossible" : "\nImpossible d'aller plus bas."
     },
     "D" : {
@@ -157,6 +163,7 @@ actions = {
         # "character" : "D",
         "message" : "\nL'avatar s'est déplacé vers la droite.\n",
         "game_in_progress" : True,
+        "movement" : True,
         "impossible" : "\nImpossible d'aller plus à droite."
     },
     "G" : {
@@ -164,6 +171,7 @@ actions = {
         # "character" : "G",
         "message" : "\nL'avatar s'est déplacé vers la gauche.\n",
         "game_in_progress" : True,
+        "movement" : True,
         "impossible" : "\nImpossible d'aller plus à gauche."
     },
     "P" : {
@@ -171,6 +179,7 @@ actions = {
         # "character" : "P",
         "message" : "\nL'avatar a pris l'objet.\n",
         "game_in_progress" : True,
+        "movement" : False,
         "impossible" : "\nIl n'y a rien à prendre ici."
     },
     "U" : {
@@ -178,6 +187,7 @@ actions = {
         # "character" : "U",
         "message" : "\nL'avatar a utilisé l'objet.\n",
         "game_in_progress" : True,
+        "movement" : False,
         "impossible" : "\nImpossible."
     },
     "A" : {
@@ -185,6 +195,7 @@ actions = {
         # "character" : "A",
         "message" : "\nL'avatar a abandonné l'objet parterre.\n",
         "game_in_progress" : True,
+        "movement" : False,
         "impossible" : "\nImpossible."
     },
     "Y" : {
@@ -192,6 +203,7 @@ actions = {
         # "character" : "Y",
         "message" : "\nL'avatar s'est hydraté.\n",
         "game_in_progress" : True,
+        "movement" : False,
         "impossible" : "\nImpossible de s'hydrater."
     },
     "M" : {
@@ -199,6 +211,7 @@ actions = {
         # "character" : "M",
         "message" : "\nL'avatar a mangé.\n",
         "game_in_progress" : True,
+        "movement" : False,
         "impossible" : "\nImpossible de manger."
     },
     "R" : {
@@ -206,6 +219,7 @@ actions = {
         # "character" : "R",
         "message" : "\nL'avatar s'est reposé.\n",
         "game_in_progress" : True,
+        "movement" : False,
         "impossible" : "\nImpossible de se reposer."
     },
     "" : {
@@ -213,6 +227,7 @@ actions = {
         # "character" : "",
         "message" : "\nLa partie continue.\n",
         "game_in_progress" : True,
+        "movement" : False,
         "impossible" : "\nImpossible."
     },
 }
