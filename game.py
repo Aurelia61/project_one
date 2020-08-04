@@ -8,6 +8,8 @@ import variables
 import initialization
 import utilities
 import mysterious_number_file
+import caesar_code_file
+import multi_fizzbuzz_file
 
 
 def continue_or_exit(clear_console = True):
@@ -67,10 +69,20 @@ def show_dashboard(clear_console = True) :
 
         # if valid action, execute action
         execute_avatar_action(letter_action, number_action)
+
+        # if avatar on the game "1"
         if variables.avatar_position["y"] == variables.place["1"]["ln_y"] and variables.avatar_position["x"] == variables.place["1"]["col_x"] :
             mysterious_number_file.mysterious_number_play()
 
-        # return        # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
+        # if avatar on the game "2"
+        if variables.avatar_position["y"] == variables.place["2"]["ln_y"] and variables.avatar_position["x"] == variables.place["2"]["col_x"] :
+            caesar_code_file.caesar_code_play()
+
+            # if avatar on the game "3"
+        if variables.avatar_position["y"] == variables.place["3"]["ln_y"] and variables.avatar_position["x"] == variables.place["3"]["col_x"] :
+            multi_fizzbuzz_file.multi_fizzbuzz_play()
+
+
 
 
 def get_avatar_action ():

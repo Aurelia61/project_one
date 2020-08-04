@@ -103,10 +103,10 @@ def show_instructions() :
     """
 
     print("Que veux-tu faire ? ")
-    print("  - déplacer l'avatar vers le \u001b[1m(H)\u001b[0maut")                  #  de n cases (par exemple H2)
-    print("  - déplacer l'avatar vers le \u001b[1m(B)\u001b[0mas")                  #  de n cases (par exemple B6)
-    print("  - déplacer l'avatar vers la \u001b[1m(D)\u001b[0mroite")                #  de n cases (par exemple D5)
-    print("  - déplacer l'avatar vers la \u001b[1m(G)\u001b[0mauche")                #  de n cases (par exemple G1)
+    print("  - déplacer l'avatar vers le \u001b[1m(H)\u001b[0maut de n cases (par exemple H2)")
+    print("  - déplacer l'avatar vers le \u001b[1m(B)\u001b[0mas de n cases (par exemple B6)")
+    print("  - déplacer l'avatar vers la \u001b[1m(D)\u001b[0mroite de n cases (par exemple D5)")
+    print("  - déplacer l'avatar vers la \u001b[1m(G)\u001b[0mauche de n cases (par exemple G1)") 
     print("  - \u001b[1m(P)\u001b[0mrendre un objet et le mettre dans le sac à dos")
     print("  - \u001b[1m(U)\u001b[0mtiliser un object")
     print("  - \u001b[1m(A)\u001b[0mbandonner un object au sol")

@@ -33,7 +33,7 @@ def get_possible_answers (index_def, good_answer_def) :
 
 
 
-def multi_fizzbuzz (clear_console = True) :
+def multi_fizzbuzz_play (clear_console = True) :
     """
         plays the multi_fizzbuzz
     """
@@ -56,24 +56,21 @@ def multi_fizzbuzz (clear_console = True) :
     while nb_players_left > 2:
         
         for player in list_players :
-            
-            # print (f'ça doit être la clé du dico "players_fizzbuzz" : {player}')
             print()
             good_answer = get_good_answer(index)
-            # print(f'la bonne réponse à dire : {good_answer}')
             answer_player = get_answer_player(player, good_answer, index)
             if answer_player != good_answer and player != "avatar" :
                 print(f'{(variables.players_fizzbuzz[player]["name_monkey"]).capitalize()} a perdu !')
-                # print(f'joueur à supp : {player}')
-                # print(f'de cette liste : {list_players}')
                 list_players.remove(player)
-                # print(f'liste une fois le joueur supprimé : {list_players}')
                 index = 1
                 nb_players_left -= 1
                 print(f'Il y a encore {len(list_players)} joueurs.')
                 time.sleep(4)
             elif answer_player != good_answer and player == "avatar" :
                 print("-->\u001b[1mTu as perdu !\u001b[0m\nRetente ta chance plus tard.")
+                game.continue_or_exit()
+                game.show_dashboard()
+                print()
                 return
             elif answer_player == good_answer and player == "avatar" :
                 print("\u001b[1mBien joué !\u001b[0m")
@@ -83,23 +80,20 @@ def multi_fizzbuzz (clear_console = True) :
                 index += 1
                 time.sleep(2)
     while nb_players_left == 2 :
-
         for player in list_players :
-            
-            # print (f'ça doit être la clé du dico "players_fizzbuzz" : {player}')
             print()
             good_answer = get_good_answer(index)
-            # print(f'la bonne réponse à dire : {good_answer}')
             answer_player = get_answer_player(player, good_answer, index)
             if answer_player != good_answer and player != "avatar":
                 print(f'{(variables.players_fizzbuzz[player]["name_monkey"]).capitalize()} a perdu !')
                 time.sleep(4)
-                # print(f'joueur à supp : {player}')
-                # print(f'de cette liste : {list_players}')
                 list_players.remove(player)
                 nb_players_left -= 1
             elif answer_player != good_answer and player == "avatar" :
                 print("-->\u001b[1mTu as perdu !\u001b[0m\nRetente ta chance. Tu as été jusqu'en finale !")
+                game.continue_or_exit()
+                game.show_dashboard()
+                print()
                 return
             elif answer_player == good_answer and player == "avatar" :
                 print("\u001b[1mBien joué !\u001b[0m")
@@ -113,8 +107,10 @@ def multi_fizzbuzz (clear_console = True) :
             winner = player 
             print(f'\n{(variables.players_fizzbuzz[winner]["name_monkey"]).capitalize()}, tu as gagné !')
             print("-->\u001b[1mTu peux prendre la clé d'or !\u001b[0m\n")
+            game.continue_or_exit()
+            game.show_dashboard()
+            print()
             return
-            
 
 
 def get_good_answer(given_number):
@@ -165,4 +161,4 @@ if __name__ == "__main__" :
     # get_good_answer(3)
     # print(good_answer)
     variables.players_fizzbuzz["avatar"]["name_monkey"] = "auré"
-    multi_fizzbuzz()
+    multi_fizzbuzz_play()

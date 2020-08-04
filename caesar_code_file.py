@@ -9,7 +9,7 @@ import utilities
 import game
 
 
-def caesar_code (clear_console = True) :
+def caesar_code_play (clear_console = True) :
     """
         plays the code caesar
     """
@@ -83,6 +83,10 @@ def caesar_code (clear_console = True) :
         test_coded_name()
     else :
         return
+    game.continue_or_exit()
+    game.show_dashboard()
+    print()
+    return
 
 
 def test_coded_name():
@@ -107,7 +111,7 @@ def test_coded_name():
             print("Ce n'est toujours pas le bon cryptage...\n")
             print("Tu as utilisé tes 5 essais.\nRetente ta chance plus tard.\n")
             return
-    elif decrypted_name == variables.player_name_upper and variables.nb_round_caesar <= 5 :
+    elif decrypted_name == variables.player_name and variables.nb_round_caesar <= 5 :
         print(decrypted_name)
         print("Bravo ! Tu as réussi à crypter ton nom !\n")
         print("\u001b[1mTu peux prendre la clé d'argent !\u001b[0m\n")
@@ -164,5 +168,5 @@ def decrypt_texte(letter_code, texte) :
 
 
 if __name__ == "__main__" :
-    caesar_code()
+    caesar_code_play()
     # get_coded_texte("F")
