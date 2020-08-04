@@ -51,19 +51,19 @@ symbol_under_avatar = ""
 
 avatar_speed = 0.3
 
-# all the counter are here
+# all the counters are here
 
 counters = {
     "number_movements" : {
         "name" : "Compteur de déplacement",
         "value" : 0,
-        "color_start" : "\u001b[38;5;15m",
+        "color_start" : "\u001b[38;5;99m",
         "color_end" : "\u001b[0m"
     },
     "number_actions" : {
         "name" : "Compteur d'actions",
         "value" : 0,
-        "color_start" : "\u001b[38;5;15m",
+        "color_start" : "\u001b[38;5;99m",
         "color_end" : "\u001b[0m"
     },
     "life" : {
@@ -97,6 +97,99 @@ counters = {
         "movement" : 2
     }
 }
+
+
+# items
+    ## what is in the backpack
+backpack = {
+    "knife" : {
+        "name" : "Couteau"
+    },
+    "bottle" : {
+        "name" : "Bouteille d'eau"
+    },
+    "computer" : {
+        "name" : "Ordinateur portable"
+    },
+}
+
+    ## items that the player could find
+items_available = {
+    "coconut" : {
+        "name" : "Noix de coco",
+        "symbol_items" : "?",
+        "number" : 10,
+        "col_x" : 0,
+        "ln_y" : 0,
+        "value_hydration" : 15,
+        "value_satiety" : 25
+    },
+    "spring_water" : {
+        "name" : "Eau de source",
+        "symbol_items" : "?",
+        "number" : 3,
+        "col_x" : 0,
+        "ln_y" : 0,
+        "value_hydration" : 100,
+        "value_satiety" : 5
+    },
+    "worm" : {
+        "name" : "Vers de terre",
+        "symbol_items" : "?",
+        "number" : 20,
+        "col_x" : 0,
+        "ln_y" : 0,
+        "value_hydration" : 2,
+        "value_satiety" : 10
+    },
+    "fresh_water" : {
+        "name" : "Eau douce ",
+        "symbol_items" : "?",
+        "number" : 5,
+        "col_x" : 0,
+        "ln_y" : 0,
+        "value_hydration" : 100,
+        "value_satiety" : 2
+    },
+    "sea_water" : {
+        "name" : "Eau de mer",
+        "symbol_items" : "?",
+        "number" : 3,
+        "col_x" : 0,
+        "ln_y" : 0,
+        "value_hydration" : 20,
+        "value_satiety" : 3
+    },
+    "banana" : {
+        "name" : "banane",
+        "symbol_items" : "?",
+        "number" : 25,
+        "col_x" : 0,
+        "ln_y" : 0,
+        "value_hydration" : 2,
+        "value_satiety" : 50
+    },
+    "red_berry" : {
+        "name" : "Baie rouge",
+        "symbol_items" : "?",
+        "number" : 3,
+        "col_x" : 0,
+        "ln_y" : 0,
+        "value_hydration" : 0,
+        "value_satiety" : 0,
+        "blind" : True
+    },
+    "berry" : {
+        "name" : "Petits fruits",
+        "symbol_items" : "?",
+        "number" : 10,
+        "col_x" : 0,
+        "ln_y" : 0,
+        "value_hydration" : 2,
+        "value_satiety" : 10
+    }
+}
+
 
 # actions
 

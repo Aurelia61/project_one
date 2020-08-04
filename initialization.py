@@ -1,6 +1,7 @@
 # coding: utf-8
 
 # import modules
+import random
 
 # additional modules
 import game
@@ -187,5 +188,13 @@ def show_rules(clear_console = True) :
         return                 # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
     
 
+def place_items() :
+    for keys in variables.items_available :
+        for number in range(variables.items_available[keys]["number"]) :
+            variables.items_available[keys]["col_x"] = random.randint(0,80)
+            variables.items_available[keys]["ln_y"] = random.randint(0,30)
+        # print(f'{variables.items_available[keys]["name"]}\n x :: {variables.items_available[keys]["col_x"]}\n y :: {variables.items_available[keys]["ln_y"]}')
 
 
+if __name__ == "__main__" :
+    place_items()

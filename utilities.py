@@ -123,7 +123,7 @@ def show_counter ():
         shows all the counters
     """
     print()
-    print(f'Tu as fait \u001b[7m{variables.counters["number_movements"]["color_start"]}{variables.counters["number_movements"]["value"]}{variables.counters["number_movements"]["color_end"]}\u001b[0m déplacements et \u001b[7m{variables.counters["number_actions"]["color_start"]}{variables.counters["number_actions"]["value"]}{variables.counters["number_actions"]["color_end"]}\u001b[0m actions.\n')
+    print(f'Tu as fait \u001b[1m{variables.counters["number_movements"]["color_start"]}{variables.counters["number_movements"]["value"]}{variables.counters["number_movements"]["color_end"]}\u001b[0m déplacements et \u001b[1m{variables.counters["number_actions"]["color_start"]}{variables.counters["number_actions"]["value"]}{variables.counters["number_actions"]["color_end"]}\u001b[0m actions.\n')
 
     print(f'{variables.counters["life"]["name"]} ::\n' + f'{variables.counters["life"]["symbol_full"]}' * variables.counters["life"]["value"] + f'{variables.counters["life"]["symbol_empty"]}' * (variables.counters["life"]["value_max"] - variables.counters["life"]["value"]))
     print(f'{variables.counters["hydration"]["name"]} ::\n' + f'{variables.counters["hydration"]["symbol_full"]}' * variables.counters["hydration"]["value"] + f'{variables.counters["hydration"]["symbol_empty"]}' * (variables.counters["hydration"]["value_max"] - variables.counters["hydration"]["value"]))
@@ -144,3 +144,4 @@ if __name__ == "__main__" :
     show_counter()
     # pass
 
+# 

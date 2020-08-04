@@ -169,6 +169,9 @@ def execute_avatar_action(current_action, action_occurences=1) :
                     new_avatar_y -= 1
                     # update counters
                     variables.counters["number_movements"]["value"] += 1
+                    variables.counters["life"]["value"] -= variables.counters["life"]["movement"]
+                    variables.counters["hydration"]["value"] -= variables.counters["hydration"]["movement"]
+                    variables.counters["satiety"]["value"] -= variables.counters["satiety"]["movement"]
 
                     # game continues
                     variables.game_in_progress = variables.actions["H"]["game_in_progress"]
@@ -193,6 +196,9 @@ def execute_avatar_action(current_action, action_occurences=1) :
                     new_avatar_y += 1
                     # update counters
                     variables.counters["number_movements"]["value"] += 1
+                    variables.counters["life"]["value"] -= variables.counters["life"]["movement"]
+                    variables.counters["hydration"]["value"] -= variables.counters["hydration"]["movement"]
+                    variables.counters["satiety"]["value"] -= variables.counters["satiety"]["movement"]
 
                     # game continues
                     variables.game_in_progress = variables.actions["B"]["game_in_progress"]                   
@@ -218,6 +224,9 @@ def execute_avatar_action(current_action, action_occurences=1) :
                     new_avatar_x -= 1
                     # update counters
                     variables.counters["number_movements"]["value"] += 1
+                    variables.counters["life"]["value"] -= variables.counters["life"]["movement"]
+                    variables.counters["hydration"]["value"] -= variables.counters["hydration"]["movement"]
+                    variables.counters["satiety"]["value"] -= variables.counters["satiety"]["movement"]
 
                     # game continues
                     variables.game_in_progress = variables.actions["G"]["game_in_progress"]
@@ -242,6 +251,9 @@ def execute_avatar_action(current_action, action_occurences=1) :
                     new_avatar_x += 1
                     # update counters
                     variables.counters["number_movements"]["value"] += 1
+                    variables.counters["life"]["value"] -= variables.counters["life"]["movement"]
+                    variables.counters["hydration"]["value"] -= variables.counters["hydration"]["movement"]
+                    variables.counters["satiety"]["value"] -= variables.counters["satiety"]["movement"]
 
                     # game continues
                     variables.game_in_progress = variables.actions["D"]["game_in_progress"]
