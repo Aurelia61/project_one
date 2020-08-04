@@ -76,7 +76,7 @@ def caesar_code (clear_console = True) :
     print(decrypt_texte(letter_code_player, get_coded_texte(letter_code_player)))
     print()
     count_letter = variables.number_code + 1
-    print(f"Bravo ! Tu sais maintenant que la clé du code César est la lettre {variables.letter_code_random}.\n Il faut reculer chaque lettre de {count_letter} lettres dans l'alphabet.")
+    print(f"Bravo ! Tu sais maintenant que la clé du code César est la lettre {variables.letter_code_random}.\n Il faut décaler chaque lettre de {count_letter} lettres dans l'alphabet.")
     print()
     test_name = (input("Veux-tu tenter maintenant d'écrire ton prénom en suivant le code césar ? (O)ui ou (N)on : ")).upper()
     if test_name == "O" :
@@ -95,21 +95,22 @@ def test_coded_name():
     coded_name_try = (input('--> Tape ton nom de joueur codé : ')).upper()
     decrypted_name = decrypt_texte(variables.letter_code_random, coded_name_try)
     variables.nb_round_caesar += 1
-    if decrypted_name != variables.player_name_upper and variables.nb_round_caesar != 5  :
+    if decrypted_name != variables.player_name and variables.nb_round_caesar != 5  :
         while variables.nb_round_caesar < 5  :
             print(decrypted_name)
             print("Ce n'est pas le bon cryptage...\n Essais à nouveau.\n")
             coded_name_try = (input('--> Tape ton nom de joueur crypté : ')).upper()
             decrypted_name = decrypt_texte(variables.letter_code_random, coded_name_try)
             variables.nb_round_caesar += 1
-        variables.nb_round_caesar = 5
-        print("Tu as utilisé tes 5 essais.\nRetente ta chance plus tard.")
-        return
+        if variables.nb_round_caesar == 5 :
+            print(decrypted_name)
+            print("Ce n'est toujours pas le bon cryptage...\n")
+            print("Tu as utilisé tes 5 essais.\nRetente ta chance plus tard.\n")
+            return
     elif decrypted_name == variables.player_name_upper and variables.nb_round_caesar <= 5 :
         print(decrypted_name)
         print("Bravo ! Tu as réussi à crypter ton nom !\n")
         print("\u001b[1mTu peux prendre la clé d'argent !\u001b[0m\n")
-        
         print()
     return
 

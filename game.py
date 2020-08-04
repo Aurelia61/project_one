@@ -194,12 +194,25 @@ def execute_avatar_action(current_action, action_occurences) :
             
         # avatar moves to the right
         elif current_action == "D":
-            new_avatar_x += 1
-            print(variables.actions["D"]["message"])
-            variables.game_in_progress = variables.actions["D"]["game_in_progress"]
-            # executes current_action
-            variables.avatar_position["x"] = new_avatar_x
-            variables.avatar_position["y"] = new_avatar_y
+            for movement in range(action_occurences) :
+                if new_avatar_x < 80 :  
+                    # move avatar
+                    new_avatar_x += 1
+                    # update counters
+
+                    # show message
+                    print(variables.actions["D"]["message"])
+                    # game continues
+                    variables.game_in_progress = variables.actions["D"]["game_in_progress"]
+                else :
+                    # if action go to high, print message
+                    print(variables.actions["B"]["impossible"])
+                # change avatar position x and y
+                variables.avatar_position["x"] = new_avatar_x
+                variables.avatar_position["y"] = new_avatar_y
+                # slow down the movement of the avatar on the map
+                time.sleep(variables.avatar_speed)
+            return
             
 
         # avatar moves to the left
