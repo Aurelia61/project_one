@@ -122,8 +122,13 @@ def show_counter ():
     """
         shows all the counters
     """
-    pass
+    print()
+    print(f'Tu as fait \u001b[7m{variables.counters["number_movements"]["color_start"]}{variables.counters["number_movements"]["value"]}{variables.counters["number_movements"]["color_end"]}\u001b[0m déplacements et \u001b[7m{variables.counters["number_actions"]["color_start"]}{variables.counters["number_actions"]["value"]}{variables.counters["number_actions"]["color_end"]}\u001b[0m actions.\n')
 
+    print(f'{variables.counters["life"]["name"]} ::\n' + f'{variables.counters["life"]["symbol_full"]}' * variables.counters["life"]["value"] + f'{variables.counters["life"]["symbol_empty"]}' * (variables.counters["life"]["value_max"] - variables.counters["life"]["value"]))
+    print(f'{variables.counters["hydration"]["name"]} ::\n' + f'{variables.counters["hydration"]["symbol_full"]}' * variables.counters["hydration"]["value"] + f'{variables.counters["hydration"]["symbol_empty"]}' * (variables.counters["hydration"]["value_max"] - variables.counters["hydration"]["value"]))
+    print(f'{variables.counters["satiety"]["name"]} ::\n' + f'{variables.counters["satiety"]["symbol_full"]}' * variables.counters["satiety"]["value"] + f'{variables.counters["satiety"]["symbol_empty"]}' * (variables.counters["satiety"]["value_max"] - variables.counters["satiety"]["value"]))
+    print()
 
 def try_again_or_not():
     pass
@@ -133,8 +138,9 @@ def try_again_or_not():
 
 
 if __name__ == "__main__" :
-    show_new_map()
+    # show_new_map()
     # show_instructions()
     # load_map_from_file("map1")
+    show_counter()
     # pass
 

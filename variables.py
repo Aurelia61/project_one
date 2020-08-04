@@ -51,59 +51,52 @@ symbol_under_avatar = ""
 
 avatar_speed = 0.3
 
-# 4 places : 3 challenges and 1 gate
+# all the counter are here
 
-place = {
-    "1" : {
-        "name" : "Mysterious number",
-        "col_x" : 57,
-        "ln_y" : 18,
-        "print" : "1",
-        "image" : "1",
-        "can_walk" : True,
-        "color_start" : "\u001b[38;5;208m",
+counters = {
+    "number_movements" : {
+        "name" : "Compteur de déplacement",
+        "value" : 0,
+        "color_start" : "\u001b[38;5;15m",
         "color_end" : "\u001b[0m"
-        },
-    "2" : {
-        "name" : "Caesar Code",
-        "col_x" : 45,
-        "ln_y" : 23,
-        "print" : "2",
-        "image" : "2",
-        "can_walk" : True,
-        "color_start" : "\u001b[38;5;208m",
+    },
+    "number_actions" : {
+        "name" : "Compteur d'actions",
+        "value" : 0,
+        "color_start" : "\u001b[38;5;15m",
         "color_end" : "\u001b[0m"
-            },
-    "3" : {
-        "name" : "Multi FizzBuzz",
-        "col_x" : 21,
-        "ln_y" : 21,
-        "print" : "3",
-        "image" : "3",
-        "can_walk" : True,
-        "color_start" : "\u001b[38;5;208m",
-        "color_end" : "\u001b[0m"
-            },
-    "4" : {
-        "name" : "Mysterious Gate",
-        "col_x" : 31,
-        "ln_y" : 5,
-        "print" : "4",
-        "image" : "∩",
-        "can_walk" : True,
-        "color_start" : "\u001b[48;5;223m",
-        "color_end" : "\u001b[0m"
-            }
+    },
+    "life" : {
+        "name" : "Points de vie",
+        "symbol_full" : "♥",
+        "symbol_empty" : ".",
+        "color_start_danger" : "\u001b[38;5;196m",
+        "color_start_ok" : "\u001b[38;5;196m",
+        "color_end" : "\u001b[0m",
+        "value_max" : 100,
+        "value" : 100,
+        "dormir" : 6,
+        "movement" : 3
+    },
+    "hydration" : {
+        "name" : "Points d'hydratation",
+        "symbol_full" : "☼",
+        "symbol_empty" : ".",
+        "value_max" : 100,
+        "value" : 100,
+        "dormir" : 2,
+        "movement" : 2
+    },
+    "satiety" : {
+        "name" : "Points de satiété",
+        "symbol_full" : "♦",
+        "symbol_empty" : ".",
+        "value_max" : 100,
+        "value" : 100,
+        "dormir" : 1,
+        "movement" : 2
+    }
 }
-
-key_place_1 = ""
-key_place_2 = ""
-key_place_3 = ""
-key_gate = ""
-
-list_place_symbol = []
-text_place_symbol = ""
-
 
 # actions
 
@@ -235,15 +228,68 @@ actions = {
 possibles_actions =  ", ".join(actions.keys())
 
 
-# challenges
+# places of challenges
+    ## 4 places : 3 challenges and 1 gate
 
-    # challenge 1 :: mysterious number
+place = {
+    "1" : {
+        "name" : "Mysterious number",
+        "col_x" : 57,
+        "ln_y" : 18,
+        "print" : "1",
+        "image" : "1",
+        "can_walk" : True,
+        "color_start" : "\u001b[38;5;208m",
+        "color_end" : "\u001b[0m"
+        },
+    "2" : {
+        "name" : "Caesar Code",
+        "col_x" : 45,
+        "ln_y" : 23,
+        "print" : "2",
+        "image" : "2",
+        "can_walk" : True,
+        "color_start" : "\u001b[38;5;208m",
+        "color_end" : "\u001b[0m"
+            },
+    "3" : {
+        "name" : "Multi FizzBuzz",
+        "col_x" : 21,
+        "ln_y" : 21,
+        "print" : "3",
+        "image" : "3",
+        "can_walk" : True,
+        "color_start" : "\u001b[38;5;208m",
+        "color_end" : "\u001b[0m"
+            },
+    "4" : {
+        "name" : "Mysterious Gate",
+        "col_x" : 31,
+        "ln_y" : 5,
+        "print" : "4",
+        "image" : "∩",
+        "can_walk" : True,
+        "color_start" : "\u001b[48;5;223m",
+        "color_end" : "\u001b[0m"
+            }
+}
+
+key_place_1 = ""
+key_place_2 = ""
+key_place_3 = ""
+key_gate = ""
+
+list_place_symbol = []
+text_place_symbol = ""
+
+
+    ## challenge 1 :: mysterious number
 
 
 player_number = ""
 sphinx_number = ""
 
-    # challenge 2 :: caesar code
+    ## challenge 2 :: caesar code
 original_message = "BEAUTIFUL IS BETTER THAN UGLY. EXPLICIT IS BETTER THAN IMPLICIT. SIMPLE IS BETTER THAN COMPLEX."
 coded_message = []
 alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
@@ -256,7 +302,7 @@ coded_player_name = ""
 letter_code_random = (random.choice(string.ascii_uppercase))
 number_code = 0
 
-    # challenge 3 :: multi FizzBuzz
+    ## challenge 3 :: multi FizzBuzz
 
 players_fizzbuzz = {
     "monkey_1" : {

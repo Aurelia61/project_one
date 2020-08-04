@@ -56,10 +56,11 @@ def show_dashboard(clear_console = True) :
         if clear_console:
             utilities.clear_console()
 
+        # show the map
         show_new_map ()
 
         # shows the counters : eat, drink, live, items in the bag, ...
-        # utilities.show_counter()
+        utilities.show_counter()
 
         # shows intructions of the avatar's action
         utilities.show_instructions()
@@ -167,7 +168,8 @@ def execute_avatar_action(current_action, action_occurences=1) :
                     # move avatar
                     new_avatar_y -= 1
                     # update counters
-                    
+                    variables.counters["number_movements"]["value"] += 1
+
                     # game continues
                     variables.game_in_progress = variables.actions["H"]["game_in_progress"]
                 else :
@@ -190,7 +192,8 @@ def execute_avatar_action(current_action, action_occurences=1) :
                     # move avatar
                     new_avatar_y += 1
                     # update counters
-                    
+                    variables.counters["number_movements"]["value"] += 1
+
                     # game continues
                     variables.game_in_progress = variables.actions["B"]["game_in_progress"]                   
                 else :
@@ -214,7 +217,8 @@ def execute_avatar_action(current_action, action_occurences=1) :
                     # move avatar
                     new_avatar_x -= 1
                     # update counters
-                    
+                    variables.counters["number_movements"]["value"] += 1
+
                     # game continues
                     variables.game_in_progress = variables.actions["G"]["game_in_progress"]
                 elif new_avatar_x + movement < 0 :
@@ -237,7 +241,8 @@ def execute_avatar_action(current_action, action_occurences=1) :
                     # move avatar
                     new_avatar_x += 1
                     # update counters
-                    
+                    variables.counters["number_movements"]["value"] += 1
+
                     # game continues
                     variables.game_in_progress = variables.actions["D"]["game_in_progress"]
                 elif new_avatar_x + movement > 80 :
@@ -258,49 +263,77 @@ def execute_avatar_action(current_action, action_occurences=1) :
         elif current_action == "R":
             print(variables.actions["R"]["message"])
             variables.game_in_progress = variables.actions["R"]["game_in_progress"]
+            # update counters
+            variables.counters["number_actions"]["value"] += 1
+
             return
             
         elif current_action == "P":
             print(variables.actions["P"]["message"])
             variables.game_in_progress = variables.actions["P"]["game_in_progress"]
+            # update counters
+            variables.counters["number_actions"]["value"] += 1
+
             return
         elif current_action == "U":
             print(variables.actions["U"]["message"])
-            variables.game_in_progress = variables.actions["U"]["game_in_progress"]  
+            variables.game_in_progress = variables.actions["U"]["game_in_progress"]
+            # update counters
+            variables.counters["number_actions"]["value"] += 1
+
             return      
         elif current_action == "A":
             print(variables.actions["A"]["message"])
             variables.game_in_progress = variables.actions["A"]["game_in_progress"]
+            # update counters
+            # variables.counters["number_actions"]["value"] += 1
+
             return
         elif current_action == "Y":
             print(variables.actions["Y"]["message"])
             variables.game_in_progress = variables.actions["Y"]["game_in_progress"]
+            # update counters
+            variables.counters["number_actions"]["value"] += 1
+
             return
         elif current_action == "M":
             print(variables.actions["M"]["message"])
-            variables.game_in_progress = variables.actions["M"]["game_in_progress"]  
+            variables.game_in_progress = variables.actions["M"]["game_in_progress"]
+            # update counters
+            variables.counters["number_actions"]["value"] += 1
+
             return      
 
         elif current_action == "Q":
             print(variables.actions["Q"]["message"])
             variables.game_in_progress = variables.actions["Q"]["game_in_progress"]
+            # update counters
+            # variables.counters["number_actions"]["value"] += 1
+
             return
         elif current_action == "C":
             print(variables.actions["C"]["message"])
-            variables.game_in_progress = variables.actions["C"]["game_in_progress"]  
+            variables.game_in_progress = variables.actions["C"]["game_in_progress"]
+            # update counters
+            # variables.counters["number_actions"]["value"] += 1
+
         elif current_action == "S":
             print(variables.actions["S"]["message"])
             variables.game_in_progress = variables.actions["S"]["game_in_progress"]
+            # update counters
+            # variables.counters["number_actions"]["value"] += 1
+
             return
         elif current_action == "T":
             print(variables.actions["T"]["message"])
             variables.game_in_progress = variables.actions["T"]["game_in_progress"]
+            # update counters
+            # variables.counters["number_actions"]["value"] += 1
+
             return
     
     # if game is already ended, go out of the loop
         # return
-
-
     print("Game_in_progress = False !!!!!!")
     return          # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
 
