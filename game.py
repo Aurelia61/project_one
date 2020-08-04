@@ -7,6 +7,7 @@ import time
 import variables
 import initialization
 import utilities
+import mysterious_number_file
 
 
 def continue_or_exit(clear_console = True):
@@ -41,9 +42,6 @@ def continue_or_exit(clear_console = True):
         if utilities.clear_console:
             utilities.clear_console()
 
-        # if valid action
-        # executes the action
-        # execute_avatar_action(chosen_action)
         return                     # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
 
 
@@ -69,6 +67,8 @@ def show_dashboard(clear_console = True) :
 
         # if valid action, execute action
         execute_avatar_action(letter_action, number_action)
+        if variables.avatar_position["y"] == variables.place["1"]["ln_y"] and variables.avatar_position["x"] == variables.place["1"]["col_x"] :
+            mysterious_number_file.mysterious_number_play()
 
         # return        # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
 
@@ -138,7 +138,7 @@ def get_avatar_action ():
 
 
 
-def execute_avatar_action(current_action, action_occurences) :
+def execute_avatar_action(current_action, action_occurences=1) :
     """
     executes action
     """
@@ -151,78 +151,95 @@ def execute_avatar_action(current_action, action_occurences) :
         # avatar moves up
         if current_action == "H":
             for movement in range(0, action_occurences) :
-                if new_avatar_y > 0 :  
+                if new_avatar_y + movement > 0 :  
                     # move avatar
                     new_avatar_y -= 1
                     # update counters
-
-                    # show message
-                    print(variables.actions["H"]["message"])
+                    
                     # game continues
                     variables.game_in_progress = variables.actions["H"]["game_in_progress"]
                 else :
                     # if action go to high, print message
                     print(variables.actions["H"]["impossible"])
-                # change avatar position x and y
-                variables.avatar_position["x"] = new_avatar_x
-                variables.avatar_position["y"] = new_avatar_y
-                # slow down the movement of the avatar on the map
-                time.sleep(variables.avatar_speed)
+                    new_avatar_y = 0
+            # change avatar position x and y
+            variables.avatar_position["x"] = new_avatar_x
+            variables.avatar_position["y"] = new_avatar_y
+            # show message
+            print(variables.actions["H"]["message"])
+            # keep the message visible for a while
+            time.sleep(variables.message_speed)
             return
 
         # avatar moves down
         elif current_action == "B":
             for movement in range(action_occurences) :
-                if new_avatar_y < 30 :  
+                if new_avatar_y + movement < 30 :  
                     # move avatar
                     new_avatar_y += 1
                     # update counters
-
-                    # show message
-                    print(variables.actions["B"]["message"])
+                    
                     # game continues
-                    variables.game_in_progress = variables.actions["B"]["game_in_progress"]
+                    variables.game_in_progress = variables.actions["B"]["game_in_progress"]                   
                 else :
-                    # if action go to high, print message
+                    # if action go to down, print message
                     print(variables.actions["B"]["impossible"])
-                # change avatar position x and y
-                variables.avatar_position["x"] = new_avatar_x
-                variables.avatar_position["y"] = new_avatar_y
-                # slow down the movement of the avatar on the map
-                time.sleep(variables.avatar_speed)
+                    new_avatar_y = 30
+
+            # change avatar position x and y
+            variables.avatar_position["x"] = new_avatar_x
+            variables.avatar_position["y"] = new_avatar_y
+            # show message
+            print(variables.actions["B"]["message"])
+            # keep the message visible for a while
+            time.sleep(variables.message_speed)
             return
             
+        # avatar moves to the left
+        elif current_action == "G":
+            for movement in range(action_occurences) :
+                if new_avatar_x + movement > 0 :
+                    # move avatar
+                    new_avatar_x -= 1
+                    # update counters
+                    
+                    # game continues
+                    variables.game_in_progress = variables.actions["G"]["game_in_progress"]
+                elif new_avatar_x + movement < 0 :
+                    # if action go to right, print message
+                    print(variables.actions["G"]["impossible"])
+                    new_avatar_x = 0
+            # change avatar position x and y
+            variables.avatar_position["x"] = new_avatar_x
+            variables.avatar_position["y"] = new_avatar_y
+            # show message
+            print(variables.actions["G"]["message"])
+            # keep the message visible for a while
+            time.sleep(variables.message_speed)
+            return
+
         # avatar moves to the right
         elif current_action == "D":
             for movement in range(action_occurences) :
-                if new_avatar_x < 80 :  
+                if new_avatar_x + movement < 80 :  
                     # move avatar
                     new_avatar_x += 1
                     # update counters
-
-                    # show message
-                    print(variables.actions["D"]["message"])
+                    
                     # game continues
                     variables.game_in_progress = variables.actions["D"]["game_in_progress"]
-                else :
-                    # if action go to high, print message
-                    print(variables.actions["B"]["impossible"])
-                # change avatar position x and y
-                variables.avatar_position["x"] = new_avatar_x
-                variables.avatar_position["y"] = new_avatar_y
-                # slow down the movement of the avatar on the map
-                time.sleep(variables.avatar_speed)
-            return
-            
-
-        # avatar moves to the left
-        elif current_action == "G":
-            new_avatar_x -= 1
-            print(variables.actions["G"]["message"])
-            variables.game_in_progress = variables.actions["G"]["game_in_progress"]
-            # executes action
+                elif new_avatar_x + movement > 80 :
+                    # if action go to right, print message
+                    print(variables.actions["D"]["impossible"])
+                    new_avatar_x = 80                
+            # change avatar position x and y
             variables.avatar_position["x"] = new_avatar_x
             variables.avatar_position["y"] = new_avatar_y
+            # show message
+            print(variables.actions["D"]["message"])
+            # keep the message visible for a while
+            time.sleep(variables.message_speed)
+            return
             
 
 

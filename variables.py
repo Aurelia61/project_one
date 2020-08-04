@@ -11,7 +11,7 @@ player_name = ""
 
 # game
 game_in_progress = True
-
+message_speed = 1
 
 # avatar
 avatar_position = { "x" : 57, "y" : 20}      # X , Y  à mettre aléatoirement !!!!
@@ -325,6 +325,7 @@ map_elements = {
         "name" : "terre",
         "image" : " ",
         "can_walk" : True,
+        "message_walk" : "\nTu marches en regardant le magnifique paysage qui t'entoure.\n",
         "color_start" : "\u001b[38;5;15m",
         "color_end" : "\u001b[0m"
         },
@@ -332,6 +333,7 @@ map_elements = {
         "name" : "montain",
         "image" : "▲",
         "can_walk" : False,
+        "message_walk" : "\nTu n'es pas équipé pour escalader la montagne.\n",
         "color_start" : "\u001b[38;5;136m",
         "color_end" : "\u001b[0m"
         },
@@ -339,6 +341,7 @@ map_elements = {
         "name" : "river",
         "image" : "≈",
         "can_walk" : False,
+        "message_walk" : "\nIl y a trop de courant. Tu ne peux pas traverser.\nTrouves un endroit où la rivière est moins large et mets un tronc d'arbres en travers pour la traverser.",
         "color_start" : "\u001b[38;5;21m",
         "color_end" : "\u001b[0m"
         },
@@ -346,6 +349,7 @@ map_elements = {
         "name" : "sea",
         "image" : "▓",
         "can_walk" : False,
+        "message_walk" : "\nLa mer est beaucoup trop agitée... Tu ne peux pas nager sans risquer de te noyer.\n",
         "color_start" : "\u001b[38;5;117m",
         "color_end" : "\u001b[0m"
         },
@@ -353,6 +357,7 @@ map_elements = {
         "name" : "jungle",
         "image" : "♣",
         "can_walk" : False,
+        "message_walk" : "\nRegarde où tu marches !\n",
         "color_start" : "\u001b[38;5;65m",
         "color_end" : "\u001b[0m"
         },
@@ -360,16 +365,26 @@ map_elements = {
         "name" : "steppe",
         "image" : "∞",
         "can_walk" : False,
+        "message_walk" : "\nAie ! Ces arbustes piquent. Impossible de passer.\n",
         "color_start" : "\u001b[38;5;34m",
         "color_end" : "\u001b[0m"
         },
     ":" : {
         "name" : "sand",
         "image" : "▒",
-        "can_walk" : False,
+        "can_walk" : True,
+        "message_walk" : "\nAttention! Le sable est très chaud...\n",
         "color_start" : "\u001b[38;5;226m",
         "color_end" : "\u001b[0m"
-        }
+        },
+    "-" : {
+        "name" : "tree trunk",
+        "image" : "▬",
+        "can_walk" : True,
+        "message_walk" : "\nBravo ! Tu peux traverser la rivière.\n",
+        "color_start" : "\u001b[38;5;94m",
+        "color_end" : "\u001b[0m"
+    }
 }
 
 if __name__ == "__main__" :
