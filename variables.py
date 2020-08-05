@@ -4,6 +4,8 @@
 import random
 import string   # for choosing randomly a letter
 
+# additional modules
+import utilities
 
 #player
 player_name = ""
@@ -119,8 +121,8 @@ items_available = {
         "name" : "Noix de coco",
         "symbol_items" : "?",
         "number" : 10,
-        "col_x" : 0,
-        "ln_y" : 0,
+        "col_x" : [],
+        "ln_y" : [],
         "value_hydration" : 15,
         "value_satiety" : 25
     },
@@ -128,8 +130,8 @@ items_available = {
         "name" : "Eau de source",
         "symbol_items" : "?",
         "number" : 3,
-        "col_x" : 0,
-        "ln_y" : 0,
+        "col_x" : [],
+        "ln_y" : [],
         "value_hydration" : 100,
         "value_satiety" : 5
     },
@@ -137,8 +139,8 @@ items_available = {
         "name" : "Vers de terre",
         "symbol_items" : "?",
         "number" : 20,
-        "col_x" : 0,
-        "ln_y" : 0,
+        "col_x" : [],
+        "ln_y" : [],
         "value_hydration" : 2,
         "value_satiety" : 10
     },
@@ -146,8 +148,8 @@ items_available = {
         "name" : "Eau douce ",
         "symbol_items" : "?",
         "number" : 5,
-        "col_x" : 0,
-        "ln_y" : 0,
+        "col_x" : [],
+        "ln_y" : [],
         "value_hydration" : 100,
         "value_satiety" : 2
     },
@@ -155,8 +157,8 @@ items_available = {
         "name" : "Eau de mer",
         "symbol_items" : "?",
         "number" : 3,
-        "col_x" : 0,
-        "ln_y" : 0,
+        "col_x" : [],
+        "ln_y" : [],
         "value_hydration" : 20,
         "value_satiety" : 3
     },
@@ -164,8 +166,8 @@ items_available = {
         "name" : "banane",
         "symbol_items" : "?",
         "number" : 25,
-        "col_x" : 0,
-        "ln_y" : 0,
+        "col_x" : [],
+        "ln_y" : [],
         "value_hydration" : 2,
         "value_satiety" : 50
     },
@@ -173,8 +175,8 @@ items_available = {
         "name" : "Baie rouge",
         "symbol_items" : "?",
         "number" : 3,
-        "col_x" : 0,
-        "ln_y" : 0,
+        "col_x" : [],
+        "ln_y" : [],
         "value_hydration" : 0,
         "value_satiety" : 0,
         "blind" : True
@@ -183,8 +185,8 @@ items_available = {
         "name" : "Petits fruits",
         "symbol_items" : "?",
         "number" : 10,
-        "col_x" : 0,
-        "ln_y" : 0,
+        "col_x" : [],
+        "ln_y" : [],
         "value_hydration" : 2,
         "value_satiety" : 10
     }
@@ -458,7 +460,11 @@ players_fizzbuzz = {
 
 
 # map
+
+
+
 map1 = []
+
 map_elements = {
     " " : {
         "name" : "terre",

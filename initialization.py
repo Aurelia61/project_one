@@ -102,7 +102,7 @@ def get_name_and_symbol(clear_console = True):
     return variables.avatar_symbol_current
 
 
-def show_map_initial(clear_console = True) :
+def show_map_initial(map = "map1", clear_console = True) :
     """
     shows the map.
     """
@@ -118,7 +118,7 @@ def show_map_initial(clear_console = True) :
         print(f'Prends note également où se trouvent les 3 défis et la porte mystérieuse : \n --> {variables.text_place_symbol}')
         print()
 
-        utilities.load_map_from_file("map1")
+        utilities.load_map_from_file(map)
 
         for Y in range(len(variables.map1)) :
             for X in range(len(variables.map1[Y])) :
@@ -127,6 +127,8 @@ def show_map_initial(clear_console = True) :
                     print(f'{variables.avatar_symbol[variables.letter_avatar_symbol]["color_start"]}{variables.avatar_symbol[variables.letter_avatar_symbol]["symbol"]}{variables.avatar_symbol[variables.letter_avatar_symbol]["color_end"]}', end="")  
                 elif variables.map1[Y][X] in variables.place.keys() :
                     print(f'{variables.place[variables.map1[Y][X]]["color_start"]}{variables.place[variables.map1[Y][X]]["image"]}{variables.place[variables.map1[Y][X]]["color_end"]}', end="")
+                # elif variables.map1[Y][X] in variables.items_available.keys() :
+                #     print(f'{variables.items_available[variables.map1[Y][X]]["?"]}', end="") 
                 else :
                     # if not, draw the item of the map
                     print(f'{variables.map_elements[variables.map1[Y][X]]["color_start"]}{variables.map_elements[variables.map1[Y][X]]["image"]}{variables.map_elements[variables.map1[Y][X]]["color_end"]}', end="" )
@@ -139,7 +141,7 @@ def show_map_initial(clear_console = True) :
 
         game.continue_or_exit()
 
-        return              # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
+        return 
 
 
 
@@ -188,13 +190,37 @@ def show_rules(clear_console = True) :
         return                 # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
     
 
-def place_items() :
+def get_place_items() :
+    """
+        add the coordonates of the item in the dictionary, depending on the list of items and the number of each 
+    """
+    
+    # get the lenght of the line and of the column
+    (map_x_max, map_y_max) = utilities.load_map_from_file()
+    
+    # get the coordonates of all the items
     for keys in variables.items_available :
         for number in range(variables.items_available[keys]["number"]) :
-            variables.items_available[keys]["col_x"] = random.randint(0,80)
-            variables.items_available[keys]["ln_y"] = random.randint(0,30)
-        # print(f'{variables.items_available[keys]["name"]}\n x :: {variables.items_available[keys]["col_x"]}\n y :: {variables.items_available[keys]["ln_y"]}')
+            # to add coodinate x
+            col_x_value = random.randint(0,map_x_max)            
+            (variables.items_available[keys]["col_x"]).append(col_x_value)
+            # to add coodinate y
+            ln_y_value = random.randint(0,map_y_max)
+            (variables.items_available[keys]["ln_y"]).append(ln_y_value)
+
+
+def choose_placement_challenge() :
+    """
+    chooses the placement of the 4 mysterious places   
+    """
+                                                # randomly ???????
+    variables.key_place_1 = "1"
+    variables.key_place_2 = "2"
+    variables.key_place_3 = "3"
+    variables.key_gate = "4"
+
 
 
 if __name__ == "__main__" :
-    place_items()
+    get_place_items()
+    print(variables.items_available)

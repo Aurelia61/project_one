@@ -15,7 +15,7 @@ def start() :
     while variables.game_in_progress:
         initialization.show_title_and_story()
         initialization.get_name_and_symbol()
-        initialization.show_map_initial()
+        initialization.show_map_initial("map1")
         initialization.show_rules()
         game.show_dashboard()
 
