@@ -60,7 +60,7 @@ def show_title_and_story(clear_console = True) :
     print()
     print("Il est encore temps de quitter le jeu si tu as trop peur...")
         
-    game.continue_or_exit()
+    utilities.continue_or_exit()
 
 
 def get_name_and_symbol(clear_console = True):
@@ -126,23 +126,24 @@ def show_map_initial(map = "map1", clear_console = True) :
                     # if above is true, avatar is in this place, so draw it
                     print(f'{variables.avatar_symbol[variables.letter_avatar_symbol]["color_start"]}{variables.avatar_symbol[variables.letter_avatar_symbol]["symbol"]}{variables.avatar_symbol[variables.letter_avatar_symbol]["color_end"]}', end="")  
                 elif variables.map1[Y][X] in variables.place.keys() :
+                    # if above is true, a mysterious place is here, so draw it
                     print(f'{variables.place[variables.map1[Y][X]]["color_start"]}{variables.place[variables.map1[Y][X]]["image"]}{variables.place[variables.map1[Y][X]]["color_end"]}', end="")
-                # elif variables.map1[Y][X] in variables.items_available.keys() :
-                #     print(f'{variables.items_available[variables.map1[Y][X]]["?"]}', end="") 
+                elif variables.map1[Y][X] in variables.items_available.keys() :
+                    # if above is true, item is in this place, so draw it
+                    print(variables.symbol_items, end="") 
                 else :
                     # if not, draw the item of the map
                     print(f'{variables.map_elements[variables.map1[Y][X]]["color_start"]}{variables.map_elements[variables.map1[Y][X]]["image"]}{variables.map_elements[variables.map1[Y][X]]["color_end"]}', end="" )
             print()
 
         print()
-        print(f'Sauras-tu te déplacer en évitant les dangers de la jungle {variables.map_elements["J"]["color_start"]}{variables.map_elements["J"]["image"]}{variables.map_elements["J"]["color_end"]}, des sables mouvants {variables.map_elements["v"]["color_start"]}{variables.map_elements["v"]["image"]}{variables.map_elements["v"]["color_end"]} et de la rivière {variables.map_elements["u"]["color_start"]}{variables.map_elements["u"]["image"]}{variables.map_elements["u"]["color_end"]}  ?')    ##### Mettre les symbols
+        print(f'Sauras-tu te déplacer en évitant les dangers de la jungle {variables.map_elements["J"]["color_start"]}{variables.map_elements["J"]["image"]}{variables.map_elements["J"]["color_end"]}, des cactus {variables.map_elements["v"]["color_start"]}{variables.map_elements["v"]["image"]}{variables.map_elements["v"]["color_end"]} et de la rivière {variables.map_elements["u"]["color_start"]}{variables.map_elements["u"]["image"]}{variables.map_elements["u"]["color_end"]}  ?')    ##### Mettre les symbols
         print()
         print("Découvres maintenant comment jouer !")
 
-        game.continue_or_exit()
+        utilities.continue_or_exit()
 
         return 
-
 
 
 def show_rules(clear_console = True) :
@@ -185,7 +186,7 @@ def show_rules(clear_console = True) :
         print("Une seule action (lettre) à la fois.")
         print()
         
-        game.continue_or_exit()
+        utilities.continue_or_exit()
         
         return                 # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
     
@@ -196,17 +197,19 @@ def get_place_items() :
     """
     
     # get the lenght of the line and of the column
-    (map_x_max, map_y_max) = utilities.load_map_from_file()
+    # (map_x_max, map_y_max) = utilities.load_map_from_file()
+    #0,80 0;30
     
     # get the coordonates of all the items
     for keys in variables.items_available :
         for number in range(variables.items_available[keys]["number"]) :
             # to add coodinate x
-            col_x_value = random.randint(0,map_x_max)            
+            col_x_value = random.randint(0,80)            
             (variables.items_available[keys]["col_x"]).append(col_x_value)
             # to add coodinate y
-            ln_y_value = random.randint(0,map_y_max)
+            ln_y_value = random.randint(0,30)
             (variables.items_available[keys]["ln_y"]).append(ln_y_value)
+            
 
 
 def choose_placement_challenge() :
@@ -218,6 +221,7 @@ def choose_placement_challenge() :
     variables.key_place_2 = "2"
     variables.key_place_3 = "3"
     variables.key_gate = "4"
+
 
 
 

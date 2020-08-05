@@ -3,11 +3,47 @@
 # import modules
 import os
 import sys
+
+
+# additional modules
 import variables
 import initialization
 
 
-# additional modules
+def continue_or_exit(clear_console_ok = True):
+    """
+        Asks if the player wants to continue or to exit
+    """
+
+    chosen_action = ""
+    while variables.game_in_progress :
+        print()
+        chosen_action = input("Appuies sur (Q) pour quitter ou sur (C) pour continuer : ").upper() 
+
+        # until the action given by the player is not valid
+        # still asks
+        while chosen_action != "Q" and chosen_action != "C" and chosen_action != "":
+            chosen_action = input(f'\nTu dois choisir entre les lettres suivantes : "C" ou "Q" : ').upper()
+        if chosen_action == "Q":
+            print(variables.actions["Q"]["message"])
+            variables.game_in_progress = variables.actions["Q"]["game_in_progress"]
+            return
+        elif chosen_action == "C":
+            if clear_console_ok :
+                clear_console()
+                print(variables.actions["C"]["message"])
+            variables.game_in_progress = variables.actions["C"]["game_in_progress"]
+            return
+        elif chosen_action == "":
+            print(variables.actions[""]["message"])
+            variables.game_in_progress = variables.actions[""]["game_in_progress"]
+            return
+
+        if clear_console_ok:
+            clear_console()
+
+        return                     # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
+
 
 def clear_console() :
     """
@@ -44,12 +80,13 @@ def load_map_from_file(file_name = "map1"):
                     if map_symbol == "\n":
                         continue
                     # place items on map
-                    for keys in variables.items_available :
-                        for number in range(variables.items_available[keys]["number"]) :
-                            if (Y == variables.items_available[keys]["ln_y"][number]
-                                and X == variables.items_available[keys]["col_x"][number]) :
-                                # if above is true, there is an item here, so draw it
-                                columns.append(variables.items_available[keys]["symbol_items"])
+                    if map_symbol == " " :
+                        for keys in variables.items_available :
+                            for number in range(variables.items_available[keys]["number"]) :
+                                if (Y == variables.items_available[keys]["ln_y"][number]
+                                    and X == variables.items_available[keys]["col_x"][number]) :
+                                    # if above is true, there is an item here, so draw it
+                                    columns.append(variables.items_available[keys]["symbol_items"])
                     # place avatar on the map
                     if (Y == variables.avatar_position["y"] 
                         and X == variables.avatar_position["x"]) :
@@ -106,25 +143,11 @@ def load_map_from_file(file_name = "map1"):
                 # add line to map
                 variables.map1.append(columns)
                 Y += 1
-        return X, Y
+        return
 
     except FileNotFoundError:
         variables.game_in_progress = False     ######################### !!!!!!!!
         print("\nCette carte n'existe pas.\n")
-
-
-def get_text_place_symbol () : 
-    """
-        gets a string with the symbol of the 4 mysterious places
-    """
-
-    for k in (variables.place).keys() :
-        (variables.list_place_symbol).append((variables.place[k]).get("color_start"))
-        (variables.list_place_symbol).append((variables.place[k]).get("image"))
-        (variables.list_place_symbol).append((variables.place[k]).get("color_end"))
-        (variables.list_place_symbol).append(", ")
-        variables.text_place_symbol = "".join(variables.list_place_symbol)
-    return
 
 
 def show_instructions() :
@@ -159,6 +182,23 @@ def show_counter ():
     print(f'{variables.counters["hydration"]["name"]} ::\n' + f'{variables.counters["hydration"]["symbol_full"]}' * variables.counters["hydration"]["value"] + f'{variables.counters["hydration"]["symbol_empty"]}' * (variables.counters["hydration"]["value_max"] - variables.counters["hydration"]["value"]))
     print(f'{variables.counters["satiety"]["name"]} ::\n' + f'{variables.counters["satiety"]["symbol_full"]}' * variables.counters["satiety"]["value"] + f'{variables.counters["satiety"]["symbol_empty"]}' * (variables.counters["satiety"]["value_max"] - variables.counters["satiety"]["value"]))
     print()
+
+
+def get_text_place_symbol () : 
+    """
+        gets a string with the symbol of the 4 mysterious places
+    """
+
+    for k in (variables.place).keys() :
+        (variables.list_place_symbol).append((variables.place[k]).get("color_start"))
+        (variables.list_place_symbol).append((variables.place[k]).get("image"))
+        (variables.list_place_symbol).append((variables.place[k]).get("color_end"))
+        (variables.list_place_symbol).append(", ")
+        variables.text_place_symbol = "".join(variables.list_place_symbol)
+    return
+
+
+
 
 def try_again_or_not():
     pass

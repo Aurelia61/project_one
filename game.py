@@ -12,41 +12,6 @@ import caesar_code_file
 import multi_fizzbuzz_file
 
 
-def continue_or_exit(clear_console = True):
-    """
-        Asks if the player wants to continue or to exit
-    """
-
-    chosen_action = ""
-    while variables.game_in_progress :
-        print()
-        chosen_action = input("Appuies sur (Q) pour quitter ou sur (C) pour continuer : ").upper() 
-
-        # until the action given by the player is not valid
-        # still asks
-        while chosen_action != "Q" and chosen_action != "C" and chosen_action != "":
-            chosen_action = input(f'\nTu dois choisir entre les lettres suivantes : "C" ou "Q" : ').upper()
-        if chosen_action == "Q":
-            print(variables.actions["Q"]["message"])
-            variables.game_in_progress = variables.actions["Q"]["game_in_progress"]
-            return
-        elif chosen_action == "C":
-            if utilities.clear_console:
-                utilities.clear_console()
-                print(variables.actions["C"]["message"])
-            variables.game_in_progress = variables.actions["C"]["game_in_progress"]
-            return
-        elif chosen_action == "":
-            print(variables.actions[""]["message"])
-            variables.game_in_progress = variables.actions[""]["game_in_progress"]
-            return
-
-        if utilities.clear_console:
-            utilities.clear_console()
-
-        return                     # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
-
-
 def show_dashboard(clear_console = True) :
     """
     draws dashbord with map, instructions and live counter
@@ -82,8 +47,6 @@ def show_dashboard(clear_console = True) :
             # if avatar on the game "3"
         if variables.avatar_position["y"] == variables.place["3"]["ln_y"] and variables.avatar_position["x"] == variables.place["3"]["col_x"] :
             multi_fizzbuzz_file.multi_fizzbuzz_play()
-
-
 
 
 def get_avatar_action ():
@@ -131,24 +94,6 @@ def get_avatar_action ():
         # if not action_is_valid :
         #     print(f"{action} n'est pas une instruction connue.")
         #     print()
-                
-
-# def place_avatar_on_map() :
-#     """
-#         places the avatar on the map and saves the symbol that was here before
-#     """
-
-#     if not variables.avatar_previous_position == None :
-#         # put the symbol that was at the previous avatar position
-#         variables.map1[variables.avatar_previous_position] =variables.symbol_under_avatar
-
-#     # save symbol map
-#     variables.symbol_under_avatar = variables.map1[variables.avatar_position]
-#     # place avatar symbol
-#     variables.map1[variables.avatar_position] = variables.avatar_symbol_current
-#     # save prevuois avatar position
-#     variables.avatar_previous_position = variables.avatar_position
-
 
 
 def execute_avatar_action(current_action, action_occurences=1) :
@@ -368,8 +313,10 @@ def show_new_map (clear_console = True):
                     print(f'{variables.avatar_symbol_current}', end="" )
                 elif variables.map1[Y][X] in variables.place.keys() :
                     print(f'{variables.place[variables.map1[Y][X]]["color_start"]}{variables.place[variables.map1[Y][X]]["image"]}{variables.place[variables.map1[Y][X]]["color_end"]}', end="")
-                    if variables.map1[Y][X] == "1" and variables.map1[Y][X] in variables.possibles_avatar_symbol :
-                        mysterious_number()
+                elif variables.map1[Y][X] in variables.possibles_item_symbol and variables.map1[Y][X] != " ":
+                    # if above is true, item is in this place, so draw it
+                    print(variables.symbol_items, end="") 
+                    current_item_found = variables.map1[Y][X]
                 else :
                     # if not, draw the item of the map
                     print(f'{variables.map_elements[variables.map1[Y][X]]["color_start"]}{variables.map_elements[variables.map1[Y][X]]["image"]}{variables.map_elements[variables.map1[Y][X]]["color_end"]}', end="" )
@@ -386,6 +333,33 @@ def echec(player_name_def) :
         pass
 
 
+def play_item(clear_console = True) :
+    """
+        choose what to do with the item
+    """
+    pass
+    if clear_console :
+        utilities.clear_console()
+
+    # print(f'Tu viens de trouver {")
+
+
+
+# def place_avatar_on_map() :
+#     """
+#         places the avatar on the map and saves the symbol that was here before
+#     """
+
+#     if not variables.avatar_previous_position == None :
+#         # put the symbol that was at the previous avatar position
+#         variables.map1[variables.avatar_previous_position] =variables.symbol_under_avatar
+
+#     # save symbol map
+#     variables.symbol_under_avatar = variables.map1[variables.avatar_position]
+#     # place avatar symbol
+#     variables.map1[variables.avatar_position] = variables.avatar_symbol_current
+#     # save prevuois avatar position
+#     variables.avatar_previous_position = variables.avatar_position
 
 
 if __name__ == "__main__" :

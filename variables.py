@@ -117,63 +117,63 @@ backpack = {
 
     ## items that the player could find
 items_available = {
-    "coconut" : {
-        "name" : "Noix de coco",
-        "symbol_items" : "?",
+    "c" : {
+        "name" : "coconut",
+        "symbol_items" : "c",
         "number" : 10,
         "col_x" : [],
         "ln_y" : [],
         "value_hydration" : 15,
         "value_satiety" : 25
     },
-    "spring_water" : {
-        "name" : "Eau de source",
-        "symbol_items" : "?",
+    "g" : {
+        "name" : "spring_water",
+        "symbol_items" : "g",
         "number" : 3,
         "col_x" : [],
         "ln_y" : [],
         "value_hydration" : 100,
         "value_satiety" : 5
     },
-    "worm" : {
-        "name" : "Vers de terre",
-        "symbol_items" : "?",
+    "w" : {
+        "name" : "worm",
+        "symbol_items" : "w",
         "number" : 20,
         "col_x" : [],
         "ln_y" : [],
         "value_hydration" : 2,
         "value_satiety" : 10
     },
-    "fresh_water" : {
-        "name" : "Eau douce ",
-        "symbol_items" : "?",
+    "f" : {
+        "name" : "fresh_water",
+        "symbol_items" : "f",
         "number" : 5,
         "col_x" : [],
         "ln_y" : [],
         "value_hydration" : 100,
         "value_satiety" : 2
     },
-    "sea_water" : {
-        "name" : "Eau de mer",
-        "symbol_items" : "?",
+    "a" : {
+        "name" : "sea_water",
+        "symbol_items" : "s",
         "number" : 3,
         "col_x" : [],
         "ln_y" : [],
         "value_hydration" : 20,
         "value_satiety" : 3
     },
-    "banana" : {
-        "name" : "banane",
-        "symbol_items" : "?",
+    "b" : {
+        "name" : "banana",
+        "symbol_items" : "b",
         "number" : 25,
         "col_x" : [],
         "ln_y" : [],
         "value_hydration" : 2,
         "value_satiety" : 50
     },
-    "red_berry" : {
-        "name" : "Baie rouge",
-        "symbol_items" : "?",
+    "r" : {
+        "name" : "red_berry",
+        "symbol_items" : "r",
         "number" : 3,
         "col_x" : [],
         "ln_y" : [],
@@ -181,9 +181,9 @@ items_available = {
         "value_satiety" : 0,
         "blind" : True
     },
-    "berry" : {
-        "name" : "Petits fruits",
-        "symbol_items" : "?",
+    "y" : {
+        "name" : "berry",
+        "symbol_items" : "y",
         "number" : 10,
         "col_x" : [],
         "ln_y" : [],
@@ -191,6 +191,11 @@ items_available = {
         "value_satiety" : 10
     }
 }
+
+symbol_items = "."
+
+current_item_found = ""
+possibles_item_symbol =  ", ".join(items_available.keys())
 
 
 # actions
@@ -461,8 +466,6 @@ players_fizzbuzz = {
 
 # map
 
-
-
 map1 = []
 
 map_elements = {
@@ -534,4 +537,7 @@ map_elements = {
 
 if __name__ == "__main__" :
     # get_list_place_symbol()
-    pass
+    # pass
+    print(symbol_items, end="")
+    print(symbol_items, end="")
+    print(symbol_items, end="")
