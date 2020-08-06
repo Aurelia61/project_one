@@ -25,8 +25,11 @@ def continue_or_exit(clear_console_ok = True):
         while chosen_action != "Q" and chosen_action != "C" and chosen_action != "":
             chosen_action = input(f'\nTu dois choisir entre les lettres suivantes : "C" ou "Q" : ').upper()
         if chosen_action == "Q":
+            if clear_console_ok :
+                clear_console()
             print(variables.actions["Q"]["message"])
             variables.game_in_progress = variables.actions["Q"]["game_in_progress"]
+            show_image("quitter")
             return
         elif chosen_action == "C":
             if clear_console_ok :
@@ -167,7 +170,50 @@ def get_text_place_symbol () :
     return
 
 
+def load_image_from_file(file_name):
+    """
+        Load a image from specified file name
+    """
 
+    # create a list in a dico
+    variables.drawn_image[file_name] = []
+
+    try:
+        with open(file_name, "r", encoding="utf-8") as my_file:
+            Y = 0
+            for line in my_file:
+                columns = []
+                X = 0
+                for image_symbol in line:
+                    # ignore line ends
+                    if image_symbol == "\n":
+                        continue
+                    # draw each symbol
+                    columns.append(image_symbol)
+                    X += 1
+                # add line to map
+                variables.drawn_image[file_name].append(columns)
+                Y += 1
+        return
+
+    except FileNotFoundError:
+        variables.game_in_progress = False     ######################### !!!!!!!!
+        print("\nCette image n'existe pas.\n")
+
+
+def show_image(image):
+    load_image_from_file(image)
+
+    for Y in range(len(variables.drawn_image[image])) :
+        for X in range(len(variables.drawn_image[image][Y])) :
+            if variables.drawn_image[image][Y][X] == " " :
+                print(" ", end="" )
+            elif variables.drawn_image[image][Y][X] == "i" :
+                print("▓", end="" )
+            elif variables.drawn_image[image][Y][X] == "y" :
+                print("•", end="" )
+
+        print()
 
 def try_again_or_not():
     pass
@@ -181,6 +227,7 @@ if __name__ == "__main__" :
     # show_instructions()
     # load_map_from_file("map1")
     # show_counter()
+    # show_image("eyes")
     pass
 
 # 

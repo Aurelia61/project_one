@@ -15,8 +15,11 @@ def mysterious_number_play (number_test_left = 20, round_left = 3, clear_console
     if clear_console:
         utilities.clear_console()
     
-    # number_test_left = 20
-    # round_left = 3
+    # the player can't play if he has already the bronze key
+    if "b" in variables.backpack.keys() :
+        print("Tu as déjà cette clé.")
+        time.sleep(variables.message_speed)
+        return
     
     print("       Défi 1 :")
     print(" Le nombre mystérieux")

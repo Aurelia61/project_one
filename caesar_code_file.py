@@ -23,6 +23,12 @@ def caesar_code_play (clear_console = True) :
     print(" - - - - - - - ")
     print()
 
+    # the player can't play if he has already the sliver key
+    if "s" in variables.backpack.keys() :
+        print("Tu as déjà cette clé.")
+        time.sleep(variables.message_speed)
+        return
+
     # codes the sentence 
     # and shows it
     print("Voici le message incompréhensible figurant sur l'arche : ")
@@ -102,7 +108,7 @@ def test_coded_name():
     coded_name_try = (input('--> Tape ton nom de joueur codé : ')).upper()
     decrypted_name = decrypt_texte(variables.letter_code_random, coded_name_try)
     variables.nb_round_caesar += 1
-    if decrypted_name != variables.player_name and variables.nb_round_caesar != 5  :
+    if decrypted_name != variables.player_name.upper() and variables.nb_round_caesar != 5  :
         while variables.nb_round_caesar < 5  :
             print(f'{decrypted_name}, est-ce ton prénom ?')
             print("Non... Ce n'est pas le bon cryptage...\n Essais à nouveau.\n")
@@ -114,7 +120,7 @@ def test_coded_name():
             print("Non... Ce n'est toujours pas le bon cryptage...\n")
             print("Tu as utilisé tes 5 essais.\nRetente ta chance plus tard.\n")
             return
-    elif decrypted_name == variables.player_name and variables.nb_round_caesar <= 5 :
+    elif decrypted_name == variables.player_name.upper() and variables.nb_round_caesar <= 5 :
         print(f'{decrypted_name}, est-ce ton prénom ?')
         print("Oui ! Bravo ! Tu as réussi à crypter ton nom !\n")
         print("\u001b[1mTu obtiens la clé d'argent !\u001b[0m\n")
@@ -122,12 +128,6 @@ def test_coded_name():
         variables.backpack["s"] = (variables.game_keys["s"])
         print()
     return
-
-
-
-# and variables.coded_player_name != variables.coded_name_try 
-
-# variables.coded_player_name = get_coded_texte(letter_code_player)
 
 
 def get_coded_texte(letter_code, texte): # texte = variables.original_message

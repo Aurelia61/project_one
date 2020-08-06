@@ -8,7 +8,7 @@ import string   # for choosing randomly a letter
 import utilities
 
 #PLAYER
-player_name = ""
+player_name = "Looser"
 
 
 # GAME
@@ -80,7 +80,7 @@ counters = {
         "value" : 100,
         "dormir" : 6,
         "movement" : -3,
-        "message_mort" : "Ton avatar est mort de fatigue"
+        "message_mort" : "Ton avatar est mort de fatigue..."
     },
     "hydration" : {
         "name" : "Points d'hydratation",
@@ -91,7 +91,7 @@ counters = {
         "value" : 100,
         "dormir" : -2,
         "movement" : -2,
-        "message_mort" : "Ton avatar est mort de soif"
+        "message_mort" : "Ton avatar est mort de soif..."
     },
     "satiety" : {
         "name" : "Points de satiété",
@@ -102,7 +102,7 @@ counters = {
         "value" : 100,
         "dormir" : -1,
         "movement" : -2,
-        "message_mort" : "Ton avatar est mort de faim"
+        "message_mort" : "Ton avatar est mort de faim..."
     }
 }
 
@@ -408,6 +408,14 @@ actions = {
         "game_in_progress" : True,
         "movement" : False,
         "impossible" : "\nImpossible."
+    },
+    "L" : {
+        "name" : "lady mode",
+        # "character" : "",
+        "message" : "\nWAW\n",
+        "game_in_progress" : True,
+        "movement" : False,
+        "impossible" : "\nImpossible."
     }
 }
 
@@ -472,7 +480,7 @@ game_keys = {
     "g" : {
         "name" : "gold key",
         "symbol_items" : "€",
-        "message" : "\nBravo !\n",
+        "message" : "\nLaisse-la dans le sac !\n",
         "number" : 1,
         "col_x" : [],
         "ln_y" : [],
@@ -486,7 +494,7 @@ game_keys = {
     "s" : {
         "name" : "silver key",
         "symbol_items" : "£",
-        "message" : "\nBravo !\n",
+        "message" : "\nLaisse-la dans le sac !\n",
         "number" : 1,
         "col_x" : [],
         "ln_y" : [],
@@ -500,7 +508,7 @@ game_keys = {
     "b" : {
         "name" : "bronze key",
         "symbol_items" : "$",
-        "message" : "\nBravo !\n",
+        "message" : "\nLaisse-la dans le sac !\n",
         "number" : 1,
         "col_x" : [],
         "ln_y" : [],
@@ -599,7 +607,7 @@ players_fizzbuzz = {
 # MAP
 
 map1 = []
-map_blind_print = []
+
 
 map_elements = {
     " " : {
@@ -667,6 +675,9 @@ map_elements = {
         "color_end" : "\u001b[0m"
     }
 }
+
+# drawn IMAGES
+drawn_image = {}
 
 
 if __name__ == "__main__" :

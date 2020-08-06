@@ -27,6 +27,26 @@ def show_dashboard(clear_console = True) :
         # shows the counters : eat, drink, live, items in the bag, ...
         utilities.show_counter()
 
+        # if one of the counter is 0, game is over
+        if variables.counters["life"]["value"] < variables.counters["life"]["value_min"]:
+            if clear_console:
+                utilities.clear_console()
+            print(variables.counters["life"]["message_mort"])
+            utilities.show_image("skull")
+            return
+        if variables.counters["hydration"]["value"] < variables.counters["hydration"]["value_min"] :
+            if clear_console:
+                utilities.clear_console()
+            print(variables.counters["hydration"]["message_mort"])
+            utilities.show_image("skull")
+            return
+        if variables.counters["satiety"]["value"] < variables.counters["satiety"]["value_min"] :
+            if clear_console:
+                utilities.clear_console()
+            print(variables.counters["hydration"]["message_mort"])
+            utilities.show_image("skull")
+            return
+
         # shows intructions of the avatar's action
         utilities.show_instructions()
 
@@ -49,9 +69,17 @@ def show_dashboard(clear_console = True) :
             multi_fizzbuzz_file.multi_fizzbuzz_play()
 
         # if avatar on the gate and if he has the 3 keys, the player win
-        if variables.avatar_position["y"] == variables.place["4"]["ln_y"] and variables.avatar_position["x"] == variables.place["4"]["col_x"] and "g" in variables.backpack.keys() and "s" in variables.backpack.keys() and "b" in variables.backpack.keys() :
-            print("Tu as gagné !")
-
+        if variables.avatar_position["y"] == variables.place["4"]["ln_y"] :
+            if variables.avatar_position["x"] == variables.place["4"]["col_x"] :
+                if "g" in variables.backpack.keys() and "s" in variables.backpack.keys() and "b" in variables.backpack.keys() :
+                    if clear_console:
+                        utilities.clear_console()
+                    print(f'{variables.player_name} a gagné !')
+                    utilities.show_image("fist")
+                    time.sleep(20)
+            else :
+                print("Tu as cru quoi ???")
+                time.sleep(20)
         
         # check if there is an item where the avatar is
         for keys in variables.items_available :
@@ -72,7 +100,7 @@ def get_avatar_action ():
     # until the action given by the player is not valid
     # still asks
     while actions_instruction == "" :
-        actions_instruction = input("\nQue dois faire ton avatar ? ").strip().upper()
+        actions_instruction = input("\nQue doit faire ton avatar ? ").strip().upper()
 
     # replaces the string given by the players in a list of actions (separated by space)
     actions_instruction_list = actions_instruction.split(" ")
@@ -241,13 +269,9 @@ def execute_avatar_action(current_action, action_occurences=1, clear_console = T
             variables.counters["life"]["value"] += nb_hour_sleep * variables.counters["life"]["dormir"]
             variables.counters["hydration"]["value"] += nb_hour_sleep * variables.counters["hydration"]["dormir"]
             variables.counters["satiety"]["value"] += nb_hour_sleep * variables.counters["satiety"]["dormir"]
-            # check to don't go over the max value or min value (=death)
+            # check if the life value doesn't go over the max value, if yes, keep the max value no more
             if variables.counters["life"]["value"] > variables.counters["life"]["value_max"]:
                 variables.counters["life"]["value"] = variables.counters["life"]["value_max"]
-            if variables.counters["hydration"]["value"] < variables.counters["hydration"]["value_min"] :
-                print(variables.counters["hydration"]["message_mort"])
-            if variables.counters["satiety"]["value"] < variables.counters["satiety"]["value_min"] :
-                print(variables.counters["hydration"]["message_mort"])
             # clear console
             if clear_console:
                 utilities.clear_console()
@@ -296,22 +320,35 @@ def execute_avatar_action(current_action, action_occurences=1, clear_console = T
             variables.game_in_progress = variables.actions["P"]["game_in_progress"]
             # update counters
             variables.counters["number_actions"]["value"] += 1
-
             return
+
         elif current_action == "U":
             print(variables.actions["U"]["message"])
             variables.game_in_progress = variables.actions["U"]["game_in_progress"]
             # update counters
             variables.counters["number_actions"]["value"] += 1
+            return    
 
-            return      
         elif current_action == "A":
             print(variables.actions["A"]["message"])
             variables.game_in_progress = variables.actions["A"]["game_in_progress"]
-            # update counters
-            # variables.counters["number_actions"]["value"] += 1
-
             return
+
+        elif current_action == "L" :
+            if clear_console:
+                utilities.clear_console()
+            print ("*** Ladies Mode ***")
+            print("Les 3 clés apparaissent dans ton sac.")
+            print("Te voilà téléportée au pied de la mystérieuse porte...")
+            variables.backpack["s"] = (variables.game_keys["s"])
+            variables.backpack["g"] = (variables.game_keys["g"])
+            variables.backpack["b"] = (variables.game_keys["b"])
+            variables.avatar_position["x"] = 32
+            variables.avatar_position["y"] = 6
+            utilities.continue_or_exit()
+            return
+
+
         elif current_action == "Y":
             print(variables.actions["Y"]["message"])
             variables.game_in_progress = variables.actions["Y"]["game_in_progress"]
@@ -451,7 +488,7 @@ def play_item(item, clear_console = True) :
 def open_backpack(clear_console = True) :
     print("Voici ce que tu as dans ton sac à dos :")
     for item in variables.backpack.keys() :
-        print(f'- {variables.backpack[item]["name"]} qui te redonne {variables.backpack[item]["value_hydration"]} point(s) d hydratation et {variables.backpack[item]["value_satiety"]} point(s)de satiété.Tape \u001b[1m({variables.backpack[item]["symbol_items"]})\u001b[0m pour le sélectionner.')
+        print(f'- \u001b[4m{variables.backpack[item]["name"]}\u001b[0m qui te redonne \u001b[4m{variables.backpack[item]["value_hydration"]}\u001b[0m point(s) d hydratation et \u001b[4m{variables.backpack[item]["value_satiety"]}\u001b[0m point(s)de satiété.Tape \u001b[1m({variables.backpack[item]["symbol_items"]})\u001b[0m pour le sélectionner.')
     item_backpack_chosen = input(f"Quel objet veux-tu prendre ? ").lower()
     use_item (item_backpack_chosen)
     return 
@@ -481,7 +518,7 @@ def use_item (item, clear_console = True):
         if clear_console :
             utilities.clear_console()
             print("\nQue se passe-t-il ????\n Tout s'assombrit... \nOMG ! Tu deviens aveugle...")
-            # show_map_blind("eyes")
+            utilities.show_image("eyes")
             time.sleep(10)
     # update counters, but not over the max value
     variables.counters["hydration"]["value"] += variables.backpack[item]["value_hydration"]
@@ -493,17 +530,6 @@ def use_item (item, clear_console = True):
     if variables.backpack[item]["drop_on_floor"]:
         # update backpack
         del variables.backpack[item]
-
-
-# def show_map_blind(blind_map):
-#     utilities.load_map_from_file(blind_map, map_blind_print)
-
-#     for Y in range(len(variables.map_blind_print)) :
-#         for X in range(len(variables.map_blind_print[Y])) :
-#             print("▓", end="" )
-#         print()
-
-
 
 
 # def place_avatar_on_map() :

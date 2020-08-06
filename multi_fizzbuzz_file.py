@@ -38,6 +38,12 @@ def multi_fizzbuzz_play (clear_console = True) :
     if clear_console:
         utilities.clear_console()
         
+    # the player can't play if he has already the gold key
+    if "g" in variables.backpack.keys() :
+        print("Tu as déjà cette clé.")
+        time.sleep(variables.message_speed)
+        return
+    
     print("      Défi 3 :")
     print(" Le multi FizzBuzz")
     print(" - - - - - - - - - ")
