@@ -232,12 +232,14 @@ def execute_avatar_action(current_action, action_occurences=1, clear_console = T
             return
             
         elif current_action == "R":
+            if clear_console:
+                utilities.clear_console()
             # get the number of hour the avatar havs to sleep
             print()
             print("Tu as décidé de dormir.")
             print(f'Ton avatar gagne {variables.counters["life"]["dormir"]} point de vie par heure dormie.')
-            nb_hour_sleep = int(input("Combien d'heure(s) veux-tu que ton avatar dorme ? "))
-            # modify the counter of "lif", "hydratation" and "satiety"
+            nb_hour_sleep = int(input("Combien d'heure(s) ? "))
+            # modify the counter of "life", "hydratation" and "satiety"
             variables.counters["life"]["value"] += nb_hour_sleep * variables.counters["life"]["dormir"]
             variables.counters["hydration"]["value"] += nb_hour_sleep * variables.counters["hydration"]["dormir"]
             variables.counters["satiety"]["value"] += nb_hour_sleep * variables.counters["satiety"]["dormir"]
@@ -248,23 +250,27 @@ def execute_avatar_action(current_action, action_occurences=1, clear_console = T
                 print(variables.counters["hydration"]["message_mort"])
             if variables.counters["satiety"]["value"] < variables.counters["satiety"]["value_min"] :
                 print(variables.counters["hydration"]["message_mort"])
-                # clear console
+            # clear console
             if clear_console:
                 utilities.clear_console()
             # print a little message
             print(variables.actions["R"]["message"])
-            for hour in range(nb_hour_sleep+1) :
-                nb_hour_sleep_left = nb_hour_sleep - hour
-                if hour == 0 :
-                    continue
-                elif hour == 1 :
-                    print(f"Ton avatar dort depuis {hour} heure.\nEncore {nb_hour_sleep_left}...")
-                    time.sleep(variables.message_speed)
-                elif hour == nb_hour_sleep+1:
-                    print(f"Ton avatar a dormi {hour} heure(s).\nIl est temps de se réveiller !!")
-                else:
-                    print(f"Ton avatar dort depuis {hour} heures.\nEncore {nb_hour_sleep_left}...")
-                    time.sleep(variables.message_speed)            
+            # for hour in range(nb_hour_sleep+1) :
+            #     nb_hour_sleep_left = nb_hour_sleep - hour
+            #     if hour == 0 :
+            #         continue
+            #     elif nb_hour_sleep == 1 and hour >= 1 :
+            #         print(f"Ton avatar a dormi 1 heure.\nIl est temps de se réveiller !!")
+            #         time.sleep(variables.message_speed)
+            #     elif nb_hour_sleep_left == 1 and hour >= 1  :
+            #         print(f"Ton avatar dort depuis {hour} heure.\nIl est temps de se réveiller !!")
+            #         time.sleep(variables.message_speed)
+            #     elif hour == nb_hour_sleep+1:
+            #         print(f"Ton avatar a dormi {hour} heure(s).\nEncore {nb_hour_sleep_left}...")
+            #     else:
+            #         print(f"Ton avatar dort depuis {hour} heures.\nEncore {nb_hour_sleep_left}...")
+            #         time.sleep(variables.message_speed)  
+            time.sleep(variables.message_speed * nb_hour_sleep)  
             # game still in progress
             variables.game_in_progress = variables.actions["R"]["game_in_progress"]
             # update counters
@@ -275,15 +281,16 @@ def execute_avatar_action(current_action, action_occurences=1, clear_console = T
             # clear console
             if clear_console:
                 utilities.clear_console()
+            # print a little message
             print(variables.actions["O"]["message"])
             time.sleep(variables.message_speed)
+            # open the backpack
             open_backpack()
+            # game still in progress
             variables.game_in_progress = variables.actions["O"]["game_in_progress"]
-
-
-
             # update counters
             variables.counters["number_actions"]["value"] += 1
+            return
 
 
         elif current_action == "P":
@@ -413,16 +420,26 @@ def play_item(item, clear_console = True) :
     action_item = input("\nQue veux-tu faire ? ").upper()
 
     if action_item == "P" :
-        # mettre l'objet dans le sac à dos
+        # put the item in the backpack
         variables.backpack[item] = (variables.items_available[item])
         # modify counter
         variables.counters["number_actions"]["value"] += 1
-        print(f'Voilà {variables.items_available[item]["name"]} dans ton sac à dos !\n{variables.items_available[item]["message"]}\nRetour à la carte...')
+        # clear console
+        if clear_console :
+            utilities.clear_console()
+        # print a little message
+        print(f'\nVoilà {variables.items_available[item]["name"]} dans ton sac à dos !\n{variables.items_available[item]["message"]}\nRetour à la carte...')
         time.sleep(variables.message_speed)
 
     elif action_item == "U" :
-        # lancer la fonction pour utiliser l'objet
-
+        if clear_console :
+            utilities.clear_console()
+        # print a little message
+        print("\nBonne idée !\n")
+        # put item in the back pack to use it (not good, has to be modified)
+        variables.backpack[item] = (variables.items_available[item])
+        # use item
+        use_item (item)
         # modify counter
         variables.counters["number_actions"]["value"] += 1
         pass
@@ -436,38 +453,57 @@ def play_item(item, clear_console = True) :
 def open_backpack(clear_console = True) :
     print("Voici ce que tu as dans ton sac à dos :")
     for item in variables.backpack.keys() :
-        print(f'- {variables.backpack[item]["name"]} qui te redonne {variables.backpack[item]["value_hydration"]} point(s) d hydratation et {variables.backpack[item]["value_satiety"]} point(s)de satiété.Tape {variables.backpack[item]["symbol_items"]} pour le sélectionner.')
+        print(f'- {variables.backpack[item]["name"]} qui te redonne {variables.backpack[item]["value_hydration"]} point(s) d hydratation et {variables.backpack[item]["value_satiety"]} point(s)de satiété.Tape \u001b[1m({variables.backpack[item]["symbol_items"]})\u001b[0m pour le sélectionner.')
     item_backpack_chosen = input(f"Quel objet veux-tu prendre ? ").lower()
-    if variables.backpack[item_backpack_chosen]["drink"] and not variables.backpack[item_backpack_chosen]["eat"] and not variables.backpack[item_backpack_chosen]["blind"] :
-        print(f'Ton avatar gagne {variables.backpack[item]["value_hydration"]} point(s) d hydratation.')
+    use_item (item_backpack_chosen)
+    return 
+
+
+def use_item (item, clear_console = True):
+    if not variables.backpack[item]["drink"] and not variables.backpack[item]["eat"] and not variables.backpack[item]["blind"]:
+        print(f'\n{variables.backpack[item]["message"]}')
+        utilities.continue_or_exit()
+    elif variables.backpack[item]["drink"] and not variables.backpack[item]["eat"] and not variables.backpack[item]["blind"] :
+        print(f'\nTon avatar gagne {variables.backpack[item]["value_hydration"]} point(s) d hydratation.')
         if variables.backpack[item]["value_hydration"] != 0 :
-            print("La chance ! ")
-            print(f'Avec {variables.backpack[item_backpack_chosen]["name"]}, tu gagnes aussi {variables.backpack[item]["value_satiety"]} point(s) de satiété.')
+            print("\nLa chance ! ")
+            print(f'Avec {variables.backpack[item]["name"]}, tu gagnes aussi {variables.backpack[item]["value_satiety"]} point(s) de satiété.')
         utilities.continue_or_exit()
-    elif not variables.backpack[item_backpack_chosen]["drink"] and variables.backpack[item_backpack_chosen]["eat"] and not variables.backpack[item_backpack_chosen]["blind"] :
-        print(f'Ton avatar gagne {variables.backpack[item]["value_satiety"]} point(s) de satiété.')
+    elif not variables.backpack[item]["drink"] and variables.backpack[item]["eat"] and not variables.backpack[item]["blind"] :
+        print(f'\nTon avatar gagne {variables.backpack[item]["value_satiety"]} point(s) de satiété.')
         if variables.backpack[item]["value_satiety"] != 0 :
-            print("La chance ! ")
-            print(f'Avec {variables.backpack[item_backpack_chosen]["name"]}, tu gagnes aussi {variables.backpack[item]["value_hydration"]} point(s) d hydratation.')
+            print("\nLa chance ! ")
+            print(f'Avec {variables.backpack[item]["name"]}, tu gagnes aussi {variables.backpack[item]["value_hydration"]} point(s) d hydratation.')
         utilities.continue_or_exit()
-    elif variables.backpack[item_backpack_chosen]["drink"] and variables.backpack[item_backpack_chosen]["eat"] and not variables.backpack[item_backpack_chosen]["blind"] :
-        print("Quelle bonne idée !")
-        print(f'Ton avatar gagne {variables.backpack[item]["value_hydration"]} point(s) d hydratation et {variables.backpack[item]["value_satiety"]} point(s) de satiété.')
+    elif variables.backpack[item]["drink"] and variables.backpack[item]["eat"] and not variables.backpack[item]["blind"] :
+        print("Il y a à boire et à manger avec ça !")
+        print(f'\nTon avatar gagne {variables.backpack[item]["value_hydration"]} point(s) d hydratation et {variables.backpack[item]["value_satiety"]} point(s) de satiété.')
         utilities.continue_or_exit()
-    elif variables.backpack[item_backpack_chosen]["blind"] :
+    elif variables.backpack[item]["blind"] :
         if clear_console :
             utilities.clear_console()
-            print("Que se passe-t-il ????\n Tout s'assombrit... \nOMG ! Tu deviens aveugle...")
-            show_map_blind("eyes")
-            time.sleep(20)
+            print("\nQue se passe-t-il ????\n Tout s'assombrit... \nOMG ! Tu deviens aveugle...")
+            # show_map_blind("eyes")
+            time.sleep(10)
+    # update counters, but not over the max value
+    variables.counters["hydration"]["value"] += variables.backpack[item]["value_hydration"]
+    if variables.counters["hydration"]["value"] > variables.counters["hydration"]["value_max"] :
+        variables.counters["hydration"]["value"] = variables.counters["hydration"]["value_max"]
+    variables.counters["satiety"]["value"] += variables.backpack[item]["value_satiety"]
+    if variables.counters["satiety"]["value"] > variables.counters["satiety"]["value_max"]:
+        variables.counters["satiety"]["value"] = variables.counters["satiety"]["value_max"]
+    if variables.backpack[item]["drop_on_floor"]:
+        # update backpack
+        del variables.backpack[item]
 
-def show_map_blind(blind_map):
-    utilities.load_map_from_file(blind_map, map_blind_print)
 
-    for Y in range(len(variables.map_blind_print)) :
-        for X in range(len(variables.map_blind_print[Y])) :
-            print("▓", end="" )
-        print()
+# def show_map_blind(blind_map):
+#     utilities.load_map_from_file(blind_map, map_blind_print)
+
+#     for Y in range(len(variables.map_blind_print)) :
+#         for X in range(len(variables.map_blind_print[Y])) :
+#             print("▓", end="" )
+#         print()
 
 
 

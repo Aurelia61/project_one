@@ -7,15 +7,15 @@ import string   # for choosing randomly a letter
 # additional modules
 import utilities
 
-#player
+#PLAYER
 player_name = ""
 
 
-# game
+# GAME
 game_in_progress = True
-message_speed = 2
+message_speed = 4
 
-# avatar
+# AVATAR
 avatar_position = { "x" : 57, "y" : 20}      # X , Y  à mettre aléatoirement !!!!
 
 letter_avatar_symbol = ""
@@ -53,7 +53,7 @@ symbol_under_avatar = ""
 
 avatar_speed = 0.3
 
-# all the counters are here
+# all the COUNTERS are here
 
 counters = {
     "number_movements" : {
@@ -107,44 +107,50 @@ counters = {
 }
 
 
-# items
+# ITEMS
     ## what is in the backpack
 backpack = {
-    "knife" : {
-        "name" : "Couteau",
+    "f" : {
+        "name" : "knife",
         "symbol_items" : "f",
-        "message" : "Attention à ne pas te couper !",
+        "message" : "\nTu vas te couper ! Remets ça dans ton sac.\n",
         "number" : 1,
         "col_x" : [],
         "ln_y" : [],
         "value_hydration" : 0,
         "value_satiety" : 0,
+        "blind" : False,
         "drink" : False,
-        "eat" : False
+        "eat" : False,
+        "drop_on_floor" : False
     },
-    "bottle" : {
-        "name" : "Bouteille d'eau",
+    "o" : {
+        "name" : "Bottle of water",
         "symbol_items" : "o",
-        "message" : "Reste-t-il encore de l'au dedans...",
+        "message" : "\nElle est vide... Remets ça dans ton sac.\n",
         "number" : 1,
         "col_x" : [],
         "ln_y" : [],
         "value_hydration" : 0,
         "value_satiety" : 0,
+        "blind" : False,
         "drink" : False,
-        "eat" : False
+        "eat" : False,
+        "drop_on_floor" : False
     },
-    "computer" : {
-        "name" : "Ordinateur portable",
-        "symbol_items" : "p",
-        "message" : "Ce n'est pas le moment de jouer !",
+    "l" : {
+        "name" : "laptop",
+        "symbol_items" : "l",
+        "message" : "\nCe n'est pas le moment de jouer ! Remets ça dans ton sac.\n",
         "number" : 1,
         "col_x" : [],
         "ln_y" : [],
         "value_hydration" : 0,
         "value_satiety" : 0,
+        "blind" : False,
         "drink" : False,
-        "eat" : False
+        "eat" : False,
+        "drop_on_floor" : False
     },
 }
 
@@ -153,7 +159,7 @@ items_available = {
     "c" : {
         "name" : "a coconut",
         "symbol_items" : "c",
-        "message" : "Mmmm, ça va être bon ...",
+        "message" : "\nMmmm, ça va être bon ...\n",
         "number" : 10,
         "col_x" : [],
         "ln_y" : [],
@@ -161,12 +167,13 @@ items_available = {
         "value_satiety" : 25,
         "blind" : False,
         "drink" : True,
-        "eat" : True
+        "eat" : True,
+        "drop_on_floor" : True
     },
     "g" : {
         "name" : "spring_water",
         "symbol_items" : "g",
-        "message" : "Mmmm, ça va être rafraichissant ...",
+        "message" : "\nMmmm, ça va être rafraichissant ...\n",
         "number" : 3,
         "col_x" : [],
         "ln_y" : [],
@@ -174,12 +181,13 @@ items_available = {
         "value_satiety" : 5,
         "blind" : False,
         "drink" : True,
-        "eat" : False
+        "eat" : False,
+        "drop_on_floor" : True
     },
     "w" : {
         "name" : "some worms",
         "symbol_items" : "w",
-        "message" : "Des vers dans un sac à dos ?!?! A tes risques et périls ...",
+        "message" : "\nDes vers dans un sac à dos ?!?! A tes risques et périls ...\n",
         "number" : 20,
         "col_x" : [],
         "ln_y" : [],
@@ -187,12 +195,13 @@ items_available = {
         "value_satiety" : 10,
         "blind" : False,
         "drink" : False,
-        "eat" : True
+        "eat" : True,
+        "drop_on_floor" : True
     },
     "f" : {
         "name" : "fresh_water",
         "symbol_items" : "f",
-        "message" : "Mmmm, ça va être rafraichissant ...",
+        "message" : "\nMmmm, ça va être rafraichissant ...\n",
         "number" : 5,
         "col_x" : [],
         "ln_y" : [],
@@ -200,12 +209,13 @@ items_available = {
         "value_satiety" : 0,
         "blind" : False,
         "drink" : True,
-        "eat" : False
+        "eat" : False,
+        "drop_on_floor" : True
     },
     "a" : {
         "name" : "sea_water",
         "symbol_items" : "s",
-        "message" : "Beurk ! C'est beaucoup trop salé ...",
+        "message" : "\nBeurk ! C'est beaucoup trop salé ...\n",
         "number" : 3,
         "col_x" : [],
         "ln_y" : [],
@@ -213,12 +223,13 @@ items_available = {
         "value_satiety" : 0,
         "blind" : False,
         "drink" : True,
-        "eat" : False
+        "eat" : False,
+        "drop_on_floor" : True
     },
     "b" : {
         "name" : "a banana",
         "symbol_items" : "b",
-        "message" : "Mmmm, ça va être bon ...",
+        "message" : "\nMmmm, ça va être bon ...\n",
         "number" : 25,
         "col_x" : [],
         "ln_y" : [],
@@ -226,25 +237,27 @@ items_available = {
         "value_satiety" : 50,
         "blind" : False,
         "drink" : False,
-        "eat" : True
+        "eat" : True,
+        "drop_on_floor" : True
     },
     "r" : {
         "name" : "a red berry",
         "symbol_items" : "r",
-        "message" : "Mmmm, ça va être bon ...",
+        "message" : "\nMmmm, ça va être bon ...\n Quoique... Rouge égale danger, non ?\n",
         "number" : 3,
         "col_x" : [57],
         "ln_y" : [17],
-        "value_hydration" : 0,
-        "value_satiety" : 0,
+        "value_hydration" : 100,
+        "value_satiety" : 100,
         "blind" : True,
         "drink" : False,
-        "eat" : True
+        "eat" : True,
+        "drop_on_floor" : True
     },
     "y" : {
         "name" : "some berries",
         "symbol_items" : "y",
-        "message" : "Mmmm, ça va être bon ...",
+        "message" : "\nMmmm, ça va être bon ...\n",
         "number" : 10,
         "col_x" : [],
         "ln_y" : [],
@@ -252,7 +265,8 @@ items_available = {
         "value_satiety" : 10,
         "blind" : False,
         "drink" : False,
-        "eat" : True
+        "eat" : True,
+        "drop_on_floor" : True
     }
 }
 
@@ -262,7 +276,7 @@ current_item_found = ""
 possibles_item_symbol =  ", ".join(items_available.keys())
 
 
-# actions
+# ACTIONS
 
 chosen_action = ""
 
@@ -400,13 +414,13 @@ actions = {
 possibles_actions =  ", ".join(actions.keys())
 
 
-# places of challenges
+# PLACES of challenges
     ## 4 places : 3 challenges and 1 gate
 
 place = {
     "1" : {
         "name" : "Mysterious number",
-        "col_x" : 57,
+        "col_x" : 53,
         "ln_y" : 18,
         "print" : "1",
         "image" : "1",
@@ -416,8 +430,8 @@ place = {
         },
     "2" : {
         "name" : "Caesar Code",
-        "col_x" : 45,
-        "ln_y" : 23,
+        "col_x" : 48,
+        "ln_y" : 20,
         "print" : "2",
         "image" : "2",
         "can_walk" : True,
@@ -426,8 +440,8 @@ place = {
             },
     "3" : {
         "name" : "Multi FizzBuzz",
-        "col_x" : 21,
-        "ln_y" : 21,
+        "col_x" : 37,
+        "ln_y" : 15,
         "print" : "3",
         "image" : "3",
         "can_walk" : True,
@@ -454,6 +468,50 @@ key_gate = ""
 list_place_symbol = []
 text_place_symbol = ""
 
+game_keys = {
+    "g" : {
+        "name" : "gold key",
+        "symbol_items" : "€",
+        "message" : "\nBravo !\n",
+        "number" : 1,
+        "col_x" : [],
+        "ln_y" : [],
+        "value_hydration" : 0,
+        "value_satiety" : 0,
+        "blind" : False,
+        "drink" : False,
+        "eat" : False,
+        "drop_on_floor" : False
+    },
+    "s" : {
+        "name" : "silver key",
+        "symbol_items" : "£",
+        "message" : "\nBravo !\n",
+        "number" : 1,
+        "col_x" : [],
+        "ln_y" : [],
+        "value_hydration" : 0,
+        "value_satiety" : 0,
+        "blind" : False,
+        "drink" : False,
+        "eat" : False,
+        "drop_on_floor" : False
+    },
+    "b" : {
+        "name" : "bronze key",
+        "symbol_items" : "$",
+        "message" : "\nBravo !\n",
+        "number" : 1,
+        "col_x" : [],
+        "ln_y" : [],
+        "value_hydration" : 0,
+        "value_satiety" : 0,
+        "blind" : False,
+        "drink" : False,
+        "eat" : False,
+        "drop_on_floor" : False
+    }
+}
 
     ## challenge 1 :: mysterious number
 
@@ -475,6 +533,8 @@ letter_code_random = (random.choice(string.ascii_uppercase))
 number_code = 0
 
     ## challenge 3 :: multi FizzBuzz
+
+fizz_speed = 3
 
 players_fizzbuzz = {
     "monkey_1" : {
@@ -536,7 +596,7 @@ players_fizzbuzz = {
 
 
 
-# map
+# MAP
 
 map1 = []
 map_blind_print = []
@@ -607,6 +667,7 @@ map_elements = {
         "color_end" : "\u001b[0m"
     }
 }
+
 
 if __name__ == "__main__" :
     # get_list_place_symbol()

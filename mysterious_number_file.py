@@ -60,7 +60,11 @@ def mysterious_number_play (number_test_left = 20, round_left = 3, clear_console
                 elif round_left == 0 :
                     print(f'!! Bravo !! \nTu as trouvé les 3 nombres mystérieux en {20-number_test_left} essais !\n')
                     print("\u001b[1mTu peux prendre la clé de bronze !\u001b[0m\n")
+                    # put the key in the backpack
+                    variables.backpack["b"] = (variables.game_keys["b"])
+                    # finish the game
                     number_test_left = 0
+
     utilities.continue_or_exit()
     game.show_dashboard()
     print()
@@ -74,3 +78,4 @@ def mysterious_number_play (number_test_left = 20, round_left = 3, clear_console
 
 if __name__ == "__main__" :
     mysterious_number_play () 
+    print(variables.backpack)
