@@ -76,27 +76,33 @@ counters = {
         "color_start_ok" : "\u001b[38;5;196m",
         "color_end" : "\u001b[0m",
         "value_max" : 100,
+        "value_min" : 0,
         "value" : 100,
         "dormir" : 6,
-        "movement" : 3
+        "movement" : -3,
+        "message_mort" : "Ton avatar est mort de fatigue"
     },
     "hydration" : {
         "name" : "Points d'hydratation",
         "symbol_full" : "☼",
         "symbol_empty" : ".",
         "value_max" : 100,
+        "value_min" : 0,
         "value" : 100,
-        "dormir" : 2,
-        "movement" : 2
+        "dormir" : -2,
+        "movement" : -2,
+        "message_mort" : "Ton avatar est mort de soif"
     },
     "satiety" : {
         "name" : "Points de satiété",
         "symbol_full" : "♦",
         "symbol_empty" : ".",
         "value_max" : 100,
+        "value_min" : 0,
         "value" : 100,
-        "dormir" : 1,
-        "movement" : 2
+        "dormir" : -1,
+        "movement" : -2,
+        "message_mort" : "Ton avatar est mort de faim"
     }
 }
 
@@ -118,8 +124,9 @@ backpack = {
     ## items that the player could find
 items_available = {
     "c" : {
-        "name" : "coconut",
+        "name" : "a coconut",
         "symbol_items" : "c",
+        "message" : "Mmmm, ça va être bon ...",
         "number" : 10,
         "col_x" : [],
         "ln_y" : [],
@@ -136,8 +143,9 @@ items_available = {
         "value_satiety" : 5
     },
     "w" : {
-        "name" : "worm",
+        "name" : "some worms",
         "symbol_items" : "w",
+        "message" : "Des vers dans un sac à dos ?!?! A tes risques et périls ...",
         "number" : 20,
         "col_x" : [],
         "ln_y" : [],
@@ -163,8 +171,9 @@ items_available = {
         "value_satiety" : 3
     },
     "b" : {
-        "name" : "banana",
+        "name" : "a banana",
         "symbol_items" : "b",
+        "message" : "Mmmm, ça va être bon ...",
         "number" : 25,
         "col_x" : [],
         "ln_y" : [],
@@ -172,8 +181,9 @@ items_available = {
         "value_satiety" : 50
     },
     "r" : {
-        "name" : "red_berry",
+        "name" : "a red_berry",
         "symbol_items" : "r",
+        "message" : "Mmmm, ça va être bon ...",
         "number" : 3,
         "col_x" : [],
         "ln_y" : [],
@@ -182,8 +192,9 @@ items_available = {
         "blind" : True
     },
     "y" : {
-        "name" : "berry",
+        "name" : "some berries",
         "symbol_items" : "y",
+        "message" : "Mmmm, ça va être bon ...",
         "number" : 10,
         "col_x" : [],
         "ln_y" : [],
@@ -238,7 +249,7 @@ actions = {
     "H" : {
         "name" : "Haut",
         # "character" : "H",
-        "message" : "\nL'avatar s'est déplacé vers le haut.",
+        "message" : "\nL'avatar se déplace vers le haut.",
         "game_in_progress" : True,
         "movement" : True,
         "impossible" : "\nImpossible d'aller plus haut."
@@ -246,7 +257,7 @@ actions = {
     "B" : {
         "name" : "Bas",
         # "character" : "S",
-        "message" : "\nL'avatar s'est déplacé vers le bas.\n",
+        "message" : "\nL'avatar se déplace vers le bas.\n",
         "game_in_progress" : True,
         "movement" : True,
         "impossible" : "\nImpossible d'aller plus bas."
@@ -254,7 +265,7 @@ actions = {
     "D" : {
         "name" : "Droite",
         # "character" : "D",
-        "message" : "\nL'avatar s'est déplacé vers la droite.\n",
+        "message" : "\nL'avatar se déplace vers la droite.\n",
         "game_in_progress" : True,
         "movement" : True,
         "impossible" : "\nImpossible d'aller plus à droite."
@@ -262,7 +273,7 @@ actions = {
     "G" : {
         "name" : "Gauche",
         # "character" : "G",
-        "message" : "\nL'avatar s'est déplacé vers la gauche.\n",
+        "message" : "\nL'avatar se déplace vers la gauche.\n",
         "game_in_progress" : True,
         "movement" : True,
         "impossible" : "\nImpossible d'aller plus à gauche."
@@ -310,7 +321,7 @@ actions = {
     "R" : {
         "name" : "se Reposer",
         # "character" : "R",
-        "message" : "\nL'avatar s'est reposé.\n",
+        "message" : "\nL'avatar se repose.\n",
         "game_in_progress" : True,
         "movement" : False,
         "impossible" : "\nImpossible de se reposer."
@@ -323,6 +334,14 @@ actions = {
         "movement" : False,
         "impossible" : "\nImpossible."
     },
+    "O" : {
+        "name" : "ouvrir",
+        # "character" : "",
+        "message" : "\nLe sac à dos a été ouvert.\n",
+        "game_in_progress" : True,
+        "movement" : False,
+        "impossible" : "\nImpossible."
+    }
 }
 
 possibles_actions =  ", ".join(actions.keys())

@@ -36,17 +36,26 @@ def show_dashboard(clear_console = True) :
         # if valid action, execute action
         execute_avatar_action(letter_action, number_action)
 
-        # if avatar on the game "1"
+        # if avatar on the game "1", play the game 1
         if variables.avatar_position["y"] == variables.place["1"]["ln_y"] and variables.avatar_position["x"] == variables.place["1"]["col_x"] :
             mysterious_number_file.mysterious_number_play()
 
-        # if avatar on the game "2"
+        # if avatar on the game "2", play the game 2
         if variables.avatar_position["y"] == variables.place["2"]["ln_y"] and variables.avatar_position["x"] == variables.place["2"]["col_x"] :
             caesar_code_file.caesar_code_play()
 
-            # if avatar on the game "3"
+        # if avatar on the game "3", play the game 3
         if variables.avatar_position["y"] == variables.place["3"]["ln_y"] and variables.avatar_position["x"] == variables.place["3"]["col_x"] :
             multi_fizzbuzz_file.multi_fizzbuzz_play()
+        
+        # check if there is an item where the avatar is
+        for keys in variables.items_available :
+            for number in range(variables.items_available[keys]["number"]) :
+                if (variables.avatar_position["y"] == variables.items_available[keys]["ln_y"][number]
+                    and variables.avatar_position["x"] == variables.items_available[keys]["col_x"][number]) :
+                    # if above is true, there is an item here, ask to the player what to do
+                    play_item(keys)
+                    
 
 
 def get_avatar_action ():
@@ -74,18 +83,18 @@ def get_avatar_action ():
             if letter_action == action_todo:
                 # action exists in variables.actions
                 action_is_valid = True
-                if variables.actions[letter_action]["movement"] == True :
-                    # check if there is a number for the action
-                    if len(action) > 1 :
-                        # if there is one, extrat it
-                        number_action = int(action[1:])
-                        # if valid action, return values
-                        return letter_action, number_action
-                        # if not, keeps 1 by default
-                    else :
-                        number_action = 1
-                        # if valid action, return values
-                        return letter_action, number_action
+                # if variables.actions[letter_action]["movement"] == True :                     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                # check if there is a number for the action
+                if len(action) > 1 :
+                    # if there is one, extrat it
+                    number_action = int(action[1:])
+                    # if valid action, return values
+                    return letter_action, number_action
+                    # if not, keeps 1 by default
+                else :
+                    number_action = 1
+                    # if valid action, return values
+                    return letter_action, number_action
                 # stop browsing actions
                 break
 
@@ -114,9 +123,9 @@ def execute_avatar_action(current_action, action_occurences=1) :
                     new_avatar_y -= 1
                     # update counters
                     variables.counters["number_movements"]["value"] += 1
-                    variables.counters["life"]["value"] -= variables.counters["life"]["movement"]
-                    variables.counters["hydration"]["value"] -= variables.counters["hydration"]["movement"]
-                    variables.counters["satiety"]["value"] -= variables.counters["satiety"]["movement"]
+                    variables.counters["life"]["value"] += variables.counters["life"]["movement"]
+                    variables.counters["hydration"]["value"] += variables.counters["hydration"]["movement"]
+                    variables.counters["satiety"]["value"] += variables.counters["satiety"]["movement"]
 
                     # game continues
                     variables.game_in_progress = variables.actions["H"]["game_in_progress"]
@@ -141,9 +150,9 @@ def execute_avatar_action(current_action, action_occurences=1) :
                     new_avatar_y += 1
                     # update counters
                     variables.counters["number_movements"]["value"] += 1
-                    variables.counters["life"]["value"] -= variables.counters["life"]["movement"]
-                    variables.counters["hydration"]["value"] -= variables.counters["hydration"]["movement"]
-                    variables.counters["satiety"]["value"] -= variables.counters["satiety"]["movement"]
+                    variables.counters["life"]["value"] += variables.counters["life"]["movement"]
+                    variables.counters["hydration"]["value"] += variables.counters["hydration"]["movement"]
+                    variables.counters["satiety"]["value"] += variables.counters["satiety"]["movement"]
 
                     # game continues
                     variables.game_in_progress = variables.actions["B"]["game_in_progress"]                   
@@ -169,9 +178,9 @@ def execute_avatar_action(current_action, action_occurences=1) :
                     new_avatar_x -= 1
                     # update counters
                     variables.counters["number_movements"]["value"] += 1
-                    variables.counters["life"]["value"] -= variables.counters["life"]["movement"]
-                    variables.counters["hydration"]["value"] -= variables.counters["hydration"]["movement"]
-                    variables.counters["satiety"]["value"] -= variables.counters["satiety"]["movement"]
+                    variables.counters["life"]["value"] += variables.counters["life"]["movement"]
+                    variables.counters["hydration"]["value"] += variables.counters["hydration"]["movement"]
+                    variables.counters["satiety"]["value"] += variables.counters["satiety"]["movement"]
 
                     # game continues
                     variables.game_in_progress = variables.actions["G"]["game_in_progress"]
@@ -196,9 +205,9 @@ def execute_avatar_action(current_action, action_occurences=1) :
                     new_avatar_x += 1
                     # update counters
                     variables.counters["number_movements"]["value"] += 1
-                    variables.counters["life"]["value"] -= variables.counters["life"]["movement"]
-                    variables.counters["hydration"]["value"] -= variables.counters["hydration"]["movement"]
-                    variables.counters["satiety"]["value"] -= variables.counters["satiety"]["movement"]
+                    variables.counters["life"]["value"] += variables.counters["life"]["movement"]
+                    variables.counters["hydration"]["value"] += variables.counters["hydration"]["movement"]
+                    variables.counters["satiety"]["value"] += variables.counters["satiety"]["movement"]
 
                     # game continues
                     variables.game_in_progress = variables.actions["D"]["game_in_progress"]
@@ -215,10 +224,27 @@ def execute_avatar_action(current_action, action_occurences=1) :
             time.sleep(variables.message_speed)
             return
             
-
-
         elif current_action == "R":
+            # get the number of hour the avatar havs to sleep
+            print()
+            print("Tu as décidé de dormir.")
+            print(f'Ton avatar gagne {variables.counters["life"]["dormir"]} point de vie par heure dormie.')
+            nb_hour_sleep = int(input("Combien d'heure(s) veux-tu que ton avatar dorme ? "))
+            # modify the counter of "lif", "hydratation" and "satiety"
+            variables.counters["life"]["value"] += nb_hour_sleep * variables.counters["life"]["dormir"]
+            variables.counters["hydration"]["value"] += nb_hour_sleep * variables.counters["hydration"]["dormir"]
+            variables.counters["satiety"]["value"] += nb_hour_sleep * variables.counters["satiety"]["dormir"]
+            # check to don't go over the max value or min value (=death)
+            if variables.counters["life"]["value"] > variables.counters["life"]["value_max"]:
+                variables.counters["life"]["value"] = variables.counters["life"]["value_max"]
+            if variables.counters["hydration"]["value"] < variables.counters["hydration"]["value_min"] :
+                print(variables.counters["hydration"]["message_mort"])
+            if variables.counters["satiety"]["value"] < variables.counters["satiety"]["value_min"] :
+                print(variables.counters["hydration"]["message_mort"])
+            # print a litle message
             print(variables.actions["R"]["message"])
+            time.sleep(variables.message_speed * nb_hour_sleep)
+            # game still in progress
             variables.game_in_progress = variables.actions["R"]["game_in_progress"]
             # update counters
             variables.counters["number_actions"]["value"] += 1
@@ -333,15 +359,43 @@ def echec(player_name_def) :
         pass
 
 
-def play_item(clear_console = True) :
+def play_item(item, clear_console = True) :
     """
         choose what to do with the item
     """
-    pass
+    
     if clear_console :
         utilities.clear_console()
 
-    # print(f'Tu viens de trouver {")
+    print(f'Tu viens de trouver {variables.items_available[item]["name"]}.\n Tu peux :')
+    print("  - \u001b[1m(P)\u001b[0mrendre l'objet et le mettre dans ton sac à dos")
+    print("  - \u001b[1m(U)\u001b[0mtiliser l'object aussitôt")
+    print("  - \u001b[1m(A)\u001b[0mbandonner l'object au sol")
+    action_item = input("\nQue veux-tu faire ? ").upper()
+
+    if action_item == "P" :
+        # mettre l'objet dans le sac à dos
+        variables.backpack[item] = (variables.items_available[item])
+        # modify counter
+        variables.counters["number_actions"]["value"] += 1
+        print(f'Voilà {variables.items_available[item]["name"]} dans ton sac à dos !\n{variables.items_available[item]["message"]}\nRetour à la carte...')
+        time.sleep(variables.message_speed)
+
+    elif action_item == "U" :
+        # lancer la fonction pour utiliser l'objet
+
+        # modify counter
+        variables.counters["number_actions"]["value"] += 1
+        pass
+
+    elif action_item == "A" :
+        # do nothing
+        print("Tu as décidé de le laisser là.\nRetour à la carte...")
+        time.sleep(variables.message_speed)
+
+
+
+
 
 
 

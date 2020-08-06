@@ -68,7 +68,7 @@ def multi_fizzbuzz_play (clear_console = True) :
                 time.sleep(4)
             elif answer_player != good_answer and player == "avatar" :
                 print("-->\u001b[1mTu as perdu !\u001b[0m\nRetente ta chance plus tard.")
-                game.continue_or_exit()
+                utilities.continue_or_exit()
                 game.show_dashboard()
                 print()
                 return
@@ -91,7 +91,7 @@ def multi_fizzbuzz_play (clear_console = True) :
                 nb_players_left -= 1
             elif answer_player != good_answer and player == "avatar" :
                 print("-->\u001b[1mTu as perdu !\u001b[0m\nRetente ta chance. Tu as été jusqu'en finale !")
-                game.continue_or_exit()
+                utilities.continue_or_exit()
                 game.show_dashboard()
                 print()
                 return
@@ -107,7 +107,7 @@ def multi_fizzbuzz_play (clear_console = True) :
             winner = player 
             print(f'\n{(variables.players_fizzbuzz[winner]["name_monkey"]).capitalize()}, tu as gagné !')
             print("-->\u001b[1mTu peux prendre la clé d'or !\u001b[0m\n")
-            game.continue_or_exit()
+            utilities.continue_or_exit()
             game.show_dashboard()
             print()
             return

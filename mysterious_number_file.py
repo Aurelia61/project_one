@@ -61,7 +61,7 @@ def mysterious_number_play (number_test_left = 20, round_left = 3, clear_console
                     print(f'!! Bravo !! \nTu as trouvé les 3 nombres mystérieux en {20-number_test_left} essais !\n')
                     print("\u001b[1mTu peux prendre la clé de bronze !\u001b[0m\n")
                     number_test_left = 0
-    game.continue_or_exit()
+    utilities.continue_or_exit()
     game.show_dashboard()
     print()
     return

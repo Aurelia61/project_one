@@ -83,7 +83,7 @@ def caesar_code_play (clear_console = True) :
         test_coded_name()
     else :
         return
-    game.continue_or_exit()
+    utilities.continue_or_exit()
     game.show_dashboard()
     print()
     return
