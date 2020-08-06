@@ -130,7 +130,7 @@ def show_map_initial(map = "map1", clear_console = True) :
                     print(f'{variables.place[variables.map1[Y][X]]["color_start"]}{variables.place[variables.map1[Y][X]]["image"]}{variables.place[variables.map1[Y][X]]["color_end"]}', end="")
                 elif variables.map1[Y][X] in variables.items_available.keys() :
                     # if above is true, item is in this place, so draw it
-                    print(variables.symbol_items, end="") 
+                    print(variables.symbol_items, end="")
                 else :
                     # if not, draw the item of the map
                     print(f'{variables.map_elements[variables.map1[Y][X]]["color_start"]}{variables.map_elements[variables.map1[Y][X]]["image"]}{variables.map_elements[variables.map1[Y][X]]["color_end"]}', end="" )

@@ -105,7 +105,7 @@ def get_avatar_action ():
         #     print()
 
 
-def execute_avatar_action(current_action, action_occurences=1) :
+def execute_avatar_action(current_action, action_occurences=1, clear_console = True) :
     """
     executes action
     """
@@ -126,7 +126,6 @@ def execute_avatar_action(current_action, action_occurences=1) :
                     variables.counters["life"]["value"] += variables.counters["life"]["movement"]
                     variables.counters["hydration"]["value"] += variables.counters["hydration"]["movement"]
                     variables.counters["satiety"]["value"] += variables.counters["satiety"]["movement"]
-
                     # game continues
                     variables.game_in_progress = variables.actions["H"]["game_in_progress"]
                 else :
@@ -136,6 +135,9 @@ def execute_avatar_action(current_action, action_occurences=1) :
             # change avatar position x and y
             variables.avatar_position["x"] = new_avatar_x
             variables.avatar_position["y"] = new_avatar_y
+            # clear console
+            if clear_console:
+                utilities.clear_console()
             # show message
             print(variables.actions["H"]["message"])
             # keep the message visible for a while
@@ -153,17 +155,18 @@ def execute_avatar_action(current_action, action_occurences=1) :
                     variables.counters["life"]["value"] += variables.counters["life"]["movement"]
                     variables.counters["hydration"]["value"] += variables.counters["hydration"]["movement"]
                     variables.counters["satiety"]["value"] += variables.counters["satiety"]["movement"]
-
                     # game continues
                     variables.game_in_progress = variables.actions["B"]["game_in_progress"]                   
                 else :
                     # if action go to down, print message
                     print(variables.actions["B"]["impossible"])
                     new_avatar_y = 30
-
             # change avatar position x and y
             variables.avatar_position["x"] = new_avatar_x
             variables.avatar_position["y"] = new_avatar_y
+            # clear console
+            if clear_console:
+                utilities.clear_console()
             # show message
             print(variables.actions["B"]["message"])
             # keep the message visible for a while
@@ -181,7 +184,6 @@ def execute_avatar_action(current_action, action_occurences=1) :
                     variables.counters["life"]["value"] += variables.counters["life"]["movement"]
                     variables.counters["hydration"]["value"] += variables.counters["hydration"]["movement"]
                     variables.counters["satiety"]["value"] += variables.counters["satiety"]["movement"]
-
                     # game continues
                     variables.game_in_progress = variables.actions["G"]["game_in_progress"]
                 elif new_avatar_x + movement < 0 :
@@ -191,6 +193,9 @@ def execute_avatar_action(current_action, action_occurences=1) :
             # change avatar position x and y
             variables.avatar_position["x"] = new_avatar_x
             variables.avatar_position["y"] = new_avatar_y
+            # clear console
+            if clear_console:
+                utilities.clear_console()
             # show message
             print(variables.actions["G"]["message"])
             # keep the message visible for a while
@@ -208,7 +213,6 @@ def execute_avatar_action(current_action, action_occurences=1) :
                     variables.counters["life"]["value"] += variables.counters["life"]["movement"]
                     variables.counters["hydration"]["value"] += variables.counters["hydration"]["movement"]
                     variables.counters["satiety"]["value"] += variables.counters["satiety"]["movement"]
-
                     # game continues
                     variables.game_in_progress = variables.actions["D"]["game_in_progress"]
                 elif new_avatar_x + movement > 80 :
@@ -218,6 +222,9 @@ def execute_avatar_action(current_action, action_occurences=1) :
             # change avatar position x and y
             variables.avatar_position["x"] = new_avatar_x
             variables.avatar_position["y"] = new_avatar_y
+            # clear console
+            if clear_console:
+                utilities.clear_console()
             # show message
             print(variables.actions["D"]["message"])
             # keep the message visible for a while
@@ -241,16 +248,44 @@ def execute_avatar_action(current_action, action_occurences=1) :
                 print(variables.counters["hydration"]["message_mort"])
             if variables.counters["satiety"]["value"] < variables.counters["satiety"]["value_min"] :
                 print(variables.counters["hydration"]["message_mort"])
-            # print a litle message
+                # clear console
+            if clear_console:
+                utilities.clear_console()
+            # print a little message
             print(variables.actions["R"]["message"])
-            time.sleep(variables.message_speed * nb_hour_sleep)
+            for hour in range(nb_hour_sleep+1) :
+                nb_hour_sleep_left = nb_hour_sleep - hour
+                if hour == 0 :
+                    continue
+                elif hour == 1 :
+                    print(f"Ton avatar dort depuis {hour} heure.\nEncore {nb_hour_sleep_left}...")
+                    time.sleep(variables.message_speed)
+                elif hour == nb_hour_sleep+1:
+                    print(f"Ton avatar a dormi {hour} heure(s).\nIl est temps de se réveiller !!")
+                else:
+                    print(f"Ton avatar dort depuis {hour} heures.\nEncore {nb_hour_sleep_left}...")
+                    time.sleep(variables.message_speed)            
             # game still in progress
             variables.game_in_progress = variables.actions["R"]["game_in_progress"]
             # update counters
             variables.counters["number_actions"]["value"] += 1
-
             return
-            
+        
+        elif current_action == "O":
+            # clear console
+            if clear_console:
+                utilities.clear_console()
+            print(variables.actions["O"]["message"])
+            time.sleep(variables.message_speed)
+            open_backpack()
+            variables.game_in_progress = variables.actions["O"]["game_in_progress"]
+
+
+
+            # update counters
+            variables.counters["number_actions"]["value"] += 1
+
+
         elif current_action == "P":
             print(variables.actions["P"]["message"])
             variables.game_in_progress = variables.actions["P"]["game_in_progress"]
@@ -339,9 +374,13 @@ def show_new_map (clear_console = True):
                     print(f'{variables.avatar_symbol_current}', end="" )
                 elif variables.map1[Y][X] in variables.place.keys() :
                     print(f'{variables.place[variables.map1[Y][X]]["color_start"]}{variables.place[variables.map1[Y][X]]["image"]}{variables.place[variables.map1[Y][X]]["color_end"]}', end="")
-                elif variables.map1[Y][X] in variables.possibles_item_symbol and variables.map1[Y][X] != " ":
+                elif variables.map1[Y][X] in variables.possibles_item_symbol and variables.map1[Y][X] != " " and variables.map1[Y][X] != "r":
                     # if above is true, item is in this place, so draw it
                     print(variables.symbol_items, end="") 
+                    current_item_found = variables.map1[Y][X]
+                elif variables.map1[Y][X] in variables.possibles_item_symbol and variables.map1[Y][X] != " " and variables.map1[Y][X] == "r":
+                    # if above is true, item is in this place, so draw it
+                    print(variables.items_available["r"]["symbol_items"], end="") 
                     current_item_found = variables.map1[Y][X]
                 else :
                     # if not, draw the item of the map
@@ -394,7 +433,41 @@ def play_item(item, clear_console = True) :
         time.sleep(variables.message_speed)
 
 
+def open_backpack(clear_console = True) :
+    print("Voici ce que tu as dans ton sac à dos :")
+    for item in variables.backpack.keys() :
+        print(f'- {variables.backpack[item]["name"]} qui te redonne {variables.backpack[item]["value_hydration"]} point(s) d hydratation et {variables.backpack[item]["value_satiety"]} point(s)de satiété.Tape {variables.backpack[item]["symbol_items"]} pour le sélectionner.')
+    item_backpack_chosen = input(f"Quel objet veux-tu prendre ? ").lower()
+    if variables.backpack[item_backpack_chosen]["drink"] and not variables.backpack[item_backpack_chosen]["eat"] and not variables.backpack[item_backpack_chosen]["blind"] :
+        print(f'Ton avatar gagne {variables.backpack[item]["value_hydration"]} point(s) d hydratation.')
+        if variables.backpack[item]["value_hydration"] != 0 :
+            print("La chance ! ")
+            print(f'Avec {variables.backpack[item_backpack_chosen]["name"]}, tu gagnes aussi {variables.backpack[item]["value_satiety"]} point(s) de satiété.')
+        utilities.continue_or_exit()
+    elif not variables.backpack[item_backpack_chosen]["drink"] and variables.backpack[item_backpack_chosen]["eat"] and not variables.backpack[item_backpack_chosen]["blind"] :
+        print(f'Ton avatar gagne {variables.backpack[item]["value_satiety"]} point(s) de satiété.')
+        if variables.backpack[item]["value_satiety"] != 0 :
+            print("La chance ! ")
+            print(f'Avec {variables.backpack[item_backpack_chosen]["name"]}, tu gagnes aussi {variables.backpack[item]["value_hydration"]} point(s) d hydratation.')
+        utilities.continue_or_exit()
+    elif variables.backpack[item_backpack_chosen]["drink"] and variables.backpack[item_backpack_chosen]["eat"] and not variables.backpack[item_backpack_chosen]["blind"] :
+        print("Quelle bonne idée !")
+        print(f'Ton avatar gagne {variables.backpack[item]["value_hydration"]} point(s) d hydratation et {variables.backpack[item]["value_satiety"]} point(s) de satiété.')
+        utilities.continue_or_exit()
+    elif variables.backpack[item_backpack_chosen]["blind"] :
+        if clear_console :
+            utilities.clear_console()
+            print("Que se passe-t-il ????\n Tout s'assombrit... \nOMG ! Tu deviens aveugle...")
+            show_map_blind("eyes")
+            time.sleep(20)
 
+def show_map_blind(blind_map):
+    utilities.load_map_from_file(blind_map, map_blind_print)
+
+    for Y in range(len(variables.map_blind_print)) :
+        for X in range(len(variables.map_blind_print[Y])) :
+            print("▓", end="" )
+        print()
 
 
 

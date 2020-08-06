@@ -13,7 +13,7 @@ player_name = ""
 
 # game
 game_in_progress = True
-message_speed = 1
+message_speed = 2
 
 # avatar
 avatar_position = { "x" : 57, "y" : 20}      # X , Y  à mettre aléatoirement !!!!
@@ -111,13 +111,40 @@ counters = {
     ## what is in the backpack
 backpack = {
     "knife" : {
-        "name" : "Couteau"
+        "name" : "Couteau",
+        "symbol_items" : "f",
+        "message" : "Attention à ne pas te couper !",
+        "number" : 1,
+        "col_x" : [],
+        "ln_y" : [],
+        "value_hydration" : 0,
+        "value_satiety" : 0,
+        "drink" : False,
+        "eat" : False
     },
     "bottle" : {
-        "name" : "Bouteille d'eau"
+        "name" : "Bouteille d'eau",
+        "symbol_items" : "o",
+        "message" : "Reste-t-il encore de l'au dedans...",
+        "number" : 1,
+        "col_x" : [],
+        "ln_y" : [],
+        "value_hydration" : 0,
+        "value_satiety" : 0,
+        "drink" : False,
+        "eat" : False
     },
     "computer" : {
-        "name" : "Ordinateur portable"
+        "name" : "Ordinateur portable",
+        "symbol_items" : "p",
+        "message" : "Ce n'est pas le moment de jouer !",
+        "number" : 1,
+        "col_x" : [],
+        "ln_y" : [],
+        "value_hydration" : 0,
+        "value_satiety" : 0,
+        "drink" : False,
+        "eat" : False
     },
 }
 
@@ -131,16 +158,23 @@ items_available = {
         "col_x" : [],
         "ln_y" : [],
         "value_hydration" : 15,
-        "value_satiety" : 25
+        "value_satiety" : 25,
+        "blind" : False,
+        "drink" : True,
+        "eat" : True
     },
     "g" : {
         "name" : "spring_water",
         "symbol_items" : "g",
+        "message" : "Mmmm, ça va être rafraichissant ...",
         "number" : 3,
         "col_x" : [],
         "ln_y" : [],
         "value_hydration" : 100,
-        "value_satiety" : 5
+        "value_satiety" : 5,
+        "blind" : False,
+        "drink" : True,
+        "eat" : False
     },
     "w" : {
         "name" : "some worms",
@@ -150,25 +184,36 @@ items_available = {
         "col_x" : [],
         "ln_y" : [],
         "value_hydration" : 2,
-        "value_satiety" : 10
+        "value_satiety" : 10,
+        "blind" : False,
+        "drink" : False,
+        "eat" : True
     },
     "f" : {
         "name" : "fresh_water",
         "symbol_items" : "f",
+        "message" : "Mmmm, ça va être rafraichissant ...",
         "number" : 5,
         "col_x" : [],
         "ln_y" : [],
         "value_hydration" : 100,
-        "value_satiety" : 2
+        "value_satiety" : 0,
+        "blind" : False,
+        "drink" : True,
+        "eat" : False
     },
     "a" : {
         "name" : "sea_water",
         "symbol_items" : "s",
+        "message" : "Beurk ! C'est beaucoup trop salé ...",
         "number" : 3,
         "col_x" : [],
         "ln_y" : [],
-        "value_hydration" : 20,
-        "value_satiety" : 3
+        "value_hydration" : -15,
+        "value_satiety" : 0,
+        "blind" : False,
+        "drink" : True,
+        "eat" : False
     },
     "b" : {
         "name" : "a banana",
@@ -178,18 +223,23 @@ items_available = {
         "col_x" : [],
         "ln_y" : [],
         "value_hydration" : 2,
-        "value_satiety" : 50
+        "value_satiety" : 50,
+        "blind" : False,
+        "drink" : False,
+        "eat" : True
     },
     "r" : {
-        "name" : "a red_berry",
+        "name" : "a red berry",
         "symbol_items" : "r",
         "message" : "Mmmm, ça va être bon ...",
         "number" : 3,
-        "col_x" : [],
-        "ln_y" : [],
+        "col_x" : [57],
+        "ln_y" : [17],
         "value_hydration" : 0,
         "value_satiety" : 0,
-        "blind" : True
+        "blind" : True,
+        "drink" : False,
+        "eat" : True
     },
     "y" : {
         "name" : "some berries",
@@ -199,7 +249,10 @@ items_available = {
         "col_x" : [],
         "ln_y" : [],
         "value_hydration" : 2,
-        "value_satiety" : 10
+        "value_satiety" : 10,
+        "blind" : False,
+        "drink" : False,
+        "eat" : True
     }
 }
 
@@ -337,7 +390,7 @@ actions = {
     "O" : {
         "name" : "ouvrir",
         # "character" : "",
-        "message" : "\nLe sac à dos a été ouvert.\n",
+        "message" : "\nLe sac à dos s'ouvre.\n",
         "game_in_progress" : True,
         "movement" : False,
         "impossible" : "\nImpossible."
@@ -486,6 +539,7 @@ players_fizzbuzz = {
 # map
 
 map1 = []
+map_blind_print = []
 
 map_elements = {
     " " : {

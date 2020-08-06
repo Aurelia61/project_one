@@ -109,33 +109,6 @@ def load_map_from_file(file_name = "map1"):
                         and X == variables.place["4"]["col_x"]):
                         # if above is true, there is the gate here, so draw the number
                         columns.append(variables.place["4"]["print"])
-
-                    # # place item on the map
-                    # elif (Y == variables.items_available["coconut"]["ln_y"]
-                    #     and X == variables.items_available["coconut"]["col_x"]):
-                    #     # if above is true, there is a coconut here, so show it with the symbol
-                    #     columns.append(variables.items_available["coconut"]["symbol_items"])
-                    # elif (Y == variables.items_available["spring_water"]["ln_y"]
-                    #     and X == variables.items_available["spring_water"]["col_x"]):
-                    #     # if above is true, there is a spring water here, so show it with the symbol
-                    #     columns.append(variables.items_available["spring_water"]["symbol_items"])
-                    # elif (Y == variables.items_available["worm"]["ln_y"]
-                    #     and X == variables.items_available["worm"]["col_x"]):
-                    #     # if above is true, there are some worms here, so show it with the symbol
-                    #     columns.append(variables.items_available["worm"]["symbol_items"])
-                    # elif (Y == variables.items_available["banana"]["ln_y"]
-                    #     and X == variables.items_available["banana"]["col_x"]):
-                    #     # if above is true, there is a banana here, so show it with the symbol
-                    #     columns.append(variables.items_available["banana"]["symbol_items"])
-                    # elif (Y == variables.items_available["red_berry"]["ln_y"]
-                    #     and X == variables.items_available["red_berry"]["col_x"]):
-                    #     # if above is true, there is an item here, so show it with the symbol
-                    #     columns.append(variables.items_available["red_berry"]["symbol_items"])
-                    # elif (Y == variables.items_available["berry"]["ln_y"]
-                    #     and X == variables.items_available["berry"]["col_x"]):
-                    #     # if above is true, there is an item here, so show it with the symbol
-                    #     columns.append(variables.items_available["berry"]["symbol_items"])
-
                     else : 
                         # add character to map
                         columns.append(map_symbol)
