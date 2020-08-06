@@ -25,7 +25,7 @@ def start() :
     
     print(f"\nA bientôt {(variables.player_name).capitalize()} !\n")
 
-    return            # A vérifier si toujours utile, car normalement la boucle while doit s'arrêter !!
+    return
 
 
 # main entry point

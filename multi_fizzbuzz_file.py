@@ -103,7 +103,7 @@ def multi_fizzbuzz_play (clear_console = True) :
         for player in list_players :
             winner = player 
             print(f'\n{(variables.players_fizzbuzz[winner]["name_monkey"]).capitalize()}, tu as gagné !')
-            print("-->\u001b[1mTu peux prendre la clé d'or !\u001b[0m\n")
+            print("-->\u001b[1mTu obtiens la clé d'or !\u001b[0m\n")
             # put the key in the backpack
             variables.backpack["g"] = (variables.game_keys["g"])
             # continue or exit

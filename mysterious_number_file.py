@@ -59,7 +59,7 @@ def mysterious_number_play (number_test_left = 20, round_left = 3, clear_console
                     print(f'Il te reste encore {number_test_left} essais pour trouver le(s) {round_left} nombre(s) mystérieu(x) restant(s).\n')
                 elif round_left == 0 :
                     print(f'!! Bravo !! \nTu as trouvé les 3 nombres mystérieux en {20-number_test_left} essais !\n')
-                    print("\u001b[1mTu peux prendre la clé de bronze !\u001b[0m\n")
+                    print("\u001b[1mTu obtiens la clé de bronze !\u001b[0m\n")
                     # put the key in the backpack
                     variables.backpack["b"] = (variables.game_keys["b"])
                     # finish the game

@@ -117,7 +117,7 @@ def test_coded_name():
     elif decrypted_name == variables.player_name and variables.nb_round_caesar <= 5 :
         print(f'{decrypted_name}, est-ce ton prénom ?')
         print("Oui ! Bravo ! Tu as réussi à crypter ton nom !\n")
-        print("\u001b[1mTu peux prendre la clé d'argent !\u001b[0m\n")
+        print("\u001b[1mTu obtiens la clé d'argent !\u001b[0m\n")
         # put the key in the backpack
         variables.backpack["s"] = (variables.game_keys["s"])
         print()

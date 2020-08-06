@@ -209,7 +209,6 @@ def get_place_items() :
             # to add coodinate y
             ln_y_value = random.randint(0,30)
             (variables.items_available[keys]["ln_y"]).append(ln_y_value)
-            
 
 
 def choose_placement_challenge() :

@@ -47,6 +47,11 @@ def show_dashboard(clear_console = True) :
         # if avatar on the game "3", play the game 3
         if variables.avatar_position["y"] == variables.place["3"]["ln_y"] and variables.avatar_position["x"] == variables.place["3"]["col_x"] :
             multi_fizzbuzz_file.multi_fizzbuzz_play()
+
+        # if avatar on the gate and if he has the 3 keys, the player win
+        if variables.avatar_position["y"] == variables.place["4"]["ln_y"] and variables.avatar_position["x"] == variables.place["4"]["col_x"] and "g" in variables.backpack.keys() and "s" in variables.backpack.keys() and "b" in variables.backpack.keys() :
+            print("Tu as gagné !")
+
         
         # check if there is an item where the avatar is
         for keys in variables.items_available :
@@ -55,7 +60,6 @@ def show_dashboard(clear_console = True) :
                     and variables.avatar_position["x"] == variables.items_available[keys]["col_x"][number]) :
                     # if above is true, there is an item here, ask to the player what to do
                     play_item(keys)
-                    
 
 
 def get_avatar_action ():
@@ -97,12 +101,6 @@ def get_avatar_action ():
                     return letter_action, number_action
                 # stop browsing actions
                 break
-
-
-        # if the action doesn't exist
-        # if not action_is_valid :
-        #     print(f"{action} n'est pas une instruction connue.")
-        #     print()
 
 
 def execute_avatar_action(current_action, action_occurences=1, clear_console = True) :
