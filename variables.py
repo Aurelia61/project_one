@@ -23,21 +23,21 @@ letter_avatar_symbol = ""
 
 avatar_symbol = {                                                ################### rajouter le choix de la couleur ???
     "L" : {
-        "name" : "Lady",
+        "name" : "(L)ady",
         "symbol" : "♀",
         "message" : "Quelle bonne idée d'avoir choisi ce symbole \u001b[38;5;201m♀\u001b[0m !\n Tu as débloqué le 'Ladies Mode' !",
         "color_start" : "\u001b[38;5;201m",
         "color_end" : "\u001b[0m"
     },
     "K" : {
-        "name" : "Knight",
+        "name" : "(K)night",
         "symbol" : "♂",
         "message" : "Voici le symbole de ton avatar : \u001b[38;5;33m♂\u001b[0m !",
         "color_start" : "\u001b[38;5;33m",
         "color_end" : "\u001b[0m"
     },
     "N" : {
-        "name" : "No One",
+        "name" : "(N)o One",
         "symbol" : "☻",
         "message" : "Voici le symbole de ton avatar : \u001b[38;5;10m☻\u001b[0m !",
         "color_start" : "\u001b[38;5;10m",
@@ -683,6 +683,6 @@ drawn_image = {}
 
 if __name__ == "__main__" :
     # get_list_place_symbol()
-    # pass
+    pass
 
 

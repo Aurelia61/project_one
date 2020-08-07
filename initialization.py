@@ -77,10 +77,9 @@ def get_name_and_symbol(clear_console = True):
         print()
         print(f'Bienvenue {(variables.players_fizzbuzz["avatar"]["name_monkey"]).capitalize()} !')
         print()
-        print("Quel symbole souhaites-tu pour ton avatar ?")         ##### !!! que le choix entre 1 ou 2... et si le joueur veut rajouter son propre symbole ???
-        print(f'     - (L)ady: {variables.avatar_symbol["L"]["color_start"]}{variables.avatar_symbol["L"]["symbol"]}{variables.avatar_symbol["L"]["color_end"]} ')
-        print(f'     - (K)night : {variables.avatar_symbol["K"]["color_start"]}{variables.avatar_symbol["K"]["symbol"]}{variables.avatar_symbol["K"]["color_end"]} ')
-        print(f'     - (N)o One : {variables.avatar_symbol["N"]["color_start"]}{variables.avatar_symbol["N"]["symbol"]}{variables.avatar_symbol["N"]["color_end"]} ')
+        print("Quel symbole souhaites-tu pour ton avatar ?")
+        for key in variables.avatar_symbol.keys() :
+            print(f'- {variables.avatar_symbol[key]["name"]} :: {variables.avatar_symbol[key]["color_start"]}{variables.avatar_symbol[key]["symbol"]}{variables.avatar_symbol[key]["color_end"]}')
         variables.letter_avatar_symbol = input(f"Choisis maintenant entre {variables.possibles_avatar_symbol} : ").upper()                
         print()
         

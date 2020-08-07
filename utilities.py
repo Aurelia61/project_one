@@ -215,6 +215,8 @@ def show_image(image):
 
         print()
 
+
+
 def try_again_or_not():
     pass
 

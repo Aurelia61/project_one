@@ -489,12 +489,14 @@ def open_backpack(clear_console = True) :
     print("Voici ce que tu as dans ton sac à dos :")
     for item in variables.backpack.keys() :
         print(f'- \u001b[4m{variables.backpack[item]["name"]}\u001b[0m qui te redonne \u001b[4m{variables.backpack[item]["value_hydration"]}\u001b[0m point(s) d hydratation et \u001b[4m{variables.backpack[item]["value_satiety"]}\u001b[0m point(s)de satiété.Tape \u001b[1m({variables.backpack[item]["symbol_items"]})\u001b[0m pour le sélectionner.')
-    item_backpack_chosen = input(f"Quel objet veux-tu prendre ? ").lower()
+    item_backpack_chosen = input(f"\nQuel objet veux-tu prendre ? ").lower()
     use_item (item_backpack_chosen)
     return 
 
 
 def use_item (item, clear_console = True):
+    if clear_console :
+        utilities.clear_console()
     if not variables.backpack[item]["drink"] and not variables.backpack[item]["eat"] and not variables.backpack[item]["blind"]:
         print(f'\n{variables.backpack[item]["message"]}')
         utilities.continue_or_exit()
