@@ -15,6 +15,7 @@ player_name = "Looser"
 game_in_progress = True
 message_speed = 4
 
+
 # AVATAR
 avatar_position = { "x" : 57, "y" : 20}      # X , Y  à mettre aléatoirement !!!!
 
@@ -52,6 +53,7 @@ avatar_previous_position = {"x" : None, "y" : None }
 symbol_under_avatar = ""
 
 avatar_speed = 0.3
+
 
 # all the COUNTERS are here
 
@@ -523,7 +525,6 @@ game_keys = {
 
     ## challenge 1 :: mysterious number
 
-
 player_number = ""
 sphinx_number = ""
 
@@ -603,7 +604,6 @@ players_fizzbuzz = {
 }
 
 
-
 # MAP
 
 map1 = []
@@ -676,6 +676,7 @@ map_elements = {
     }
 }
 
+
 # drawn IMAGES
 drawn_image = {}
 
@@ -683,6 +684,5 @@ drawn_image = {}
 if __name__ == "__main__" :
     # get_list_place_symbol()
     # pass
-    print(symbol_items, end="")
-    print(symbol_items, end="")
-    print(symbol_items, end="")
+
+
